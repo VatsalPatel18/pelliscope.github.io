@@ -33,7 +33,7 @@ import pelliscopeLogo from '../assets/img/pelliscope.png';
 import demoDesktop from '../assets/video/pelliscope_preview.mp4';
 import demoMobile from '../assets/video/pelliscope-mobile-ad1.mp4';
 import vatsalPhoto from '../assets/members/Vatsal_Patel.jpg';
-import abhijeetPhoto from '../assets/members/Abhijeet Patel.jpg';
+import abhijeetPhoto from '../assets/members/Abhijeet_Patel.jpg';
 import nishiPhoto from '../assets/members/dr.nishi_crop.png';
 import sauravPhoto from '../assets/members/Saurav_Roy.jpeg';
 

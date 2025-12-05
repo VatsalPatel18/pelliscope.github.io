@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "esbuild src/main.jsx --bundle --minify --sourcemap --loader:.png=file --loader:.jpg=file --loader:.jpeg=file --loader:.mp4=file --outdir=dist --target=es2017 --log-level=info"
+    "build": "rm -rf dist && esbuild src/main.jsx --bundle --minify --sourcemap --loader:.png=file --loader:.jpg=file --loader:.jpeg=file --loader:.mp4=file --outdir=dist --target=es2017 --log-level=info"
   },
   "repository": {
     "type": "git",
