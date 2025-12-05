@@ -1,0 +1,30 @@
+{
+  "name": "pelliscope-web2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "esbuild src/main.jsx --bundle --minify --sourcemap --loader:.png=file --loader:.jpg=file --loader:.jpeg=file --loader:.mp4=file --outdir=dist --target=es2017 --log-level=info"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/VatsalPatel18/pelliscope.github.io.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/VatsalPatel18/pelliscope.github.io/issues"
+  },
+  "homepage": "https://github.com/VatsalPatel18/pelliscope.github.io#readme",
+  "dependencies": {
+    "framer-motion": "^12.23.25",
+    "lucide-react": "^0.555.0",
+    "react": "^19.2.1",
+    "react-dom": "^19.2.1",
+    "recharts": "^3.5.1"
+  },
+  "devDependencies": {
+    "esbuild": "^0.27.1"
+  }
+}
