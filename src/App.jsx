@@ -36,6 +36,7 @@ import vatsalPhoto from '../assets/members/Vatsal_Patel.jpg';
 import abhijeetPhoto from '../assets/members/Abhijeet_Patel.jpg';
 import nishiPhoto from '../assets/members/dr.nishi_crop.png';
 import sauravPhoto from '../assets/members/Saurav_Roy.jpeg';
+import scanSample from '../assets/img/scan-sample.jpeg';
 
 // --- Constants & Data ---
 
@@ -180,7 +181,15 @@ const PhoneSimulation = () => {
             >
               <div className="absolute inset-0 flex items-center justify-center">
                 <div className="w-full h-full bg-slate-800 animate-pulse opacity-50"></div> {/* Mock camera feed */}
-                <div className="absolute border-2 border-emerald-400 w-48 h-48 rounded-2xl opacity-80"></div>
+                <div className="absolute w-48 h-48 rounded-2xl border-2 border-emerald-400 opacity-90 overflow-hidden shadow-[0_0_0_6px_rgba(16,185,129,0.12)]">
+                  <motion.img
+                    src={scanSample}
+                    alt="Live capture preview"
+                    className="w-full h-full object-cover"
+                    animate={{ scale: [1, 1.05, 1], x: [-4, 4, -4] }}
+                    transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+                  />
+                </div>
                 <div className="absolute bottom-10 w-16 h-16 rounded-full border-4 border-white flex items-center justify-center">
                   <div className="w-14 h-14 bg-white rounded-full"></div>
                 </div>
@@ -435,7 +444,7 @@ export default function App() {
                 <motion.div
                   animate={{ y: [0, -10, 0] }}
                   transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                  className="absolute top-20 -left-12 bg-slate-800/90 backdrop-blur-md p-4 rounded-2xl border border-white/10 shadow-xl max-w-[180px] hidden md:block"
+                  className="absolute top-6 -left-40 lg:-left-48 bg-slate-800/90 backdrop-blur-md p-4 rounded-2xl border border-white/10 shadow-xl max-w-[180px] hidden md:block"
                 >
                   <div className="flex items-center gap-2 mb-2">
                     <ShieldCheck className="w-5 h-5 text-emerald-400" />
@@ -447,7 +456,7 @@ export default function App() {
                 <motion.div
                   animate={{ y: [0, 10, 0] }}
                   transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-                  className="absolute bottom-32 -right-8 bg-slate-800/90 backdrop-blur-md p-4 rounded-2xl border border-white/10 shadow-xl max-w-[180px] hidden md:block"
+                  className="absolute bottom-8 -right-40 lg:-right-48 bg-slate-800/90 backdrop-blur-md p-4 rounded-2xl border border-white/10 shadow-xl max-w-[180px] hidden md:block"
                 >
                   <div className="flex items-center gap-2 mb-2">
                     <Stethoscope className="w-5 h-5 text-blue-400" />
