@@ -516,9 +516,9 @@ export default function App() {
                   <BarChart data={PERFORMANCE_DATA} layout="vertical" margin={{ top: 5, right: 30, left: 40, bottom: 5 }}>
                     <CartesianGrid strokeDasharray="3 3" horizontal={false} stroke="#334155" />
                     <XAxis type="number" domain={[0.6, 0.9]} hide />
-                    <YAxis dataKey="name" type="category" width={80} tick={{fill: '#94a3b8', fontSize: 12}} />
+                    <YAxis dataKey="name" type="category" width={80} tick={{ fill: '#94a3b8', fontSize: 12 }} />
                     <Tooltip
-                      cursor={{fill: 'transparent'}}
+                      cursor={{ fill: 'transparent' }}
                       contentStyle={{ backgroundColor: '#0f172a', borderColor: '#334155', color: '#fff' }}
                     />
                     <Bar dataKey="auc" radius={[0, 4, 4, 0]} barSize={24}>
@@ -588,7 +588,7 @@ export default function App() {
             <p className="text-slate-400 mt-2">Connecting patients, kiosks, and clinicians in one loop.</p>
           </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="group bg-slate-900 rounded-3xl p-8 border border-white/5 hover:border-emerald-500/30 transition-colors relative overflow-hidden">
               <div className="absolute top-0 right-0 p-20 bg-emerald-500/5 rounded-full blur-3xl group-hover:bg-emerald-500/10 transition-colors"></div>
               <div className="relative z-10">
@@ -672,7 +672,7 @@ export default function App() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {TEAM_MEMBERS.map((member, i) => (
               <div key={i} className="bg-slate-900/50 p-6 rounded-2xl border border-white/5 hover:border-emerald-500/30 transition-colors">
-                <div className="w-16 h-16 bg-slate-800 rounded-full mb-4 flex items-center justify-center text-slate-500 font-bold text-xl overflow-hidden border border-white/10">
+                <div className="w-32 h-32 bg-slate-800 rounded-full mb-4 flex items-center justify-center text-slate-500 font-bold text-xl overflow-hidden border border-white/10">
                   {member.photo ? (
                     <img src={member.photo} alt={member.name} className="w-full h-full object-cover" />
                   ) : (
