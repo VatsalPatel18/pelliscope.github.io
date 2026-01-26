@@ -35,7 +35,6 @@ import demoMobile from '../assets/video/pelliscope-mobile-ad1.mp4';
 import vatsalPhoto from '../assets/members/Vatsal_Patel.jpg';
 import abhijeetPhoto from '../assets/members/Abhijeet_Patel.jpg';
 import nishiPhoto from '../assets/members/dr.nishi_crop.png';
-import sauravPhoto from '../assets/members/Saurav_Roy.jpeg';
 import scanSample from '../assets/img/scan-sample.jpeg';
 
 // --- Constants & Data ---
@@ -51,7 +50,6 @@ const TEAM_MEMBERS = [
   { name: "Vatsal Patel", role: "Founder & Research Engineer", edu: "M.Sc AI (IU Berlin)", photo: vatsalPhoto },
   { name: "Dr. Abhijeet Patel", role: "Clinical Research Physician", edu: "MBBS", photo: abhijeetPhoto },
   { name: "Dr. Nishi Seth", role: "Consultant Dermatologist", edu: "M.D Dermatology", photo: nishiPhoto },
-  { name: "Saurav Roy", role: "Operations Head", edu: "M.Tech Biotechnology", photo: sauravPhoto },
 ];
 
 const PRICING_MODELS = [
