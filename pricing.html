@@ -1,0 +1,906 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PelliScope | Pricing</title>
+    <meta
+      name="description"
+      content="Pricing and rollout options for PelliScope, including API integration and on-prem deployment."
+    />
+    <link rel="icon" type="image/png" href="./assets/img/pelliscope.png?v=1769439074515" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #f7f0e1;
+        --text: #16231b;
+        --muted: #516357;
+        --cream: #fff7ea;
+        --accent: #2f7d57;
+        --shadow: 0 30px 80px rgba(15, 23, 18, 0.14);
+      }
+
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        margin: 0;
+        font-family: "Plus Jakarta Sans", sans-serif;
+        color: var(--text);
+        background:
+          radial-gradient(circle at 10% 0%, rgba(130, 185, 141, 0.26), transparent 30%),
+          radial-gradient(circle at 90% 14%, rgba(217, 165, 90, 0.22), transparent 28%),
+          linear-gradient(180deg, #fbf5e9 0%, #f3ead7 42%, #f7f0e1 100%);
+        overflow-x: hidden;
+      }
+
+      a { color: inherit; text-decoration: none; }
+
+      .ambient-orb {
+        position: fixed;
+        z-index: -2;
+        border-radius: 999px;
+        filter: blur(90px);
+        opacity: 0.55;
+        pointer-events: none;
+      }
+
+      .ambient-orb.one {
+        width: 28rem;
+        height: 28rem;
+        top: -10rem;
+        left: -12rem;
+        background: rgba(132, 188, 145, 0.38);
+      }
+
+      .ambient-orb.two {
+        width: 26rem;
+        height: 26rem;
+        right: -8rem;
+        top: 22rem;
+        background: rgba(217, 165, 90, 0.34);
+      }
+
+      .topbar {
+        position: sticky;
+        top: 0;
+        z-index: 40;
+        padding: 1rem 1.25rem;
+      }
+
+      .topbar-inner {
+        max-width: 1240px;
+        margin: 0 auto;
+        padding: 0.85rem 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        border: 1px solid rgba(255, 255, 255, 0.45);
+        border-radius: 999px;
+        background: rgba(255, 248, 235, 0.62);
+        backdrop-filter: blur(20px);
+        box-shadow: 0 15px 40px rgba(50, 41, 28, 0.08);
+      }
+
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.85rem;
+      }
+
+      .brand-mark {
+        width: 2.75rem;
+        height: 2.75rem;
+        padding: 0.45rem;
+        border-radius: 18px;
+        background: linear-gradient(180deg, rgba(47, 125, 87, 0.18), rgba(255, 255, 255, 0.76));
+        border: 1px solid rgba(47, 125, 87, 0.18);
+      }
+
+      .brand-copy strong,
+      .footer-brand strong {
+        display: block;
+        font-size: 0.98rem;
+        letter-spacing: -0.03em;
+      }
+
+      .brand-copy span,
+      .footer-brand span {
+        display: block;
+        font-size: 0.74rem;
+        color: var(--muted);
+      }
+
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 1.4rem;
+        color: rgba(22, 35, 27, 0.74);
+        font-size: 0.95rem;
+      }
+
+      .button,
+      .button-muted {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 3rem;
+        padding: 0.85rem 1.25rem;
+        border-radius: 999px;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+      }
+
+      .button {
+        background: #112019;
+        color: var(--cream);
+        box-shadow: 0 18px 38px rgba(17, 32, 25, 0.22);
+      }
+
+      .button-muted {
+        color: var(--text);
+        border: 1px solid rgba(22, 35, 27, 0.12);
+        background: rgba(255, 255, 255, 0.4);
+      }
+
+      .hero,
+      .section,
+      footer {
+        max-width: 1240px;
+        margin: 0 auto;
+        padding-left: 1.25rem;
+        padding-right: 1.25rem;
+      }
+
+      .hero {
+        padding-top: 4rem;
+        padding-bottom: 4rem;
+      }
+
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.55rem;
+        margin: 0 0 1.15rem;
+        font-size: 0.76rem;
+        font-weight: 800;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: rgba(22, 35, 27, 0.58);
+      }
+
+      .eyebrow::before {
+        content: "";
+        width: 2.25rem;
+        height: 1px;
+        background: rgba(22, 35, 27, 0.32);
+      }
+
+      h1, h2 {
+        margin: 0;
+        font-family: "Fraunces", serif;
+        font-weight: 600;
+        letter-spacing: -0.05em;
+        line-height: 0.96;
+      }
+
+      h1 { font-size: clamp(3rem, 7vw, 6rem); max-width: 11ch; }
+      h2 { font-size: clamp(2.1rem, 4vw, 4rem); }
+
+      .hero p,
+      .section p,
+      .faq-answer,
+      .footer-meta {
+        color: var(--muted);
+        line-height: 1.75;
+        font-size: 1rem;
+      }
+
+      .hero p { max-width: 45rem; margin-top: 1.2rem; }
+
+      .pricing-grid,
+      .faq-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 1rem;
+      }
+
+      .proof-grid,
+      .economics-grid,
+      .metric-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 1rem;
+      }
+
+      .section {
+        padding-bottom: 5rem;
+      }
+
+      .pricing-card,
+      .faq-card {
+        padding: 1.6rem;
+        border-radius: 32px;
+        background: rgba(255, 251, 244, 0.76);
+        border: 1px solid rgba(22, 35, 27, 0.08);
+        box-shadow: 0 18px 45px rgba(79, 59, 30, 0.06);
+      }
+
+      .pricing-card.highlight {
+        background: linear-gradient(180deg, rgba(17, 32, 25, 0.96), rgba(12, 22, 17, 0.98));
+        color: rgba(255, 247, 234, 0.96);
+      }
+
+      .tag {
+        display: inline-flex;
+        align-items: center;
+        min-height: 2rem;
+        padding: 0.35rem 0.7rem;
+        border-radius: 999px;
+        font-size: 0.72rem;
+        font-weight: 800;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        background: rgba(17, 32, 25, 0.06);
+        color: var(--muted);
+      }
+
+      .pricing-card.highlight .tag {
+        background: rgba(255, 247, 234, 0.08);
+        color: rgba(255, 247, 234, 0.72);
+      }
+
+      .pricing-card h3,
+      .faq-card h3 {
+        margin: 1rem 0 0;
+        font-size: 1.5rem;
+        letter-spacing: -0.04em;
+      }
+
+      .price-line {
+        margin-top: 0.8rem;
+        display: flex;
+        align-items: baseline;
+        gap: 0.55rem;
+      }
+
+      .price-line strong {
+        font-size: 2.5rem;
+        letter-spacing: -0.06em;
+      }
+
+      .price-line span {
+        color: var(--muted);
+        font-size: 0.92rem;
+      }
+
+      .pricing-card.highlight .price-line span,
+      .pricing-card.highlight p,
+      .pricing-card.highlight li {
+        color: rgba(255, 247, 234, 0.74);
+      }
+
+      .pricing-list {
+        margin: 1rem 0 0;
+        padding: 0;
+        list-style: none;
+        display: grid;
+        gap: 0.7rem;
+      }
+
+      .pricing-list li {
+        position: relative;
+        padding-left: 1.15rem;
+        color: var(--muted);
+      }
+
+      .pricing-list li::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0.6rem;
+        width: 0.42rem;
+        height: 0.42rem;
+        border-radius: 999px;
+        background: #2f7d57;
+      }
+
+      .proof-card,
+      .metric-card {
+        padding: 1.7rem;
+        border-radius: 32px;
+        background: rgba(255, 251, 244, 0.76);
+        border: 1px solid rgba(22, 35, 27, 0.08);
+        box-shadow: 0 18px 45px rgba(79, 59, 30, 0.06);
+      }
+
+      .proof-card.dark,
+      .economics-stage {
+        background: linear-gradient(180deg, rgba(17, 32, 25, 0.96), rgba(12, 22, 17, 0.98));
+        color: rgba(255, 247, 234, 0.96);
+      }
+
+      .proof-card h3,
+      .metric-card h3 {
+        margin: 0;
+        font-size: 1.45rem;
+        letter-spacing: -0.04em;
+      }
+
+      .proof-subtitle,
+      .metric-copy {
+        margin-top: 0.45rem;
+        color: var(--muted);
+        font-size: 0.92rem;
+        line-height: 1.6;
+      }
+
+      .proof-card.dark .proof-subtitle,
+      .proof-card.dark .metric-copy,
+      .economics-stage p,
+      .economics-stage li {
+        color: rgba(255, 247, 234, 0.72);
+      }
+
+      .workflow-badge,
+      .soft-pill,
+      .status-chip {
+        display: inline-flex;
+        align-items: center;
+        min-height: 2rem;
+        padding: 0.35rem 0.75rem;
+        border-radius: 999px;
+        font-size: 0.74rem;
+        font-weight: 800;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+      }
+
+      .workflow-badge,
+      .status-chip {
+        background: rgba(47, 125, 87, 0.1);
+        color: #1f5a3f;
+      }
+
+      .soft-pill {
+        background: rgba(255, 247, 234, 0.08);
+        color: rgba(255, 247, 234, 0.74);
+      }
+
+      .timeline-block {
+        margin-top: 1.2rem;
+      }
+
+      .timeline-head {
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+        margin-bottom: 0.45rem;
+        font-size: 0.75rem;
+        font-weight: 800;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: rgba(22, 35, 27, 0.56);
+      }
+
+      .timeline-bar {
+        display: flex;
+        min-height: 3.25rem;
+        border-radius: 18px;
+        overflow: hidden;
+        background: rgba(22, 35, 27, 0.06);
+      }
+
+      .timeline-fill,
+      .timeline-split {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.8rem;
+        color: #fff;
+        font-size: 0.88rem;
+        font-weight: 700;
+        text-align: center;
+      }
+
+      .timeline-fill {
+        width: 100%;
+        background: rgba(92, 106, 97, 0.88);
+      }
+
+      .timeline-split.one {
+        width: 30%;
+        background: rgba(47, 125, 87, 0.92);
+      }
+
+      .timeline-split.two {
+        width: 70%;
+        background: rgba(180, 129, 54, 0.92);
+      }
+
+      .timeline-foot {
+        margin-top: 0.75rem;
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+        align-items: center;
+      }
+
+      .timeline-foot p,
+      .timeline-foot span {
+        margin: 0;
+      }
+
+      .timeline-foot span {
+        font-size: 1.1rem;
+        font-weight: 800;
+        color: var(--accent);
+      }
+
+      .bars {
+        margin-top: 1.35rem;
+        display: grid;
+        gap: 0.85rem;
+      }
+
+      .bar-row {
+        display: grid;
+        grid-template-columns: 6rem 1fr 3rem;
+        gap: 0.75rem;
+        align-items: center;
+      }
+
+      .bar-row label {
+        font-size: 0.82rem;
+        font-weight: 700;
+        color: rgba(22, 35, 27, 0.68);
+        text-align: right;
+      }
+
+      .bar-track {
+        height: 0.95rem;
+        border-radius: 999px;
+        overflow: hidden;
+        background: rgba(22, 35, 27, 0.08);
+      }
+
+      .bar-fill {
+        height: 100%;
+        border-radius: 999px;
+      }
+
+      .bar-fill.grok { width: 70%; background: rgba(99, 115, 107, 0.8); }
+      .bar-fill.gpt { width: 81%; background: rgba(94, 146, 213, 0.85); }
+      .bar-fill.gemini { width: 82%; background: rgba(112, 108, 205, 0.8); }
+      .bar-fill.pelli { width: 86%; background: linear-gradient(90deg, #2f7d57, #4ea873); }
+
+      .bar-row strong {
+        font-size: 0.84rem;
+        text-align: right;
+      }
+
+      .chip-row {
+        margin-top: 1.1rem;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.6rem;
+      }
+
+      .metric-card p {
+        margin: 0.6rem 0 0;
+      }
+
+      .condition-list {
+        margin: 0.9rem 0 0;
+        color: var(--muted);
+        font-size: 0.92rem;
+        line-height: 1.75;
+      }
+
+      .economics-stage {
+        padding: 2rem;
+        border-radius: 40px;
+        box-shadow: 0 32px 80px rgba(17, 32, 25, 0.24);
+      }
+
+      .economics-grid {
+        align-items: stretch;
+      }
+
+      .cost-stack {
+        display: grid;
+        gap: 1rem;
+      }
+
+      .cost-card,
+      .revenue-card,
+      .commercial-card {
+        border-radius: 28px;
+        padding: 1.5rem;
+      }
+
+      .cost-card,
+      .commercial-card {
+        background: rgba(255, 247, 234, 0.06);
+        border: 1px solid rgba(255, 247, 234, 0.1);
+      }
+
+      .revenue-card {
+        background: rgba(255, 250, 243, 0.96);
+        color: var(--text);
+      }
+
+      .label-row {
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+        align-items: flex-start;
+      }
+
+      .mini-meta {
+        padding: 0.8rem 0.9rem;
+        border-radius: 20px;
+        background: rgba(255, 247, 234, 0.08);
+        border: 1px solid rgba(255, 247, 234, 0.08);
+        text-align: right;
+      }
+
+      .mini-meta strong,
+      .commercial-price {
+        display: block;
+        font-size: 2.2rem;
+        line-height: 1;
+        letter-spacing: -0.06em;
+      }
+
+      .mini-meta span,
+      .commercial-copy,
+      .commercial-list li,
+      .note-line {
+        font-size: 0.84rem;
+        line-height: 1.65;
+      }
+
+      .revenue-card .metric-value {
+        font-size: 3rem;
+        font-family: "Fraunces", serif;
+        letter-spacing: -0.06em;
+        line-height: 0.94;
+      }
+
+      .revenue-highlight {
+        display: inline-flex;
+        align-items: center;
+        min-height: 2.2rem;
+        padding: 0.45rem 0.85rem;
+        border-radius: 14px;
+        background: rgba(47, 125, 87, 0.12);
+        color: #1f5a3f;
+        font-weight: 800;
+      }
+
+      .commercial-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 1rem;
+      }
+
+      .commercial-card h3 {
+        margin: 0;
+        font-size: 1.1rem;
+        letter-spacing: -0.03em;
+      }
+
+      .commercial-list {
+        margin: 0.85rem 0 0;
+        padding-left: 1rem;
+      }
+
+      .commercial-list li + li {
+        margin-top: 0.35rem;
+      }
+
+      .research-row {
+        margin-top: 1.1rem;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+      }
+
+      .cta-panel {
+        padding: 2.4rem;
+        border-radius: 42px;
+        background:
+          radial-gradient(circle at 12% 20%, rgba(130, 185, 141, 0.3), transparent 26%),
+          radial-gradient(circle at 90% 24%, rgba(217, 165, 90, 0.32), transparent 22%),
+          linear-gradient(180deg, rgba(17, 32, 25, 0.96), rgba(17, 32, 25, 1));
+        color: rgba(255, 247, 234, 0.96);
+        box-shadow: 0 32px 80px rgba(17, 32, 25, 0.28);
+      }
+
+      .cta-panel p { color: rgba(255, 247, 234, 0.74); max-width: 40rem; }
+
+      footer {
+        padding-top: 1rem;
+        padding-bottom: 3rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        color: rgba(22, 35, 27, 0.6);
+      }
+
+      .footer-brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.8rem;
+      }
+
+      .footer-mark {
+        width: 2.35rem;
+        height: 2.35rem;
+        padding: 0.38rem;
+        border-radius: 16px;
+        background: rgba(47, 125, 87, 0.08);
+        border: 1px solid rgba(47, 125, 87, 0.1);
+      }
+
+      @media (max-width: 1080px) {
+        .nav-links,
+        .pricing-grid,
+        .faq-grid,
+        .proof-grid,
+        .economics-grid,
+        .metric-grid,
+        .commercial-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 760px) {
+        .topbar { padding: 0.9rem 0.8rem; }
+        .topbar-inner { padding: 0.75rem; }
+        .nav-links { display: none; }
+        footer { flex-direction: column; align-items: flex-start; }
+        .bar-row {
+          grid-template-columns: 4.8rem 1fr 2.5rem;
+          gap: 0.55rem;
+        }
+        .timeline-head,
+        .timeline-foot,
+        .label-row {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+        .mini-meta {
+          text-align: left;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="ambient-orb one"></div>
+    <div class="ambient-orb two"></div>
+
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="./index.html" aria-label="PelliScope home">
+          <img class="brand-mark" src="./assets/img/pelliscope.png" alt="PelliScope logo" />
+          <div class="brand-copy">
+            <strong>PelliScope</strong>
+            <span>From first concern to clearer next step</span>
+          </div>
+        </a>
+
+        <nav class="nav-links" aria-label="Primary">
+          <a href="./index.html#story">How it works</a>
+          <a href="./index.html#care">Why it helps</a>
+          <a href="./index.html#clinician">Care flow</a>
+          <a href="./pricing.html">Pricing</a>
+          <a href="./index.html#team">Team</a>
+        </nav>
+
+        <a class="button" href="https://app.pelliscope.in">Try now</a>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <p class="eyebrow">Costs & Pricing</p>
+        <h1>PelliScope pricing, workflow lift, and day-to-day operating reality.</h1>
+        <p>
+          This page is where rollout choice meets operational proof: consultation efficiency, model performance,
+          everyday infrastructure cost, and the commercial paths we can support.
+        </p>
+      </section>
+
+      <section class="section">
+        <p class="eyebrow">Operational Infographic</p>
+        <div class="proof-grid">
+          <article class="proof-card">
+            <div style="display:flex; justify-content:space-between; gap:1rem; align-items:flex-start;">
+              <div>
+                <h3>Pre-consultation efficiency for tele-medicine.</h3>
+                <p class="proof-subtitle">Workflow comparison</p>
+              </div>
+              <span class="workflow-badge">+10 patients / 5hr shift</span>
+            </div>
+
+            <div class="timeline-block">
+              <div class="timeline-head">
+                <span>Traditional (No AI)</span>
+                <span>10 min / patient</span>
+              </div>
+              <div class="timeline-bar">
+                <div class="timeline-fill">Consultation (10m)</div>
+              </div>
+              <div class="timeline-foot">
+                <p></p>
+                <span>6 patients / hour</span>
+              </div>
+            </div>
+
+            <div class="timeline-block">
+              <div class="timeline-head" style="color:#1f5a3f;">
+                <span>With PelliScope</span>
+                <span>~10 min total (parallelized)</span>
+              </div>
+              <div class="timeline-bar" style="gap:0.3rem; background:transparent;">
+                <div class="timeline-split one">Preliminary diagnosis (3m)</div>
+                <div class="timeline-split two">Focused consult (7m)</div>
+              </div>
+              <div class="timeline-foot">
+                <p class="metric-copy">AI triage saves 3 mins of discovery time per patient.</p>
+                <span>8 patients / hour</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="proof-card">
+            <h3>Model performance (AUC)</h3>
+            <p class="proof-subtitle">Zero-shot comparison on dermatology benchmarks</p>
+
+            <div class="bars">
+              <div class="bar-row">
+                <label>Grok-4</label>
+                <div class="bar-track"><div class="bar-fill grok"></div></div>
+                <strong>0.70</strong>
+              </div>
+              <div class="bar-row">
+                <label>GPT-5</label>
+                <div class="bar-track"><div class="bar-fill gpt"></div></div>
+                <strong>0.81</strong>
+              </div>
+              <div class="bar-row">
+                <label>Gemini 2.5</label>
+                <div class="bar-track"><div class="bar-fill gemini"></div></div>
+                <strong>0.82</strong>
+              </div>
+              <div class="bar-row">
+                <label style="color:#1f5a3f;">PelliScope</label>
+                <div class="bar-track" style="height:1.2rem;"><div class="bar-fill pelli"></div></div>
+                <strong style="color:#1f5a3f;">0.86</strong>
+              </div>
+            </div>
+
+            <div class="chip-row">
+              <span class="workflow-badge">Technical accuracy: 80.2%</span>
+              <span class="status-chip">Infectious vs non-infectious flag</span>
+            </div>
+
+            <div class="condition-list">
+              <strong style="color:var(--text);">10-condition panel</strong><br />
+              Eczema, Allergic Contact Dermatitis, Insect Bite, Urticaria, Psoriasis, Folliculitis, Irritant Contact
+              Dermatitis, Tinea, Herpes Zoster, Drug Rash.
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <p class="eyebrow">Unit Economics</p>
+        <div class="economics-stage">
+          <div class="economics-grid">
+            <div class="cost-stack">
+              <article class="cost-card">
+                <div class="label-row">
+                  <div>
+                    <span class="soft-pill">Infrastructure Cost</span>
+                    <div class="commercial-price" style="margin-top:0.8rem;">$2.50</div>
+                    <p class="note-line" style="margin:0.45rem 0 0;">Daily compute spend (6 hours)</p>
+                  </div>
+                  <div class="mini-meta">
+                    <div style="font-size:0.68rem; letter-spacing:0.12em; text-transform:uppercase; color:rgba(255,247,234,0.54);">Machine Specs</div>
+                    <strong style="font-size:1rem; margin-top:0.45rem;">8 Core CPU</strong>
+                    <span>16 GB RAM<br />CPU edge inference</span>
+                  </div>
+                </div>
+                <p style="margin:1rem 0 0;" class="note-line">"A single machine costing less than a cup of coffee per day drives this entire workflow."</p>
+              </article>
+
+              <article class="revenue-card">
+                <div class="label-row">
+                  <div>
+                    <span class="tag">Clinical Revenue Gain</span>
+                    <div class="metric-value" style="margin-top:0.8rem;">$800+</div>
+                    <p class="metric-copy">Daily additional revenue</p>
+                  </div>
+                  <div style="display:flex; flex-direction:column; gap:0.55rem; align-items:flex-end;">
+                    <span class="status-chip">US & UAE Ready</span>
+                    <span class="revenue-highlight">10+ add. patients</span>
+                    <span style="font-size:0.8rem; color:var(--muted);">@ $80 avg. consult fee</span>
+                  </div>
+                </div>
+              </article>
+            </div>
+
+            <div>
+              <div style="display:flex; justify-content:space-between; gap:1rem; align-items:flex-start; margin-bottom:1rem;">
+                <div>
+                  <h2 style="font-size:clamp(1.9rem, 3vw, 3.1rem); color:rgba(255,247,234,0.96);">Commercial models</h2>
+                  <p style="margin:0.45rem 0 0;">Choose a light-touch API path or a personal clinic setup, depending on how much of the experience you want to own.</p>
+                </div>
+              </div>
+
+              <div class="commercial-grid">
+                <article class="commercial-card">
+                  <h3>API call based licensing</h3>
+                  <div class="commercial-price" style="margin-top:0.8rem;"><strong>$0.2 / Query</strong></div>
+                  <p class="commercial-copy" style="margin:0.6rem 0 0;">Built for self-screening inquiries at scale and headless embedding inside existing patient flows.</p>
+                </article>
+
+                <article class="commercial-card">
+                  <h3>Clinic personal setup</h3>
+                  <div class="commercial-price" style="margin-top:0.8rem;"><strong>$20 / month</strong></div>
+                  <p class="commercial-copy" style="margin:0.6rem 0 0;">Per instance for your clinic personal setup, with the experience open to re-branding.</p>
+                  <ul class="commercial-list">
+                    <li>Telemedicine-style UI included</li>
+                    <li>White-label for private networks</li>
+                    <li>Flexible clinic-facing rollout</li>
+                  </ul>
+                </article>
+              </div>
+
+              <div class="research-row">
+                <span class="soft-pill">Research manuscript available on request</span>
+                <span class="soft-pill">Provisional patent filed</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="cta-panel">
+          <p class="eyebrow" style="color: rgba(255,247,234,0.6);">Next step</p>
+          <h2>Use the proof here to decide the rollout, then move straight into the product.</h2>
+          <p>
+            If you already know which commercial path fits, try the live product now. If not, use this page as the
+            shortlist: workflow lift, operating cost, and rollout style are all here in one place.
+          </p>
+          <div style="display:flex; gap:0.75rem; flex-wrap:wrap; margin-top:1.4rem;">
+            <a class="button" href="https://app.pelliscope.in" style="background:#fff7ea;color:#112019;">Try now</a>
+            <a class="button-muted" href="./index.html">Back to home</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="footer-brand">
+        <img class="footer-mark" src="./assets/img/pelliscope.png" alt="PelliScope logo" />
+        <div>
+          <strong>PelliScope</strong>
+          <span>Designed to make the first step feel clearer and kinder.</span>
+        </div>
+      </div>
+
+      <div class="footer-meta">Live app: app.pelliscope.in</div>
+    </footer>
+  </body>
+</html>

@@ -283,20 +283,30 @@
         margin-top: 2rem;
       }
 
-      .hero-trust {
-        margin-top: 1.5rem;
+      .hero-offer-grid {
+        margin-top: 1.6rem;
         display: flex;
         flex-wrap: wrap;
-        gap: 0.75rem;
+        gap: 0.8rem 1.25rem;
+        max-width: 42rem;
       }
 
-      .hero-trust span {
-        padding: 0.7rem 0.95rem;
+      .hero-offer {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.55rem;
+        color: rgba(22, 35, 27, 0.72);
+        font-size: 0.95rem;
+        line-height: 1.45;
+      }
+
+      .hero-offer::before {
+        content: "";
+        width: 0.42rem;
+        height: 0.42rem;
         border-radius: 999px;
-        background: rgba(255, 255, 255, 0.48);
-        border: 1px solid rgba(22, 35, 27, 0.08);
-        color: rgba(22, 35, 27, 0.76);
-        font-size: 0.9rem;
+        background: rgba(47, 125, 87, 0.64);
+        flex: 0 0 auto;
       }
 
       .hero-media {
@@ -372,19 +382,44 @@
       }
 
       .hero-badge {
-        max-width: max-content;
-        padding: 0.85rem 1rem;
+        max-width: 15rem;
+        padding: 0.95rem 1.05rem;
         background: rgba(255, 248, 235, 0.72);
         border: 1px solid rgba(255, 255, 255, 0.35);
         backdrop-filter: blur(20px);
         z-index: 3;
       }
 
+      .hero-badge-head {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.55rem;
+      }
+
+      .hero-badge-icon {
+        width: 2rem;
+        height: 2rem;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 999px;
+        background: rgba(17, 32, 25, 0.08);
+        color: var(--bg-strong);
+        flex: 0 0 auto;
+      }
+
       .hero-badge strong {
         display: block;
         font-size: 0.95rem;
-        font-weight: 500;
+        font-weight: 700;
         letter-spacing: -0.02em;
+      }
+
+      .hero-badge p {
+        margin: 0.55rem 0 0;
+        color: var(--muted);
+        font-size: 0.82rem;
+        line-height: 1.5;
       }
 
       .hero-badge.left {
@@ -407,6 +442,110 @@
 
       .hero-media .sim-phone {
         width: min(19rem, 54%);
+      }
+
+      .pricing-preview {
+        max-width: 1240px;
+        margin: 0 auto;
+        padding: 0 1.25rem 5.5rem;
+      }
+
+      .pricing-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 1rem;
+      }
+
+      .pricing-card {
+        padding: 1.5rem;
+        border-radius: 30px;
+        background: rgba(255, 251, 244, 0.76);
+        border: 1px solid rgba(22, 35, 27, 0.08);
+        box-shadow: 0 18px 45px rgba(79, 59, 30, 0.06);
+      }
+
+      .pricing-card.highlight {
+        background: linear-gradient(180deg, rgba(17, 32, 25, 0.96), rgba(12, 22, 17, 0.98));
+        color: rgba(255, 247, 234, 0.96);
+      }
+
+      .pricing-card .tag {
+        display: inline-flex;
+        align-items: center;
+        min-height: 2rem;
+        padding: 0.35rem 0.7rem;
+        border-radius: 999px;
+        font-size: 0.72rem;
+        font-weight: 800;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        background: rgba(17, 32, 25, 0.06);
+        color: var(--muted);
+      }
+
+      .pricing-card.highlight .tag {
+        background: rgba(255, 247, 234, 0.08);
+        color: rgba(255, 247, 234, 0.72);
+      }
+
+      .pricing-card h3 {
+        margin: 1rem 0 0;
+        font-size: 1.5rem;
+        letter-spacing: -0.04em;
+      }
+
+      .price-line {
+        margin-top: 0.8rem;
+        display: flex;
+        align-items: baseline;
+        gap: 0.55rem;
+      }
+
+      .price-line strong {
+        font-size: 2.4rem;
+        letter-spacing: -0.06em;
+      }
+
+      .price-line span {
+        color: var(--muted);
+        font-size: 0.92rem;
+      }
+
+      .pricing-card.highlight .price-line span,
+      .pricing-card.highlight p,
+      .pricing-card.highlight li {
+        color: rgba(255, 247, 234, 0.74);
+      }
+
+      .pricing-card p {
+        margin: 0.8rem 0 0;
+        color: var(--muted);
+        line-height: 1.7;
+      }
+
+      .pricing-list {
+        margin: 1rem 0 0;
+        padding: 0;
+        list-style: none;
+        display: grid;
+        gap: 0.7rem;
+      }
+
+      .pricing-list li {
+        position: relative;
+        padding-left: 1.15rem;
+        color: var(--muted);
+      }
+
+      .pricing-list li::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0.6rem;
+        width: 0.42rem;
+        height: 0.42rem;
+        border-radius: 999px;
+        background: var(--accent);
       }
 
       .quote-band {
@@ -1089,6 +1228,8 @@
         }
 
         .benefit-grid,
+        .hero-offer-grid,
+        .pricing-grid,
         .team-grid,
         .signal-grid {
           grid-template-columns: 1fr;
@@ -1134,7 +1275,7 @@
         }
 
         .hero-badge {
-          max-width: max-content;
+          max-width: 11rem;
           padding: 0.75rem 0.9rem;
         }
 
@@ -1151,7 +1292,7 @@
         .media-note {
           left: 0.3rem;
           right: auto;
-          max-width: max-content;
+          max-width: 11rem;
           bottom: -1.25rem;
         }
 
@@ -1204,6 +1345,7 @@
             <a href="#story">How it works</a>
             <a href="#care">Why it helps</a>
             <a href="#clinician">Care flow</a>
+            <a href="./pricing.html">Pricing</a>
             <a href="#team">Team</a>
             <a href="#cta">Try now</a>
           </nav>
@@ -1230,16 +1372,25 @@
               <a class="button-muted" href="#story">See the flow</a>
             </div>
 
-            <div class="hero-trust" aria-label="Key strengths">
-              <span>Guided photo capture</span>
-              <span>Simple screening flow</span>
-              <span>Cleaner clinician handoff</span>
+            <div class="hero-offer-grid" aria-label="Product highlights">
+              <div class="hero-offer">Free check-up for infectious screening</div>
+              <div class="hero-offer">Paid pathway for differential diagnosis</div>
+              <div class="hero-offer">Runs on everyday clinic hardware</div>
+              <div class="hero-offer">Works in patchy-network settings</div>
             </div>
           </div>
 
           <div class="hero-media reveal" data-parallax>
             <div class="hero-badge left">
-              <strong>Guided, not overwhelming.</strong>
+              <div class="hero-badge-head">
+                <span class="hero-badge-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 2v20M2 12h20M5 5l14 14M19 5L5 19"/>
+                  </svg>
+                </span>
+                <strong>Validated</strong>
+              </div>
+              <p>80.2% balanced accuracy on technical validation set.</p>
             </div>
 
             <div class="workflow-sim" aria-hidden="true">
@@ -1294,11 +1445,27 @@
             </div>
 
             <div class="hero-badge right">
-              <strong>Better handoff, less chasing.</strong>
+              <div class="hero-badge-head">
+                <span class="hero-badge-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M22 16.92V19a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2 3.18 2 2 0 0 1 4 1h2.09a2 2 0 0 1 2 1.72l.35 2.43a2 2 0 0 1-.57 1.72L6.8 7.94a16 16 0 0 0 9.26 9.26l1.07-1.07a2 2 0 0 1 1.72-.57l2.43.35A2 2 0 0 1 22 16.92z"/>
+                  </svg>
+                </span>
+                <strong>Clinician Mode</strong>
+              </div>
+              <p>Seamless hand-off to tele-medicine dashboard.</p>
             </div>
 
             <div class="media-note">
-              <strong>See it. Share it. Send it forward.</strong>
+              <div class="hero-badge-head">
+                <span class="hero-badge-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="m22 2-7 20-4-9-9-4Z"/>
+                    <path d="M22 2 11 13"/>
+                  </svg>
+                </span>
+                <strong>See it. Share it. Send it forward.</strong>
+              </div>
             </div>
           </div>
         </section>
@@ -1448,6 +1615,52 @@
           </div>
         </section>
 
+        <section class="pricing-preview" id="pricing">
+          <div class="section-copy reveal">
+            <p class="eyebrow">Costs & Pricing</p>
+            <h2>Choose the rollout that fits how you want PelliScope to show up in care.</h2>
+            <p>
+              For some teams, PelliScope fits best as a guided screening component inside an existing flow. For others,
+              it works better as a full deployment with its own clinician-facing surface.
+            </p>
+          </div>
+
+          <div class="pricing-grid">
+            <article class="pricing-card reveal">
+              <span class="tag">Integration</span>
+              <h3>API Integration</h3>
+              <div class="price-line">
+                <strong>$0.2 / Query</strong>
+              </div>
+              <p>For teams that want PelliScope inside an existing patient journey, portal, or intake layer.</p>
+              <ul class="pricing-list">
+                <li>Self-screening at scale</li>
+                <li>Headless AI component</li>
+                <li>RESTful API access</li>
+              </ul>
+            </article>
+
+            <article class="pricing-card highlight reveal">
+              <span class="tag">Deployment</span>
+              <h3>Clinic Personal Setup</h3>
+              <div class="price-line">
+                <strong>$20 / month</strong>
+                <span>per instance for your clinic personal setup</span>
+              </div>
+              <p>Open to re-branding for clinics, hospitals, and programs that want the full guided experience.</p>
+              <ul class="pricing-list">
+                <li>Telemedicine-style UI included</li>
+                <li>Open to re-branding</li>
+                <li>Flexible clinic-facing rollout</li>
+              </ul>
+            </article>
+          </div>
+
+          <div class="button-row reveal" style="margin-top: 1.5rem;">
+            <a class="button" href="./pricing.html">Open Full Pricing</a>
+          </div>
+        </section>
+
         <section class="team-section" id="team">
           <div class="section-copy reveal">
             <p class="eyebrow">The team behind PelliScope</p>
@@ -1476,6 +1689,16 @@
               <p>
                 Grounds the workflow in practical clinical reality, helping ensure the product supports real
                 decision-making rather than sounding impressive on paper.
+              </p>
+            </article>
+
+            <article class="team-card reveal">
+              <img class="team-photo" src="./assets/members/dr.yash_crop.png" alt="Dr. Yash Patel" />
+              <h3>Dr. Yash Patel</h3>
+              <div class="team-role">Clinical Research Physician</div>
+              <p>
+                Adds another clinician-research perspective to the product, helping the workflow stay relevant to
+                practical care settings while remaining grounded in real patient-facing use.
               </p>
             </article>
 
