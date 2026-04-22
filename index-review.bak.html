@@ -306,107 +306,117 @@
         transition: transform 240ms ease-out;
       }
 
-      .hero-video-frame,
-      .care-video-frame,
-      .media-note,
-      .hero-badge {
+      .desktop-frame,
+      .phone-frame,
+      .media-note {
         position: absolute;
         border-radius: var(--radius-xl);
         box-shadow: var(--shadow);
         overflow: hidden;
       }
 
-      .hero-video-frame video,
-      .care-video-frame video {
+      .desktop-frame {
+        inset: 2rem 0 4rem 2.5rem;
+        background:
+          linear-gradient(180deg, rgba(255, 255, 255, 0.2), transparent 20%),
+          linear-gradient(180deg, rgba(14, 24, 19, 0.88), rgba(12, 18, 16, 0.96));
+        border: 1px solid rgba(255, 255, 255, 0.22);
+        padding: 1rem;
+      }
+
+      .desktop-stage {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        border-radius: 28px;
+        overflow: hidden;
+        background: rgba(13, 20, 16, 0.9);
+      }
+
+      .desktop-stage::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+          linear-gradient(180deg, rgba(255, 255, 255, 0.12), transparent 24%),
+          radial-gradient(circle at top right, rgba(130, 185, 141, 0.18), transparent 25%);
+        z-index: 1;
+        pointer-events: none;
+      }
+
+      .desktop-stage video,
+      .phone-frame video {
         width: 100%;
         height: 100%;
         object-fit: cover;
       }
 
-      .hero-video-frame {
-        inset: 0 0 4.25rem 0;
-        background: linear-gradient(180deg, rgba(255, 255, 255, 0.2), rgba(18, 29, 23, 0.94));
-        border: 1px solid rgba(255, 255, 255, 0.22);
-        padding: 1rem;
+      .device-label {
+        position: absolute;
+        top: 1rem;
+        left: 1rem;
         z-index: 2;
+        padding: 0.55rem 0.85rem;
+        border-radius: 999px;
+        background: rgba(255, 248, 235, 0.14);
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        color: rgba(255, 247, 234, 0.92);
+        font-size: 0.82rem;
+        backdrop-filter: blur(16px);
       }
 
-      .hero-video-shell,
-      .care-video-shell {
+      .phone-frame {
+        width: min(15.25rem, 36vw);
+        right: 0.5rem;
+        bottom: 0;
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.2), rgba(18, 29, 23, 0.94));
+        border: 1px solid rgba(255, 255, 255, 0.22);
+        padding: 0.7rem;
+        animation: drift 9s ease-in-out infinite;
+      }
+
+      .phone-shell {
         position: relative;
-        width: 100%;
-        height: 100%;
-        border-radius: 30px;
+        aspect-ratio: 0.52;
+        border-radius: 34px;
         overflow: hidden;
         background: #0b1110;
       }
 
-      .hero-video-shell::before,
-      .care-video-shell::before {
+      .phone-shell::before {
         content: "";
         position: absolute;
-        inset: 0;
-        background:
-          linear-gradient(180deg, rgba(255, 255, 255, 0.12), transparent 22%),
-          radial-gradient(circle at top right, rgba(130, 185, 141, 0.16), transparent 26%);
-        pointer-events: none;
+        top: 0.75rem;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 36%;
+        height: 1.2rem;
+        border-radius: 999px;
+        background: rgba(5, 7, 6, 0.9);
         z-index: 2;
       }
 
       .media-note {
-        left: -1.5rem;
-        bottom: -2.4rem;
-        max-width: max-content;
-        padding: 0.85rem 1rem;
+        left: 0;
+        bottom: 2rem;
+        max-width: 17rem;
+        padding: 1.15rem 1.1rem;
         background: rgba(255, 248, 235, 0.78);
         border: 1px solid rgba(255, 255, 255, 0.35);
         backdrop-filter: blur(18px);
-        z-index: 3;
       }
 
       .media-note strong {
         display: block;
-        font-size: 0.95rem;
-        font-weight: 500;
-        letter-spacing: -0.02em;
+        font-size: 0.98rem;
       }
 
-      .hero-badge {
-        max-width: max-content;
-        padding: 0.85rem 1rem;
-        background: rgba(255, 248, 235, 0.72);
-        border: 1px solid rgba(255, 255, 255, 0.35);
-        backdrop-filter: blur(20px);
-        z-index: 3;
-      }
-
-      .hero-badge strong {
+      .media-note span {
         display: block;
-        font-size: 0.95rem;
-        font-weight: 500;
-        letter-spacing: -0.02em;
-      }
-
-      .hero-badge.left {
-        top: 1.4rem;
-        left: -3rem;
-        animation: floatOne 6.5s ease-in-out infinite;
-      }
-
-      .hero-badge.right {
-        right: -3rem;
-        bottom: 10.2rem;
-        animation: floatTwo 7s ease-in-out infinite;
-      }
-
-      .hero-media .workflow-sim {
-        position: absolute;
-        inset: 0;
-        width: auto;
-      }
-
-      .hero-media .sim-phone {
-        width: min(19rem, 54%);
+        margin-top: 0.35rem;
+        color: var(--muted);
+        line-height: 1.55;
+        font-size: 0.92rem;
       }
 
       .quote-band {
@@ -582,271 +592,79 @@
       .care-stage {
         position: relative;
         min-height: 34rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-
-      .care-video-frame {
-        position: relative;
-        width: min(16rem, 54%);
-        padding: 0.7rem;
-        border-radius: 34px;
-        background: linear-gradient(180deg, rgba(255, 255, 255, 0.18), rgba(18, 29, 23, 0.94));
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        box-shadow: 0 24px 55px rgba(5, 8, 6, 0.22);
-      }
-
-      .care-video-shell {
-        aspect-ratio: 0.52;
-      }
-
-      .workflow-sim {
-        position: relative;
-        width: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-
-      .sim-phone {
-        position: relative;
-        width: min(20rem, 68%);
-        padding: 0.65rem;
-        border-radius: 34px;
-        background: linear-gradient(180deg, rgba(255, 255, 255, 0.18), rgba(12, 18, 15, 0.98));
-        border: 1px solid rgba(255, 255, 255, 0.18);
-        box-shadow: 0 24px 55px rgba(5, 8, 6, 0.42);
-      }
-
-      .sim-phone-shell {
-        position: relative;
-        aspect-ratio: 0.54;
-        border-radius: 28px;
-        overflow: hidden;
-        background: #09100d;
-      }
-
-      .sim-phone-shell::before {
-        content: "";
-        position: absolute;
-        top: 0.72rem;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 36%;
-        height: 1rem;
-        border-radius: 999px;
-        background: rgba(0, 0, 0, 0.9);
-        z-index: 5;
-      }
-
-      .sim-phone-screen {
-        position: absolute;
-        inset: 0;
-        overflow: hidden;
-      }
-
-      .sim-panel {
-        position: absolute;
-        inset: 0;
-        padding: 3.25rem 1rem 1rem;
-        opacity: 0;
-        transform: translateY(10px) scale(0.98);
-      }
-
-      .sim-panel h4 {
-        margin: 0;
-        font-size: 1.05rem;
-        color: rgba(255, 247, 234, 0.96);
-        letter-spacing: -0.03em;
-      }
-
-      .sim-panel p {
-        margin: 0.45rem 0 0;
-        color: rgba(255, 247, 234, 0.68);
-        font-size: 0.84rem;
-        line-height: 1.55;
-      }
-
-      .sim-panel.welcome {
+        padding: 2rem;
+        border-radius: 40px;
         background:
-          radial-gradient(circle at 50% 22%, rgba(130, 185, 141, 0.18), transparent 30%),
-          linear-gradient(180deg, #111d18, #0a120f);
-        animation: panelWelcome 12s infinite;
-      }
-
-      .sim-panel.capture {
-        background: linear-gradient(180deg, #050807, #111915);
-        animation: panelCapture 12s infinite;
-      }
-
-      .sim-panel.result {
-        background: linear-gradient(180deg, #111c17, #08100d);
-        animation: panelResult 12s infinite;
-      }
-
-      .sim-pill {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.4rem;
-        padding: 0.38rem 0.65rem;
-        border-radius: 999px;
-        background: rgba(255, 248, 235, 0.08);
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        color: rgba(255, 247, 234, 0.86);
-        font-size: 0.72rem;
-        font-weight: 700;
-      }
-
-      .sim-action {
-        margin-top: 1rem;
-        padding: 0.92rem 1rem;
-        border-radius: 18px;
-        background: var(--cream);
-        color: var(--bg-strong);
-        font-size: 0.88rem;
-        font-weight: 800;
-        text-align: center;
-      }
-
-      .capture-frame {
-        position: relative;
-        margin-top: 1.15rem;
-        width: 100%;
-        aspect-ratio: 1 / 1;
-        border-radius: 26px;
+          radial-gradient(circle at top left, rgba(130, 185, 141, 0.16), transparent 26%),
+          linear-gradient(180deg, rgba(17, 32, 25, 0.96), rgba(10, 18, 13, 0.98));
+        box-shadow: 0 30px 70px rgba(17, 32, 25, 0.22);
         overflow: hidden;
+      }
+
+      .care-stage::after {
+        content: "";
+        position: absolute;
+        inset: 1rem;
+        border-radius: 32px;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        pointer-events: none;
+      }
+
+      .care-stage img {
+        position: absolute;
+        bottom: 1.7rem;
+        left: 1.7rem;
+        width: 40%;
+        min-width: 9rem;
+        aspect-ratio: 1 / 1;
+        border-radius: 28px;
+        object-fit: cover;
         border: 1px solid rgba(255, 255, 255, 0.18);
       }
 
-      .capture-frame img {
-        width: 100%;
-        height: 100%;
+      .care-stage video {
+        position: absolute;
+        top: 1.7rem;
+        right: 1.7rem;
+        width: 62%;
+        height: auto;
+        aspect-ratio: 1.15;
         object-fit: cover;
-        animation: imageDrift 7s ease-in-out infinite;
+        border-radius: 28px;
+        border: 1px solid rgba(255, 255, 255, 0.14);
       }
 
-      .capture-frame::before {
-        content: "";
-        position: absolute;
-        inset: 10%;
-        border-radius: 22px;
-        border: 2px solid rgba(137, 224, 166, 0.82);
-        box-shadow: 0 0 0 7px rgba(64, 158, 94, 0.12);
+      .stage-copy {
+        position: relative;
         z-index: 2;
+        max-width: 16rem;
+        color: rgba(255, 247, 234, 0.92);
       }
 
-      .capture-frame::after {
-        content: "";
-        position: absolute;
-        left: 8%;
-        right: 8%;
-        top: 18%;
-        height: 3px;
-        border-radius: 999px;
-        background: linear-gradient(90deg, transparent, rgba(173, 255, 197, 0.9), transparent);
-        box-shadow: 0 0 18px rgba(173, 255, 197, 0.65);
-        animation: scanBeam 2.6s ease-in-out infinite;
-        z-index: 3;
+      .stage-copy .eyebrow {
+        color: rgba(255, 247, 234, 0.56);
       }
 
-      .result-card {
-        margin-top: 1.15rem;
-        padding: 1rem;
-        border-radius: 22px;
-        background: rgba(255, 248, 235, 0.08);
-        border: 1px solid rgba(255, 255, 255, 0.08);
+      .stage-copy .eyebrow::before {
+        background: rgba(255, 247, 234, 0.26);
       }
 
-      .result-row {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 0.75rem;
-        color: rgba(255, 247, 234, 0.9);
-        font-size: 0.82rem;
+      .stage-copy h3 {
+        margin: 0;
+        font-family: "Fraunces", serif;
+        font-size: clamp(2rem, 4vw, 3rem);
+        line-height: 1.02;
+        letter-spacing: -0.05em;
       }
 
-      .score-bar {
-        margin-top: 0.5rem;
-        height: 0.45rem;
-        border-radius: 999px;
-        background: rgba(255, 255, 255, 0.08);
-        overflow: hidden;
-      }
-
-      .score-fill {
-        height: 100%;
-        border-radius: inherit;
-        background: linear-gradient(90deg, #d78564, #f0ba77);
-      }
-
-      .score-fill.soft {
-        background: linear-gradient(90deg, #7ab287, #9ed8a9);
-      }
-
-      .result-note {
-        margin-top: 0.9rem;
-        padding: 0.8rem;
-        border-radius: 18px;
-        background: rgba(130, 185, 141, 0.12);
-        color: rgba(255, 247, 234, 0.82);
-        font-size: 0.76rem;
-        line-height: 1.55;
+      .stage-copy p {
+        margin-top: 1rem;
+        color: rgba(255, 247, 234, 0.74);
+        line-height: 1.7;
       }
 
       .cta-wrap {
         padding-bottom: 5rem;
-      }
-
-      .team-section {
-        max-width: 1240px;
-        margin: 0 auto;
-        padding: 0 1.25rem 4.5rem;
-      }
-
-      .team-grid {
-        display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 1rem;
-      }
-
-      .team-card {
-        padding: 1.2rem;
-        border-radius: 28px;
-        background: rgba(255, 251, 244, 0.76);
-        border: 1px solid rgba(22, 35, 27, 0.08);
-        box-shadow: 0 18px 45px rgba(79, 59, 30, 0.06);
-      }
-
-      .team-photo {
-        width: 100%;
-        aspect-ratio: 0.92;
-        border-radius: 22px;
-        object-fit: cover;
-        object-position: center top;
-      }
-
-      .team-card h3 {
-        margin: 1rem 0 0;
-        font-size: 1.35rem;
-        letter-spacing: -0.04em;
-      }
-
-      .team-role {
-        margin-top: 0.35rem;
-        color: var(--accent);
-        font-size: 0.8rem;
-        font-weight: 800;
-        letter-spacing: 0.12em;
-        text-transform: uppercase;
-      }
-
-      .team-card p {
-        margin: 0.65rem 0 0;
-        color: var(--muted);
-        line-height: 1.7;
-        font-size: 0.94rem;
       }
 
       .cta {
@@ -945,112 +763,6 @@
         }
       }
 
-      @keyframes floatOne {
-        0%,
-        100% {
-          transform: translateY(0);
-        }
-
-        50% {
-          transform: translateY(-10px);
-        }
-      }
-
-      @keyframes floatTwo {
-        0%,
-        100% {
-          transform: translateY(0);
-        }
-
-        50% {
-          transform: translateY(12px);
-        }
-      }
-
-      @keyframes imageDrift {
-        0%,
-        100% {
-          transform: scale(1) translateX(0);
-        }
-
-        50% {
-          transform: scale(1.04) translateX(4px);
-        }
-      }
-
-      @keyframes scanBeam {
-        0% {
-          top: 18%;
-          opacity: 0;
-        }
-
-        20% {
-          opacity: 1;
-        }
-
-        80% {
-          opacity: 1;
-        }
-
-        100% {
-          top: 78%;
-          opacity: 0;
-        }
-      }
-
-      @keyframes panelWelcome {
-        0%,
-        28% {
-          opacity: 1;
-          transform: translateY(0) scale(1);
-        }
-
-        33%,
-        100% {
-          opacity: 0;
-          transform: translateY(-10px) scale(0.98);
-        }
-      }
-
-      @keyframes panelCapture {
-        0%,
-        30% {
-          opacity: 0;
-          transform: translateY(10px) scale(0.98);
-        }
-
-        35%,
-        62% {
-          opacity: 1;
-          transform: translateY(0) scale(1);
-        }
-
-        67%,
-        100% {
-          opacity: 0;
-          transform: translateY(-10px) scale(0.98);
-        }
-      }
-
-      @keyframes panelResult {
-        0%,
-        64% {
-          opacity: 0;
-          transform: translateY(10px) scale(0.98);
-        }
-
-        69%,
-        96% {
-          opacity: 1;
-          transform: translateY(0) scale(1);
-        }
-
-        100% {
-          opacity: 0;
-          transform: translateY(-10px) scale(0.98);
-        }
-      }
-
       @media (max-width: 1080px) {
         .nav-links {
           display: none;
@@ -1071,29 +783,18 @@
           min-height: 31rem;
         }
 
-        .hero-media .sim-phone {
-          width: min(17rem, 52%);
-        }
-
-        .hero-badge.left {
-          left: -1.4rem;
-        }
-
-        .hero-badge.right {
-          right: -1.4rem;
-          bottom: 9rem;
-        }
-
         .story-intro {
           position: static;
         }
 
         .benefit-grid,
-        .team-grid,
         .signal-grid {
           grid-template-columns: 1fr;
         }
 
+        .desktop-frame {
+          inset: 1.5rem 0 3.5rem 0;
+        }
       }
 
       @media (max-width: 760px) {
@@ -1124,35 +825,21 @@
           min-height: 27rem;
         }
 
-        .hero-video-frame {
+        .desktop-frame {
           inset: 0 0 4rem 0;
           padding: 0.75rem;
         }
 
-        .hero-media .sim-phone {
-          width: 12.25rem;
-        }
-
-        .hero-badge {
-          max-width: max-content;
-          padding: 0.75rem 0.9rem;
-        }
-
-        .hero-badge.left {
-          top: 0.9rem;
-          left: -0.5rem;
-        }
-
-        .hero-badge.right {
-          right: -0.5rem;
-          bottom: 7.2rem;
+        .phone-frame {
+          width: 10.7rem;
+          right: 0.35rem;
         }
 
         .media-note {
-          left: 0.3rem;
-          right: auto;
-          max-width: max-content;
-          bottom: -1.25rem;
+          left: 0.6rem;
+          right: 5rem;
+          max-width: none;
+          bottom: 1rem;
         }
 
         .quote-band blockquote,
@@ -1163,18 +850,23 @@
 
         .care-stage {
           min-height: 28rem;
+          padding: 1rem;
         }
 
-        .workflow-sim {
-          width: 100%;
+        .care-stage video {
+          width: calc(100% - 2rem);
+          top: 1rem;
+          right: 1rem;
         }
 
-        .sim-phone {
-          width: 12.25rem;
+        .care-stage img {
+          width: 36%;
+          left: 1rem;
+          bottom: 1rem;
         }
 
-        .care-video-frame {
-          width: 12.25rem;
+        .stage-copy {
+          max-width: 13rem;
         }
 
         footer {
@@ -1204,7 +896,6 @@
             <a href="#story">How it works</a>
             <a href="#care">Why it helps</a>
             <a href="#clinician">Care flow</a>
-            <a href="#team">Team</a>
             <a href="#cta">Try now</a>
           </nav>
 
@@ -1238,67 +929,25 @@
           </div>
 
           <div class="hero-media reveal" data-parallax>
-            <div class="hero-badge left">
-              <strong>Guided, not overwhelming.</strong>
-            </div>
-
-            <div class="workflow-sim" aria-hidden="true">
-              <div class="sim-phone">
-                <div class="sim-phone-shell">
-                  <div class="sim-phone-screen">
-                    <div class="sim-panel welcome">
-                      <span class="sim-pill">PelliScope</span>
-                      <h4>A clearer way to begin.</h4>
-                      <p>Start with guided photos and a few simple questions.</p>
-                      <div class="sim-action">Begin screening</div>
-                    </div>
-
-                    <div class="sim-panel capture">
-                      <span class="sim-pill">Photo capture</span>
-                      <h4>Align the area in frame.</h4>
-                      <p>Just enough guidance to get a useful close-up.</p>
-                      <div class="capture-frame">
-                        <img src="./assets/img/scan-sample.jpeg" alt="Skin scan sample" />
-                      </div>
-                    </div>
-
-                    <div class="sim-panel result">
-                      <span class="sim-pill">Screening summary</span>
-                      <h4>Ready to move forward.</h4>
-                      <p>The case is ready to move forward with cleaner context.</p>
-                      <div class="result-card">
-                        <div class="result-row">
-                          <span>Needs clinician review</span>
-                          <strong>78%</strong>
-                        </div>
-                        <div class="score-bar">
-                          <div class="score-fill" style="width: 78%"></div>
-                        </div>
-
-                        <div class="result-row" style="margin-top: 0.9rem">
-                          <span>Less urgent</span>
-                          <strong>22%</strong>
-                        </div>
-                        <div class="score-bar">
-                          <div class="score-fill soft" style="width: 22%"></div>
-                        </div>
-
-                        <div class="result-note">
-                          Images and symptom details stay attached to the case for a cleaner handoff.
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+            <div class="desktop-frame">
+              <div class="desktop-stage">
+                <div class="device-label">Review queue with context already in place</div>
+                <video src="./assets/video/pelliscope_preview.mp4" autoplay muted loop playsinline></video>
               </div>
             </div>
 
-            <div class="hero-badge right">
-              <strong>Better handoff, less chasing.</strong>
+            <div class="phone-frame">
+              <div class="phone-shell">
+                <video src="./assets/video/pelliscope-mobile-ad1.mp4" autoplay muted loop playsinline></video>
+              </div>
             </div>
 
             <div class="media-note">
               <strong>See it. Share it. Send it forward.</strong>
+              <span>
+                PelliScope turns a worried first touchpoint into a guided flow that is easier for the person using it
+                and clearer for the clinician receiving it.
+              </span>
             </div>
           </div>
         </section>
@@ -1424,11 +1073,17 @@
           </div>
 
           <div class="care-stage reveal">
-            <div class="care-video-frame">
-              <div class="care-video-shell">
-                <video src="./assets/video/pelliscope-mobile-ad1.mp4" autoplay muted loop playsinline></video>
-              </div>
+            <div class="stage-copy">
+              <p class="eyebrow">What the flow looks like</p>
+              <h3>Simple on the surface. Organized underneath.</h3>
+              <p>
+                Guided capture for the user, structured review for the care team, and a much gentler first step in
+                between.
+              </p>
             </div>
+
+            <video src="./assets/video/pelliscope_preview.mp4" autoplay muted loop playsinline></video>
+            <img src="./assets/img/scan-sample.jpeg" alt="Skin scan sample" />
           </div>
         </section>
 
@@ -1445,49 +1100,6 @@
               <a class="button" href="https://app.pelliscope.in">Try now</a>
               <a class="button-muted" href="#top">Back to top</a>
             </div>
-          </div>
-        </section>
-
-        <section class="team-section" id="team">
-          <div class="section-copy reveal">
-            <p class="eyebrow">The team behind PelliScope</p>
-            <h2>Built by people who care about both the care journey and the product experience.</h2>
-            <p>
-              The product sits at the intersection of clinical judgment, research thinking, and thoughtful interface
-              design. That only works when the people building it understand both the technology and the human moment.
-            </p>
-          </div>
-
-          <div class="team-grid">
-            <article class="team-card reveal">
-              <img class="team-photo" src="./assets/members/Vatsal_Patel.jpg" alt="Vatsal Patel" />
-              <h3>Vatsal Patel</h3>
-              <div class="team-role">Founder &amp; Research Engineer</div>
-              <p>
-                Leads the product direction and engineering vision, with a focus on making advanced clinical tooling
-                feel clear, useful, and deployable in the real world.
-              </p>
-            </article>
-
-            <article class="team-card reveal">
-              <img class="team-photo" src="./assets/members/Abhijeet_Patel.jpg" alt="Dr. Abhijeet Patel" />
-              <h3>Dr. Abhijeet Patel</h3>
-              <div class="team-role">Clinical Research Physician</div>
-              <p>
-                Grounds the workflow in practical clinical reality, helping ensure the product supports real
-                decision-making rather than sounding impressive on paper.
-              </p>
-            </article>
-
-            <article class="team-card reveal">
-              <img class="team-photo" src="./assets/members/dr.nishi_crop.png" alt="Dr. Nishi Seth" />
-              <h3>Dr. Nishi Seth</h3>
-              <div class="team-role">Consultant Dermatologist</div>
-              <p>
-                Brings the dermatology lens that keeps the experience aligned with how skin cases are actually seen,
-                reviewed, and moved forward in care settings.
-              </p>
-            </article>
           </div>
         </section>
       </main>
