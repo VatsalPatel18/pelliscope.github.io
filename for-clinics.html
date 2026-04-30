@@ -1,0 +1,1841 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PelliScope for Clinics | White-label AI skin triage for dermatology teams</title>
+    <meta
+      name="description"
+      content="White-label PelliScope for your clinic. Pre-screen patients, flag urgent cases faster, and route teledermatology and in-clinic visits through your own branded experience."
+    />
+    <link rel="icon" type="image/png" href="./assets/img/pelliscope.png?v=1769439074515" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #eef6fb;
+        --bg-soft: #dcecf7;
+        --bg-strong: #0f2430;
+        --bg-deep: #09151d;
+        --panel: rgba(255, 255, 255, 0.78);
+        --panel-strong: rgba(255, 255, 255, 0.92);
+        --panel-dark: rgba(12, 29, 38, 0.88);
+        --line: rgba(13, 39, 52, 0.12);
+        --text: #10222d;
+        --muted: #557080;
+        --muted-strong: #2c5264;
+        --accent: #1f8f74;
+        --accent-deep: #146954;
+        --accent-soft: #7bd0bc;
+        --healthy: #7ccf92;
+        --blue: #5ba6e5;
+        --gold: #d7a45d;
+        --cream: #f8fbfe;
+        --danger: #c86952;
+        --shadow: 0 28px 75px rgba(12, 35, 49, 0.14);
+        --shadow-soft: 0 18px 48px rgba(12, 35, 49, 0.1);
+        --radius-xl: 34px;
+        --radius-lg: 26px;
+        --radius-md: 18px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        font-family: "Plus Jakarta Sans", sans-serif;
+        color: var(--text);
+        background:
+          radial-gradient(circle at 0% 0%, rgba(91, 166, 229, 0.16), transparent 28%),
+          radial-gradient(circle at 88% 10%, rgba(123, 208, 188, 0.18), transparent 26%),
+          linear-gradient(180deg, #f6fbfe 0%, #eef6fb 36%, #f7fbfd 100%);
+        overflow-x: hidden;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      img,
+      video {
+        display: block;
+        max-width: 100%;
+      }
+
+      .page-shell {
+        position: relative;
+        min-height: 100vh;
+      }
+
+      .ambient-orb {
+        position: fixed;
+        z-index: -2;
+        border-radius: 999px;
+        filter: blur(110px);
+        opacity: 0.6;
+        pointer-events: none;
+      }
+
+      .ambient-orb.one {
+        width: 26rem;
+        height: 26rem;
+        left: -8rem;
+        top: -7rem;
+        background: rgba(91, 166, 229, 0.22);
+      }
+
+      .ambient-orb.two {
+        width: 24rem;
+        height: 24rem;
+        right: -8rem;
+        top: 26rem;
+        background: rgba(123, 208, 188, 0.24);
+      }
+
+      .ambient-orb.three {
+        width: 28rem;
+        height: 28rem;
+        left: 18%;
+        bottom: 0;
+        background: rgba(215, 164, 93, 0.12);
+      }
+
+      .topbar {
+        position: sticky;
+        top: 0;
+        z-index: 50;
+        padding: 1rem 1.1rem;
+      }
+
+      .topbar-inner {
+        max-width: 1240px;
+        margin: 0 auto;
+        padding: 0.82rem 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        border-radius: 999px;
+        border: 1px solid rgba(255, 255, 255, 0.7);
+        background: rgba(247, 251, 253, 0.8);
+        backdrop-filter: blur(18px);
+        box-shadow: 0 16px 42px rgba(15, 39, 54, 0.08);
+      }
+
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.85rem;
+      }
+
+      .brand-mark {
+        width: 2.8rem;
+        height: 2.8rem;
+        padding: 0.45rem;
+        border-radius: 18px;
+        background: linear-gradient(180deg, rgba(31, 143, 116, 0.18), rgba(255, 255, 255, 0.95));
+        border: 1px solid rgba(31, 143, 116, 0.15);
+      }
+
+      .brand-copy strong,
+      .footer-brand strong {
+        display: block;
+        font-size: 0.98rem;
+        letter-spacing: -0.03em;
+      }
+
+      .brand-copy span,
+      .footer-brand span {
+        display: block;
+        font-size: 0.74rem;
+        color: var(--muted);
+      }
+
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 1.3rem;
+        color: rgba(16, 34, 45, 0.76);
+        font-size: 0.94rem;
+      }
+
+      .nav-links a {
+        position: relative;
+      }
+
+      .nav-links a::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -0.28rem;
+        width: 100%;
+        height: 1px;
+        background: rgba(16, 34, 45, 0.36);
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 220ms ease;
+      }
+
+      .nav-links a:hover::after,
+      .nav-links a:focus-visible::after {
+        transform: scaleX(1);
+      }
+
+      .button-row {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+      }
+
+      .button,
+      .button-muted {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 3rem;
+        padding: 0.88rem 1.28rem;
+        border-radius: 999px;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        transition:
+          transform 220ms ease,
+          box-shadow 220ms ease,
+          background 220ms ease,
+          border-color 220ms ease;
+        border: 0;
+        cursor: pointer;
+      }
+
+      .button {
+        background: var(--bg-strong);
+        color: var(--cream);
+        box-shadow: 0 18px 40px rgba(15, 36, 48, 0.2);
+      }
+
+      .button:hover,
+      .button:focus-visible,
+      .button-muted:hover,
+      .button-muted:focus-visible {
+        transform: translateY(-2px);
+      }
+
+      .button-muted {
+        color: var(--text);
+        background: rgba(255, 255, 255, 0.62);
+        border: 1px solid rgba(16, 34, 45, 0.1);
+      }
+
+      .hero,
+      .section-shell,
+      footer {
+        max-width: 1240px;
+        margin: 0 auto;
+        padding-left: 1.25rem;
+        padding-right: 1.25rem;
+      }
+
+      .hero {
+        padding-top: 3.8rem;
+        padding-bottom: 5.25rem;
+        display: grid;
+        grid-template-columns: minmax(0, 0.96fr) minmax(340px, 1.04fr);
+        gap: 2.6rem;
+        align-items: center;
+      }
+
+      .hero h1,
+      .section-copy h2,
+      .contact-copy h2 {
+        margin: 0;
+        font-family: "Fraunces", serif;
+        font-weight: 600;
+        letter-spacing: -0.05em;
+        line-height: 0.96;
+      }
+
+      .hero h1 {
+        max-width: 11ch;
+        font-size: clamp(3.2rem, 7vw, 6.25rem);
+      }
+
+      .hero-lede {
+        max-width: 35rem;
+        margin: 1.5rem 0 0;
+        font-size: clamp(1.04rem, 2vw, 1.22rem);
+        line-height: 1.8;
+        color: var(--muted);
+      }
+
+      .hero-meta {
+        margin: 1rem 0 0;
+        color: var(--muted-strong);
+        font-size: 0.96rem;
+        font-weight: 700;
+      }
+
+      .hero-copy .button-row {
+        margin-top: 1.8rem;
+        flex-wrap: wrap;
+      }
+
+      .hero-chip-row {
+        margin-top: 1.4rem;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.65rem;
+      }
+
+      .hero-chip,
+      .section-label,
+      .plan-badge {
+        display: inline-flex;
+        align-items: center;
+        min-height: 2rem;
+        padding: 0.38rem 0.74rem;
+        border-radius: 999px;
+        font-size: 0.72rem;
+        font-weight: 800;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+      }
+
+      .hero-chip {
+        background: rgba(31, 143, 116, 0.1);
+        color: var(--accent-deep);
+      }
+
+      .section-label {
+        color: rgba(16, 34, 45, 0.62);
+        background: rgba(91, 166, 229, 0.08);
+      }
+
+      .hero-note {
+        margin-top: 1.1rem;
+        max-width: 35rem;
+        color: rgba(16, 34, 45, 0.7);
+        font-size: 0.95rem;
+        line-height: 1.7;
+      }
+
+      .hero-visual {
+        position: relative;
+        min-height: 41rem;
+      }
+
+      .visual-shell {
+        position: absolute;
+        inset: 0;
+        padding: 1.2rem;
+        border-radius: 40px;
+        background:
+          radial-gradient(circle at 12% 18%, rgba(123, 208, 188, 0.28), transparent 24%),
+          radial-gradient(circle at 88% 12%, rgba(91, 166, 229, 0.22), transparent 28%),
+          linear-gradient(180deg, rgba(11, 33, 44, 0.98), rgba(9, 21, 29, 0.98));
+        box-shadow: 0 32px 90px rgba(10, 25, 34, 0.24);
+        overflow: hidden;
+      }
+
+      .visual-shell::before {
+        content: "";
+        position: absolute;
+        inset: 1.05rem;
+        border-radius: 32px;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        pointer-events: none;
+      }
+
+      .brand-tag {
+        position: absolute;
+        top: 1.25rem;
+        left: 1.25rem;
+        z-index: 4;
+        padding: 0.82rem 1rem;
+        border-radius: 18px;
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        backdrop-filter: blur(14px);
+        box-shadow: var(--shadow-soft);
+      }
+
+      .brand-tag span {
+        display: block;
+        color: rgba(222, 241, 250, 0.78);
+        font-size: 0.68rem;
+        font-weight: 800;
+        letter-spacing: 0.13em;
+        text-transform: uppercase;
+      }
+
+      .brand-tag strong {
+        display: block;
+        margin-top: 0.3rem;
+        color: #f5fbff;
+        letter-spacing: -0.02em;
+      }
+
+      .doctor-card {
+        position: absolute;
+        left: 1.3rem;
+        bottom: 1.45rem;
+        z-index: 4;
+        width: min(15.2rem, 46%);
+        padding: 0.8rem;
+        border-radius: 28px;
+        background: rgba(255, 255, 255, 0.14);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(14px);
+        box-shadow: 0 18px 50px rgba(6, 12, 18, 0.25);
+      }
+
+      .doctor-card img {
+        width: 100%;
+        aspect-ratio: 0.88;
+        border-radius: 22px;
+        object-fit: cover;
+        object-position: center top;
+      }
+
+      .doctor-card strong {
+        display: block;
+        margin-top: 0.85rem;
+        color: #f4fbff;
+        font-size: 1rem;
+        letter-spacing: -0.02em;
+      }
+
+      .doctor-card p {
+        margin: 0.35rem 0 0;
+        color: rgba(223, 242, 250, 0.72);
+        font-size: 0.82rem;
+        line-height: 1.5;
+      }
+
+      .dashboard-card {
+        position: absolute;
+        top: 5.2rem;
+        right: 1.25rem;
+        bottom: 1.25rem;
+        width: min(27rem, calc(100% - 17rem));
+        padding: 1rem;
+        border-radius: 30px;
+        background: rgba(246, 252, 255, 0.92);
+        box-shadow: 0 25px 70px rgba(2, 14, 22, 0.18);
+      }
+
+      .dashboard-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+      }
+
+      .dashboard-head span {
+        color: rgba(16, 34, 45, 0.54);
+        font-size: 0.72rem;
+        font-weight: 800;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+      }
+
+      .dashboard-head strong {
+        font-size: 1rem;
+        letter-spacing: -0.03em;
+      }
+
+      .dashboard-grid {
+        margin-top: 1rem;
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 0.7rem;
+      }
+
+      .metric-card {
+        padding: 0.9rem;
+        border-radius: 18px;
+        background: #f0f7fb;
+        border: 1px solid rgba(16, 34, 45, 0.07);
+      }
+
+      .metric-card span {
+        display: block;
+        color: rgba(16, 34, 45, 0.56);
+        font-size: 0.68rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .metric-card strong {
+        display: block;
+        margin-top: 0.45rem;
+        font-size: 1.3rem;
+        letter-spacing: -0.04em;
+      }
+
+      .dashboard-video {
+        margin-top: 0.95rem;
+        padding: 0.75rem;
+        border-radius: 24px;
+        background: linear-gradient(180deg, #162933, #0f1f28);
+      }
+
+      .dashboard-video video {
+        width: 100%;
+        border-radius: 18px;
+        aspect-ratio: 1.05;
+        object-fit: cover;
+      }
+
+      .queue-panel {
+        margin-top: 0.95rem;
+        padding: 1rem;
+        border-radius: 22px;
+        background: #f7fbfd;
+        border: 1px solid rgba(16, 34, 45, 0.08);
+      }
+
+      .queue-row {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        gap: 0.9rem;
+        align-items: center;
+        padding: 0.7rem 0;
+        border-top: 1px solid rgba(16, 34, 45, 0.08);
+      }
+
+      .queue-row:first-of-type {
+        padding-top: 0;
+        border-top: 0;
+      }
+
+      .queue-row strong {
+        display: block;
+        font-size: 0.95rem;
+        letter-spacing: -0.02em;
+      }
+
+      .queue-row p {
+        margin: 0.18rem 0 0;
+        color: var(--muted);
+        font-size: 0.8rem;
+      }
+
+      .status-dot {
+        min-width: 6rem;
+        padding: 0.42rem 0.65rem;
+        border-radius: 999px;
+        text-align: center;
+        font-size: 0.7rem;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .status-dot.urgent {
+        background: rgba(200, 105, 82, 0.12);
+        color: #9b4635;
+      }
+
+      .status-dot.fast {
+        background: rgba(31, 143, 116, 0.12);
+        color: var(--accent-deep);
+      }
+
+      .status-dot.review {
+        background: rgba(91, 166, 229, 0.12);
+        color: #2e6da8;
+      }
+
+      .section-shell {
+        padding-top: 0;
+        padding-bottom: 5.25rem;
+      }
+
+      .section-copy {
+        max-width: 44rem;
+        margin-bottom: 2rem;
+      }
+
+      .section-copy h2 {
+        font-size: clamp(2.2rem, 4.4vw, 4.1rem);
+      }
+
+      .section-copy p,
+      .contact-copy p,
+      .contact-note,
+      .footer-meta {
+        color: var(--muted);
+        font-size: 1rem;
+        line-height: 1.75;
+      }
+
+      .proof-strip {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 1rem;
+      }
+
+      .proof-card,
+      .workflow-card,
+      .integration-card,
+      .benefit-card,
+      .support-card,
+      .pricing-card,
+      .contact-card {
+        border-radius: var(--radius-xl);
+        background: var(--panel);
+        border: 1px solid rgba(16, 34, 45, 0.08);
+        box-shadow: var(--shadow-soft);
+      }
+
+      .proof-card {
+        padding: 1.3rem;
+      }
+
+      .proof-card span {
+        display: block;
+        color: rgba(16, 34, 45, 0.55);
+        font-size: 0.7rem;
+        font-weight: 800;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
+      .proof-card strong {
+        display: block;
+        margin-top: 0.55rem;
+        font-size: 1.65rem;
+        letter-spacing: -0.05em;
+      }
+
+      .proof-card p {
+        margin: 0.45rem 0 0;
+        color: var(--muted);
+        font-size: 0.92rem;
+        line-height: 1.6;
+      }
+
+      .workflow-grid,
+      .integration-grid,
+      .benefits-grid {
+        display: grid;
+        gap: 1rem;
+      }
+
+      .workflow-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+
+      .workflow-card,
+      .integration-card,
+      .benefit-card {
+        padding: 1.55rem;
+      }
+
+      .step-number,
+      .icon-badge {
+        width: 3rem;
+        height: 3rem;
+        border-radius: 18px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 800;
+        letter-spacing: -0.04em;
+      }
+
+      .step-number {
+        background: rgba(31, 143, 116, 0.12);
+        color: var(--accent-deep);
+        font-size: 1rem;
+      }
+
+      .icon-badge {
+        background: rgba(91, 166, 229, 0.12);
+        color: #2e6da8;
+      }
+
+      .workflow-card h3,
+      .integration-card h3,
+      .benefit-card h3,
+      .support-card h3,
+      .pricing-card h3,
+      .contact-copy h2 {
+        margin: 1rem 0 0;
+        letter-spacing: -0.04em;
+      }
+
+      .workflow-card h3,
+      .integration-card h3,
+      .benefit-card h3,
+      .support-card h3 {
+        font-size: 1.3rem;
+      }
+
+      .workflow-card p,
+      .integration-card p,
+      .benefit-card p,
+      .support-card p,
+      .pricing-card p {
+        margin: 0.6rem 0 0;
+        color: var(--muted);
+        line-height: 1.7;
+      }
+
+      .section-cta {
+        margin-top: 1.4rem;
+      }
+
+      .integration-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+
+      .integration-card ul,
+      .support-list,
+      .pricing-list {
+        margin: 1rem 0 0;
+        padding: 0;
+        list-style: none;
+        display: grid;
+        gap: 0.65rem;
+      }
+
+      .integration-card li,
+      .support-list li,
+      .pricing-list li {
+        position: relative;
+        padding-left: 1.1rem;
+        color: var(--muted);
+        line-height: 1.6;
+      }
+
+      .integration-card li::before,
+      .support-list li::before,
+      .pricing-list li::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0.62rem;
+        width: 0.42rem;
+        height: 0.42rem;
+        border-radius: 999px;
+        background: var(--accent);
+      }
+
+      .benefits-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .benefit-card {
+        min-height: 100%;
+      }
+
+      .support-section {
+        display: grid;
+        grid-template-columns: minmax(0, 0.92fr) minmax(320px, 0.88fr);
+        gap: 1.2rem;
+        align-items: stretch;
+      }
+
+      .support-card {
+        padding: 1.8rem;
+      }
+
+      .support-card.dark {
+        color: rgba(245, 251, 255, 0.96);
+        background:
+          radial-gradient(circle at 15% 12%, rgba(123, 208, 188, 0.22), transparent 28%),
+          radial-gradient(circle at 88% 14%, rgba(91, 166, 229, 0.22), transparent 24%),
+          linear-gradient(180deg, rgba(12, 29, 38, 0.98), rgba(9, 21, 29, 1));
+        border-color: rgba(255, 255, 255, 0.08);
+        box-shadow: 0 28px 70px rgba(6, 12, 18, 0.24);
+      }
+
+      .support-card.dark p,
+      .support-card.dark li,
+      .support-card.dark .brand-swap-note {
+        color: rgba(225, 242, 250, 0.72);
+      }
+
+      .plan-badge {
+        color: rgba(225, 242, 250, 0.86);
+        background: rgba(255, 255, 255, 0.08);
+      }
+
+      .brand-swap {
+        margin-top: 1.2rem;
+        padding: 1rem;
+        border-radius: 24px;
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+      }
+
+      .brand-swap-top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+      }
+
+      .brand-swap-name {
+        display: grid;
+        gap: 0.4rem;
+      }
+
+      .brand-swap-name strong {
+        font-size: 1.05rem;
+      }
+
+      .brand-swap-note {
+        margin-top: 0.75rem;
+        line-height: 1.65;
+      }
+
+      .swatch-row {
+        display: flex;
+        gap: 0.45rem;
+      }
+
+      .swatch {
+        width: 1.1rem;
+        height: 1.1rem;
+        border-radius: 999px;
+      }
+
+      .swatch.one { background: #194f7a; }
+      .swatch.two { background: #23856b; }
+      .swatch.three { background: #d8edf7; }
+
+      .demo-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 1.02fr) minmax(280px, 0.74fr);
+        gap: 1rem;
+        align-items: stretch;
+      }
+
+      .demo-card,
+      .demo-copy {
+        border-radius: var(--radius-xl);
+        overflow: hidden;
+        background: var(--panel);
+        border: 1px solid rgba(16, 34, 45, 0.08);
+        box-shadow: var(--shadow-soft);
+      }
+
+      .demo-card {
+        padding: 1rem;
+      }
+
+      .demo-shell {
+        position: relative;
+        width: 100%;
+        border-radius: 26px;
+        overflow: hidden;
+        background: linear-gradient(180deg, #122b36, #08161e);
+      }
+
+      .demo-shell video {
+        width: 100%;
+        aspect-ratio: 16 / 10;
+        object-fit: cover;
+      }
+
+      .demo-caption {
+        position: absolute;
+        left: 1rem;
+        right: 1rem;
+        bottom: 1rem;
+        padding: 0.85rem 1rem;
+        border-radius: 18px;
+        background: rgba(8, 20, 28, 0.62);
+        color: rgba(245, 251, 255, 0.94);
+        backdrop-filter: blur(12px);
+      }
+
+      .demo-copy {
+        padding: 1.6rem;
+      }
+
+      .demo-copy h3 {
+        margin: 0;
+        font-size: 1.45rem;
+        letter-spacing: -0.04em;
+      }
+
+      .demo-point {
+        margin-top: 1rem;
+        padding-top: 1rem;
+        border-top: 1px solid rgba(16, 34, 45, 0.08);
+      }
+
+      .demo-point strong {
+        display: block;
+        font-size: 0.98rem;
+        letter-spacing: -0.02em;
+      }
+
+      .demo-point p {
+        margin: 0.35rem 0 0;
+        color: var(--muted);
+        line-height: 1.65;
+      }
+
+      .pricing-wrap {
+        display: grid;
+        grid-template-columns: minmax(0, 0.76fr) minmax(0, 1.24fr);
+        gap: 1rem;
+        align-items: start;
+      }
+
+      .pricing-side {
+        padding: 1.7rem;
+        border-radius: var(--radius-xl);
+        background: rgba(255, 255, 255, 0.42);
+        border: 1px solid rgba(16, 34, 45, 0.08);
+      }
+
+      .pricing-side h3 {
+        margin: 0;
+        font-size: 1.45rem;
+        letter-spacing: -0.04em;
+      }
+
+      .pricing-side p {
+        margin: 0.7rem 0 0;
+        color: var(--muted);
+        line-height: 1.7;
+      }
+
+      .pricing-card {
+        padding: 1.9rem;
+        background:
+          radial-gradient(circle at 85% 12%, rgba(123, 208, 188, 0.18), transparent 24%),
+          linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(247, 251, 253, 0.98));
+      }
+
+      .pricing-card h3 {
+        font-size: 1.85rem;
+      }
+
+      .price-line {
+        margin-top: 0.8rem;
+        display: flex;
+        align-items: baseline;
+        flex-wrap: wrap;
+        gap: 0.55rem;
+      }
+
+      .price-line strong {
+        font-size: clamp(2.6rem, 5vw, 4rem);
+        letter-spacing: -0.07em;
+      }
+
+      .price-line span {
+        color: var(--muted);
+        font-size: 1rem;
+      }
+
+      .pilot-strip {
+        margin-top: 1rem;
+        display: inline-flex;
+        align-items: center;
+        padding: 0.52rem 0.85rem;
+        border-radius: 999px;
+        background: rgba(31, 143, 116, 0.1);
+        color: var(--accent-deep);
+        font-size: 0.82rem;
+        font-weight: 700;
+      }
+
+      .pricing-foot {
+        margin-top: 1.25rem;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+      }
+
+      .contact-section {
+        padding-bottom: 5.5rem;
+      }
+
+      .contact-grid {
+        padding: 1rem;
+        border-radius: 38px;
+        background:
+          radial-gradient(circle at 8% 18%, rgba(123, 208, 188, 0.2), transparent 24%),
+          radial-gradient(circle at 90% 15%, rgba(91, 166, 229, 0.22), transparent 20%),
+          linear-gradient(180deg, rgba(255, 255, 255, 0.78), rgba(247, 251, 253, 0.92));
+        border: 1px solid rgba(16, 34, 45, 0.08);
+        box-shadow: var(--shadow);
+        display: grid;
+        grid-template-columns: minmax(0, 0.82fr) minmax(320px, 1.18fr);
+        gap: 1rem;
+      }
+
+      .contact-copy,
+      .contact-card {
+        padding: 1.65rem;
+      }
+
+      .contact-copy h2 {
+        font-size: clamp(2.2rem, 4.4vw, 4rem);
+      }
+
+      .contact-points {
+        margin-top: 1.2rem;
+        display: grid;
+        gap: 0.8rem;
+      }
+
+      .contact-point {
+        padding: 0.95rem 1rem;
+        border-radius: 18px;
+        background: rgba(255, 255, 255, 0.64);
+        border: 1px solid rgba(16, 34, 45, 0.07);
+      }
+
+      .contact-point strong {
+        display: block;
+        font-size: 0.96rem;
+        letter-spacing: -0.02em;
+      }
+
+      .contact-point span {
+        display: block;
+        margin-top: 0.3rem;
+        color: var(--muted);
+        font-size: 0.88rem;
+      }
+
+      .contact-card {
+        background: rgba(255, 255, 255, 0.88);
+      }
+
+      .form-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 0.85rem;
+      }
+
+      .field {
+        display: grid;
+        gap: 0.45rem;
+      }
+
+      .field.full {
+        grid-column: 1 / -1;
+      }
+
+      label {
+        font-size: 0.86rem;
+        font-weight: 700;
+        color: rgba(16, 34, 45, 0.78);
+      }
+
+      input,
+      textarea {
+        width: 100%;
+        padding: 0.95rem 1rem;
+        border-radius: 16px;
+        border: 1px solid rgba(16, 34, 45, 0.1);
+        background: #f8fcfe;
+        color: var(--text);
+        font: inherit;
+      }
+
+      input:focus,
+      textarea:focus {
+        outline: 2px solid rgba(91, 166, 229, 0.28);
+        border-color: rgba(31, 143, 116, 0.24);
+      }
+
+      textarea {
+        min-height: 8.5rem;
+        resize: vertical;
+      }
+
+      .contact-card .button-row {
+        margin-top: 1rem;
+        flex-wrap: wrap;
+      }
+
+      .contact-note {
+        margin-top: 0.8rem;
+        font-size: 0.88rem;
+      }
+
+      .small-disclaimer {
+        margin-top: 1rem;
+        color: rgba(16, 34, 45, 0.56);
+        font-size: 0.82rem;
+        line-height: 1.6;
+      }
+
+      footer {
+        padding-top: 0.25rem;
+        padding-bottom: 3rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+      }
+
+      .footer-brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.8rem;
+      }
+
+      .footer-mark {
+        width: 2.35rem;
+        height: 2.35rem;
+        padding: 0.38rem;
+        border-radius: 16px;
+        background: rgba(31, 143, 116, 0.08);
+        border: 1px solid rgba(31, 143, 116, 0.1);
+      }
+
+      .reveal {
+        opacity: 0;
+        transform: translateY(32px);
+        transition:
+          opacity 800ms cubic-bezier(0.22, 1, 0.36, 1),
+          transform 800ms cubic-bezier(0.22, 1, 0.36, 1);
+      }
+
+      .reveal.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      @media (max-width: 1120px) {
+        .nav-links,
+        .topbar .button-muted {
+          display: none;
+        }
+
+        .hero,
+        .support-section,
+        .demo-grid,
+        .pricing-wrap,
+        .contact-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .workflow-grid,
+        .integration-grid,
+        .proof-strip,
+        .benefits-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .hero {
+          padding-top: 2.8rem;
+        }
+
+        .hero-visual {
+          min-height: 34rem;
+        }
+
+        .dashboard-card {
+          width: min(29rem, calc(100% - 13rem));
+        }
+      }
+
+      @media (max-width: 760px) {
+        .topbar {
+          padding: 0.9rem 0.8rem;
+        }
+
+        .topbar-inner {
+          padding: 0.75rem;
+          display: grid;
+          grid-template-columns: 1fr;
+        }
+
+        .button-row,
+        .pricing-foot,
+        .contact-card .button-row {
+          width: 100%;
+        }
+
+        .button,
+        .button-muted {
+          width: 100%;
+        }
+
+        .topbar .brand {
+          min-width: 0;
+          width: 100%;
+        }
+
+        .topbar .button-row {
+          width: 100%;
+        }
+
+        .topbar .button {
+          width: 100%;
+          min-width: 0;
+        }
+
+        .hero {
+          padding-top: 2.1rem;
+          padding-bottom: 4.2rem;
+        }
+
+        .hero h1,
+        .section-copy h2,
+        .contact-copy h2 {
+          font-size: clamp(2.7rem, 12vw, 4rem);
+        }
+
+        .hero-chip-row,
+        .proof-strip,
+        .workflow-grid,
+        .integration-grid,
+        .benefits-grid,
+        .form-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .hero-visual {
+          min-height: 33rem;
+        }
+
+        .visual-shell {
+          padding: 0.8rem;
+        }
+
+        .brand-tag {
+          top: 0.9rem;
+          left: 0.9rem;
+          right: 0.9rem;
+        }
+
+        .dashboard-card {
+          left: 0.9rem;
+          right: 0.9rem;
+          top: 5.6rem;
+          bottom: 7rem;
+          width: auto;
+        }
+
+        .dashboard-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .doctor-card {
+          left: 0.9rem;
+          right: 0.9rem;
+          bottom: 0.9rem;
+          width: auto;
+          display: grid;
+          grid-template-columns: 5.4rem minmax(0, 1fr);
+          gap: 0.9rem;
+          align-items: center;
+        }
+
+        .doctor-card img {
+          aspect-ratio: 1;
+        }
+
+        .queue-row {
+          grid-template-columns: 1fr;
+        }
+
+        .status-dot {
+          min-width: 0;
+          width: max-content;
+        }
+
+        .support-card,
+        .demo-copy,
+        .pricing-side,
+        .pricing-card,
+        .contact-copy,
+        .contact-card {
+          padding: 1.4rem;
+        }
+
+        .contact-grid {
+          padding: 0.75rem;
+          border-radius: 28px;
+        }
+
+        footer {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page-shell">
+      <div class="ambient-orb one"></div>
+      <div class="ambient-orb two"></div>
+      <div class="ambient-orb three"></div>
+
+      <header class="topbar">
+        <div class="topbar-inner">
+          <a class="brand" href="./index.html" aria-label="PelliScope home">
+            <img class="brand-mark" src="./assets/img/pelliscope.png" alt="PelliScope logo" />
+            <div class="brand-copy">
+              <strong>PelliScope for Clinics</strong>
+              <span>White-label AI triage for dermatology practices</span>
+            </div>
+          </a>
+
+          <nav class="nav-links" aria-label="Primary">
+            <a href="#workflow">How it works</a>
+            <a href="#integrations">Integrations</a>
+            <a href="#benefits">Benefits</a>
+            <a href="#demo">Demo</a>
+            <a href="#pricing">Pricing</a>
+            <a href="#contact">Contact</a>
+          </nav>
+
+          <div class="button-row">
+            <a class="button-muted" href="./index.html">Main site</a>
+            <a class="button" href="#contact">Schedule demo</a>
+          </div>
+        </div>
+      </header>
+
+      <main>
+        <section class="hero">
+          <div class="hero-copy reveal">
+            <h1>Grow your clinic with AI skin triage, branded as your own.</h1>
+            <p class="hero-lede">
+              White-label PelliScope for your clinic. Pre-screen patients, flag urgent cases faster, and route them
+              into teleconsult or in-clinic visits through a cleaner first-touch experience.
+            </p>
+            <p class="hero-meta">Powered by HawkFranklin Research, your practical R&amp;D partner.</p>
+
+            <div class="button-row">
+              <a class="button" href="#contact">Schedule Free 15-min Demo</a>
+              <a class="button-muted" href="#pricing">Get Started at ₹1,500/month</a>
+            </div>
+
+            <div class="hero-chip-row" aria-label="Clinic partner proof points">
+              <span class="hero-chip">80%+ validated accuracy</span>
+              <span class="hero-chip">Full white-label branding</span>
+              <span class="hero-chip">Teleconsult routing built in</span>
+              <span class="hero-chip">30-day free pilot</span>
+            </div>
+
+            <p class="hero-note">
+              Already helping clinics bring more patients with AI-powered teledermatology and faster triage at the
+              first point of contact.
+            </p>
+          </div>
+
+          <div class="hero-visual reveal">
+            <div class="visual-shell">
+              <div class="brand-tag">
+                <span>White-label live preview</span>
+                <strong>Dr. Mehta Skin Clinic AI Desk</strong>
+              </div>
+
+              <div class="dashboard-card">
+                <div class="dashboard-head">
+                  <div>
+                    <span>Your clinic dashboard</span>
+                    <strong>Branded intake + routing</strong>
+                  </div>
+                  <span style="color:#1f8f74;">Pilot Ready</span>
+                </div>
+
+                <div class="dashboard-grid">
+                  <div class="metric-card">
+                    <span>Screenings today</span>
+                    <strong>42</strong>
+                  </div>
+                  <div class="metric-card">
+                    <span>Urgent routed</span>
+                    <strong>9</strong>
+                  </div>
+                  <div class="metric-card">
+                    <span>Booked consults</span>
+                    <strong>16</strong>
+                  </div>
+                </div>
+
+                <div class="dashboard-video">
+                  <video src="./assets/video/pelliscope_preview.mp4" autoplay muted loop playsinline></video>
+                </div>
+
+                <div class="queue-panel">
+                  <div class="queue-row">
+                    <div>
+                      <strong>Suspected fungal rash</strong>
+                      <p>Patient completed photo capture and symptom intake.</p>
+                    </div>
+                    <span class="status-dot urgent">Urgent today</span>
+                  </div>
+                  <div class="queue-row">
+                    <div>
+                      <strong>Routine eczema follow-up</strong>
+                      <p>Ready for teleconsult routing inside your clinic flow.</p>
+                    </div>
+                    <span class="status-dot fast">Auto-routed</span>
+                  </div>
+                  <div class="queue-row">
+                    <div>
+                      <strong>Acne care inquiry</strong>
+                      <p>Eligible for skincare recommendations and later booking.</p>
+                    </div>
+                    <span class="status-dot review">Review queue</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="doctor-card">
+                <img src="./assets/members/dr.nishi_crop.png" alt="Consultant dermatologist portrait" />
+                <div>
+                  <strong>Your clinic name. Your logo. Your colors.</strong>
+                  <p>Patients see your brand first while PelliScope runs the AI workflow underneath.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section-shell">
+          <div class="proof-strip">
+            <article class="proof-card reveal">
+              <span>For the patient</span>
+              <strong>Simple first step</strong>
+              <p>Guided photos and short questions feel approachable on mobile, desktop, or kiosk.</p>
+            </article>
+            <article class="proof-card reveal">
+              <span>For the clinic</span>
+              <strong>Cleaner intake</strong>
+              <p>Images, symptoms, and early risk signals arrive in one thread instead of fragments.</p>
+            </article>
+            <article class="proof-card reveal">
+              <span>For operations</span>
+              <strong>Faster routing</strong>
+              <p>High-risk cases can be pushed toward teleconsult or in-clinic slots without manual triage.</p>
+            </article>
+            <article class="proof-card reveal">
+              <span>For growth</span>
+              <strong>New patient funnel</strong>
+              <p>Add an AI skin check to your website and capture patient demand before it drops off.</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="section-shell" id="workflow">
+          <div class="section-copy reveal">
+            <span class="section-label">How it works</span>
+            <h2>One simple flow your patients use, with less extra work for your team.</h2>
+            <p>
+              The experience stays short for patients and structured for clinicians. The goal is not to add another
+              tool your staff must babysit. The goal is to make the first screening step cleaner and more useful.
+            </p>
+          </div>
+
+          <div class="workflow-grid">
+            <article class="workflow-card reveal">
+              <span class="step-number">01</span>
+              <h3>Branded patient intake</h3>
+              <p>Patients upload a clear skin photo and answer four quick questions inside your branded flow.</p>
+            </article>
+            <article class="workflow-card reveal">
+              <span class="step-number">02</span>
+              <h3>AI triage layer</h3>
+              <p>Our AI returns a preliminary prediction, top disease risks, and an infectiousness score.</p>
+            </article>
+            <article class="workflow-card reveal">
+              <span class="step-number">03</span>
+              <h3>Urgency-based routing</h3>
+              <p>High-risk or urgent cases can be sent straight into teleconsult or in-clinic booking pathways.</p>
+            </article>
+            <article class="workflow-card reveal">
+              <span class="step-number">04</span>
+              <h3>Simple clinic dashboard</h3>
+              <p>Your team sees one organized case thread instead of messages, photos, and symptoms in different places.</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="section-shell" id="integrations">
+          <div class="section-copy reveal">
+            <span class="section-label">Integration Paths</span>
+            <h2>Choose the rollout model that fits how your clinic already works.</h2>
+            <p>
+              PelliScope does not have to force a new operating model. Clinics can start with a lightweight pilot and
+              expand only when the funnel proves useful.
+            </p>
+          </div>
+
+          <div class="integration-grid">
+            <article class="integration-card reveal">
+              <span class="icon-badge" aria-hidden="true">01</span>
+              <h3>Website embed</h3>
+              <p>Add a branded “AI Skin Check” button to your site and route screening leads into your clinic.</p>
+              <ul>
+                <li>Works as a landing page or linked subpage</li>
+                <li>Your logo, name, and clinic messaging</li>
+                <li>Ideal for patient acquisition</li>
+              </ul>
+            </article>
+            <article class="integration-card reveal">
+              <span class="icon-badge" aria-hidden="true">02</span>
+              <h3>WhatsApp intake link</h3>
+              <p>Send patients into a guided screening flow before your team spends time on back-and-forth messages.</p>
+              <ul>
+                <li>Useful for teledermatology inquiries</li>
+                <li>Reduces incomplete case submissions</li>
+                <li>Easy to pilot with existing staff</li>
+              </ul>
+            </article>
+            <article class="integration-card reveal">
+              <span class="icon-badge" aria-hidden="true">03</span>
+              <h3>Reception or kiosk mode</h3>
+              <p>Run the same workflow in-clinic on a tablet, front-desk device, or QR poster for walk-ins.</p>
+              <ul>
+                <li>Fits outreach camps and busy OPD desks</li>
+                <li>Runs on everyday clinic hardware</li>
+                <li>Useful where bandwidth is patchy</li>
+              </ul>
+            </article>
+            <article class="integration-card reveal">
+              <span class="icon-badge" aria-hidden="true">04</span>
+              <h3>Dashboard plus teleconsult routing</h3>
+              <p>Use the full partner setup when you want patient intake, AI triage, and clinician review in one funnel.</p>
+              <ul>
+                <li>Better prioritization for urgent cases</li>
+                <li>Supports clinic and remote consult teams</li>
+                <li>Strongest white-label experience</li>
+              </ul>
+            </article>
+          </div>
+        </section>
+
+        <section class="section-shell" id="benefits">
+          <div class="section-copy reveal">
+            <span class="section-label">Benefits for Your Clinic</span>
+            <h2>Built to save time, improve first-touch care, and create a stronger digital front door.</h2>
+            <p>
+              This is not just a tech demo. The value is operational: better pre-screened patients, smoother consult
+              preparation, and a branded experience that feels modern to people discovering your clinic.
+            </p>
+          </div>
+
+          <div class="benefits-grid">
+            <article class="benefit-card reveal">
+              <span class="icon-badge" aria-hidden="true">+</span>
+              <h3>More patients without extra marketing</h3>
+              <p>AI screening brings qualified skin cases into your funnel before they abandon the process.</p>
+            </article>
+            <article class="benefit-card reveal">
+              <span class="icon-badge" aria-hidden="true">+</span>
+              <h3>Less consult discovery time</h3>
+              <p>Your team starts with photos, symptoms, and early risk signals already attached to the case.</p>
+            </article>
+            <article class="benefit-card reveal">
+              <span class="icon-badge" aria-hidden="true">+</span>
+              <h3>Better urgency handling</h3>
+              <p>Urgency scoring helps patients understand when to book now instead of delaying.</p>
+            </article>
+            <article class="benefit-card reveal">
+              <span class="icon-badge" aria-hidden="true">+</span>
+              <h3>Stronger trust with patients</h3>
+              <p>A modern AI skin check on your site makes your clinic feel responsive, current, and easy to approach.</p>
+            </article>
+            <article class="benefit-card reveal">
+              <span class="icon-badge" aria-hidden="true">+</span>
+              <h3>Revenue beyond prescriptions</h3>
+              <p>Suitable cases can move into skincare guidance, follow-up consults, and digital care upsells.</p>
+            </article>
+            <article class="benefit-card reveal">
+              <span class="icon-badge" aria-hidden="true">+</span>
+              <h3>Low operational headache</h3>
+              <p>We handle updates, support, and the AI layer so your clinic does not need a separate tech team.</p>
+            </article>
+          </div>
+
+          <div class="section-cta reveal">
+            <a class="button" href="#contact">Schedule Demo</a>
+          </div>
+        </section>
+
+        <section class="section-shell" id="research">
+          <div class="support-section">
+            <article class="support-card dark reveal">
+              <span class="plan-badge">What HawkFranklin Research brings</span>
+              <h3>Not just a tool vendor. An R&amp;D partner for your rollout.</h3>
+              <p>
+                Clinics usually do not want a fragile pilot or a custom software project that drags on. We keep the
+                rollout practical, branded, and light enough to deploy without a large upfront tech investment.
+              </p>
+              <ul class="support-list">
+                <li>Full white-label experience with your clinic name and visual identity</li>
+                <li>Easy integration with your current website, link flow, or WhatsApp intake</li>
+                <li>80%+ validated accuracy on common skin-condition screening benchmarks</li>
+                <li>Ongoing updates and new AI features at no extra monthly engineering burden</li>
+                <li>Direct support from our research and product team during pilot and rollout</li>
+              </ul>
+            </article>
+
+            <article class="support-card reveal">
+              <span class="section-label">Rebranding Example</span>
+              <h3>How the same product becomes your clinic’s AI front door.</h3>
+              <p>
+                The white-label setup is designed to feel native to your clinic, not like a third-party widget glued on
+                after the fact.
+              </p>
+
+              <div class="brand-swap">
+                <div class="brand-swap-top">
+                  <div class="brand-swap-name">
+                    <span style="color:rgba(16,34,45,0.54); font-size:0.72rem; font-weight:800; letter-spacing:0.1em; text-transform:uppercase;">Example clinic brand</span>
+                    <strong>Dr. Rao Skin &amp; Laser Clinic</strong>
+                  </div>
+                  <div class="swatch-row" aria-hidden="true">
+                    <span class="swatch one"></span>
+                    <span class="swatch two"></span>
+                    <span class="swatch three"></span>
+                  </div>
+                </div>
+                <p class="brand-swap-note">
+                  Your homepage CTA, patient intake screen, report labels, and clinic dashboard can all carry your
+                  branding while PelliScope powers the capture, triage, and routing underneath.
+                </p>
+              </div>
+
+              <div class="brand-swap">
+                <div class="brand-swap-top">
+                  <div class="brand-swap-name">
+                    <span style="color:rgba(16,34,45,0.54); font-size:0.72rem; font-weight:800; letter-spacing:0.1em; text-transform:uppercase;">Pilot rollout idea</span>
+                    <strong>Start with one doctor, one intake path, one city.</strong>
+                  </div>
+                </div>
+                <p class="brand-swap-note">
+                  The fastest path is usually a 30-day pilot on one branded page, then expansion into WhatsApp, front
+                  desk, or multi-doctor routing once the conversion data looks good.
+                </p>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section class="section-shell" id="demo">
+          <div class="section-copy reveal">
+            <span class="section-label">See it in 60 seconds</span>
+            <h2>Watch how your patients and your team would use it.</h2>
+            <p>
+              A short demo helps doctors trust the workflow faster than a long wall of explanation. This is where the
+              white-label story becomes concrete.
+            </p>
+          </div>
+
+          <div class="demo-grid">
+            <article class="demo-card reveal">
+              <div class="demo-shell">
+                <video src="./assets/video/pelliscope_preview.mp4" controls muted playsinline poster="./assets/img/scan-sample.jpeg"></video>
+                <div class="demo-caption">See PelliScope in 60 seconds: patient view + your clinic dashboard.</div>
+              </div>
+            </article>
+
+            <aside class="demo-copy reveal">
+              <h3>What the video should prove to a clinic owner</h3>
+              <div class="demo-point">
+                <strong>Patients can finish the flow quickly.</strong>
+                <p>Guided capture and short intake reduce friction before a doctor ever sees the case.</p>
+              </div>
+              <div class="demo-point">
+                <strong>Branding feels native to the clinic.</strong>
+                <p>The page, the workflow, and the resulting dashboard can all reflect the clinic identity.</p>
+              </div>
+              <div class="demo-point">
+                <strong>Routing is operational, not theoretical.</strong>
+                <p>Urgent cases, routine follow-ups, and teleconsult requests can move into the right queue faster.</p>
+              </div>
+            </aside>
+          </div>
+        </section>
+
+        <section class="section-shell" id="pricing">
+          <div class="pricing-wrap">
+            <div class="pricing-side reveal">
+              <span class="section-label">Simple pricing</span>
+              <h3>One clear plan to make the decision easy.</h3>
+              <p>
+                Start small, prove patient interest, and expand only after your clinic sees real screening volume and
+                consult conversion.
+              </p>
+              <p>
+                This works well for solo dermatologists, branded teledermatology pilots, front-desk screening, and
+                small multi-doctor clinics that want a cleaner first digital touchpoint.
+              </p>
+            </div>
+
+            <article class="pricing-card reveal">
+              <span class="section-label">Clinic Partner Plan</span>
+              <h3>White-label AI triage for your clinic</h3>
+              <div class="price-line">
+                <strong>₹1,500</strong>
+                <span>/ month</span>
+              </div>
+              <div class="pilot-strip">30-day free pilot. No credit card required.</div>
+              <p>
+                Designed for clinics that want an affordable branded AI skin triage layer without building or managing
+                the product themselves.
+              </p>
+              <ul class="pricing-list">
+                <li>Unlimited patient screenings</li>
+                <li>Full white-label branding</li>
+                <li>Clinic dashboard plus teleconsult routing</li>
+                <li>Website or landing-page integration support</li>
+                <li>Ongoing product updates and partner support</li>
+              </ul>
+              <div class="pricing-foot">
+                <a class="button" href="#contact">Schedule Your Free Demo Today</a>
+                <a class="button-muted" href="mailto:partnerships@hawkfranklin.in?subject=PelliScope%20Clinic%20Partner%20Inquiry">Email partnership team</a>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section class="section-shell contact-section" id="contact">
+          <div class="contact-grid">
+            <div class="contact-copy reveal">
+              <span class="section-label">Partner with us</span>
+              <h2>Ready to bring more skin patients to your clinic?</h2>
+              <p>
+                The next step is a short demo and a practical rollout discussion. We can start with one landing page,
+                one intake route, or one pilot doctor and expand from there.
+              </p>
+
+              <div class="contact-points">
+                <div class="contact-point">
+                  <strong>Best for first pilots</strong>
+                  <span>Single-clinic branding, website CTA, and a focused 30-day demo rollout.</span>
+                </div>
+                <div class="contact-point">
+                  <strong>Works with your existing channels</strong>
+                  <span>Website, WhatsApp, reception desk, QR campaigns, or teleconsult intake.</span>
+                </div>
+                <div class="contact-point">
+                  <strong>Partner inbox</strong>
+                  <span>partnerships@hawkfranklin.in</span>
+                </div>
+              </div>
+            </div>
+
+            <form class="contact-card reveal" id="clinic-demo-form">
+              <div class="form-grid">
+                <div class="field">
+                  <label for="name">Name</label>
+                  <input id="name" name="name" type="text" placeholder="Dr. Asha Mehta" required />
+                </div>
+                <div class="field">
+                  <label for="clinic-name">Clinic Name</label>
+                  <input id="clinic-name" name="clinicName" type="text" placeholder="Mehta Skin Clinic" required />
+                </div>
+                <div class="field">
+                  <label for="phone">Phone / WhatsApp</label>
+                  <input id="phone" name="phone" type="tel" placeholder="+91 98xxxxxx12" required />
+                </div>
+                <div class="field">
+                  <label for="city">City</label>
+                  <input id="city" name="city" type="text" placeholder="Ahmedabad" required />
+                </div>
+                <div class="field full">
+                  <label for="email">Email</label>
+                  <input id="email" name="email" type="email" placeholder="Optional but helpful" />
+                </div>
+                <div class="field full">
+                  <label for="message">What kind of rollout are you considering?</label>
+                  <textarea id="message" name="message" placeholder="Website integration, WhatsApp intake, kiosk mode, teledermatology pilot, multi-clinic rollout..."></textarea>
+                </div>
+              </div>
+
+              <div class="button-row">
+                <button class="button" type="submit">Submit Demo Request</button>
+                <a class="button-muted" href="mailto:partnerships@hawkfranklin.in?subject=PelliScope%20Clinic%20Demo%20Request">Email directly</a>
+              </div>
+
+              <p class="contact-note">Submitting opens an email draft to partnerships@hawkfranklin.in with your details filled in.</p>
+              <p class="small-disclaimer">
+                PelliScope supports screening, early triage, and routing. Final diagnosis and treatment decisions remain
+                with the clinician.
+              </p>
+            </form>
+          </div>
+        </section>
+      </main>
+
+      <footer>
+        <div class="footer-brand">
+          <img class="footer-mark" src="./assets/img/pelliscope.png" alt="PelliScope logo" />
+          <div>
+            <strong>PelliScope</strong>
+            <span>White-label AI triage for clinics, teledermatology teams, and care programs.</span>
+          </div>
+        </div>
+
+        <div class="footer-meta">
+          Clinic partners: <a href="mailto:partnerships@hawkfranklin.in">partnerships@hawkfranklin.in</a>
+        </div>
+      </footer>
+    </div>
+
+    <script>
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("is-visible");
+            }
+          });
+        },
+        {
+          threshold: 0.18,
+        }
+      );
+
+      document.querySelectorAll(".reveal").forEach((element) => observer.observe(element));
+
+      const clinicDemoForm = document.getElementById("clinic-demo-form");
+
+      clinicDemoForm?.addEventListener("submit", (event) => {
+        event.preventDefault();
+
+        const name = document.getElementById("name").value.trim();
+        const clinicName = document.getElementById("clinic-name").value.trim();
+        const phone = document.getElementById("phone").value.trim();
+        const city = document.getElementById("city").value.trim();
+        const email = document.getElementById("email").value.trim();
+        const message = document.getElementById("message").value.trim();
+
+        const subject = `PelliScope Clinic Demo Request - ${clinicName || "Clinic Partner"}`;
+        const body = [
+          `Name: ${name}`,
+          `Clinic Name: ${clinicName}`,
+          `Phone / WhatsApp: ${phone}`,
+          `City: ${city}`,
+          `Email: ${email || "Not provided"}`,
+          "",
+          "Rollout interest:",
+          message || "Not specified",
+        ].join("\n");
+
+        window.location.href = `mailto:partnerships@hawkfranklin.in?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      });
+    </script>
+  </body>
+</html>
