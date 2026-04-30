@@ -1,0 +1,2173 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PelliScope | Story Experience</title>
+    <meta
+      name="description"
+      content="A standalone PelliScope story page that retells the scan, process, and action workflow in the website's visual language."
+    />
+    <link rel="icon" type="image/png" href="./assets/img/pelliscope.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #f7f0e1;
+        --bg-strong: #112019;
+        --bg-soft: #e8dcc4;
+        --panel: rgba(255, 248, 235, 0.78);
+        --panel-dark: rgba(19, 33, 26, 0.86);
+        --line: rgba(17, 32, 25, 0.12);
+        --text: #16231b;
+        --muted: #516357;
+        --cream: #fff7ea;
+        --accent: #2f7d57;
+        --accent-soft: #82b98d;
+        --gold: #d9a55a;
+        --gold-deep: #93672d;
+        --alert: #c65a44;
+        --alert-soft: rgba(198, 90, 68, 0.16);
+        --shadow: 0 30px 80px rgba(15, 23, 18, 0.14);
+        --radius-xl: 32px;
+        --radius-lg: 24px;
+        --radius-md: 18px;
+        --frame-shadow:
+          0 40px 100px rgba(65, 49, 24, 0.18),
+          inset 0 1px 0 rgba(255, 252, 245, 0.6);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        font-family: "Plus Jakarta Sans", sans-serif;
+        color: var(--text);
+        background:
+          radial-gradient(circle at 10% 0%, rgba(130, 185, 141, 0.26), transparent 30%),
+          radial-gradient(circle at 90% 14%, rgba(217, 165, 90, 0.22), transparent 28%),
+          linear-gradient(180deg, #fbf5e9 0%, #f3ead7 42%, #f7f0e1 100%);
+        overflow-x: hidden;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      button {
+        font: inherit;
+      }
+
+      img {
+        display: block;
+        max-width: 100%;
+      }
+
+      .page-shell {
+        position: relative;
+        min-height: 100vh;
+      }
+
+      .ambient-orb {
+        position: fixed;
+        z-index: -2;
+        border-radius: 999px;
+        filter: blur(90px);
+        opacity: 0.55;
+        pointer-events: none;
+      }
+
+      .ambient-orb.one {
+        width: 28rem;
+        height: 28rem;
+        top: -10rem;
+        left: -12rem;
+        background: rgba(132, 188, 145, 0.38);
+      }
+
+      .ambient-orb.two {
+        width: 26rem;
+        height: 26rem;
+        right: -8rem;
+        top: 20rem;
+        background: rgba(217, 165, 90, 0.34);
+      }
+
+      .ambient-orb.three {
+        width: 24rem;
+        height: 24rem;
+        left: 18%;
+        bottom: 6rem;
+        background: rgba(66, 105, 83, 0.16);
+      }
+
+      .story-page {
+        width: min(1240px, calc(100% - 2.5rem));
+        margin: 0 auto;
+        padding: 1.25rem 0 5rem;
+      }
+
+      .topbar {
+        position: sticky;
+        top: 0;
+        z-index: 40;
+        padding: 1rem 0 0.75rem;
+      }
+
+      .topbar-inner {
+        padding: 0.85rem 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        border: 1px solid rgba(255, 255, 255, 0.45);
+        border-radius: 999px;
+        background: rgba(255, 248, 235, 0.62);
+        backdrop-filter: blur(20px);
+        box-shadow: 0 15px 40px rgba(50, 41, 28, 0.08);
+      }
+
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.85rem;
+      }
+
+      .brand-mark {
+        width: 2.75rem;
+        height: 2.75rem;
+        padding: 0.45rem;
+        border-radius: 18px;
+        background: linear-gradient(180deg, rgba(47, 125, 87, 0.18), rgba(255, 255, 255, 0.76));
+        border: 1px solid rgba(47, 125, 87, 0.18);
+      }
+
+      .brand-copy strong {
+        display: block;
+        font-size: 0.98rem;
+        letter-spacing: -0.03em;
+      }
+
+      .brand-copy span {
+        display: block;
+        font-size: 0.74rem;
+        color: var(--muted);
+      }
+
+      .header-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.45rem;
+        padding: 0.55rem 0.9rem;
+        border-radius: 999px;
+        color: rgba(22, 35, 27, 0.8);
+        font-size: 0.84rem;
+        background: rgba(255, 255, 255, 0.36);
+        border: 1px solid rgba(22, 35, 27, 0.08);
+      }
+
+      .header-badge::before {
+        content: "";
+        width: 0.5rem;
+        height: 0.5rem;
+        border-radius: 999px;
+        background: var(--accent);
+        box-shadow: 0 0 0 5px rgba(47, 125, 87, 0.12);
+      }
+
+      .hero {
+        padding: 4rem 0 2rem;
+        display: grid;
+        gap: 1.2rem;
+      }
+
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.55rem;
+        margin: 0;
+        font-size: 0.76rem;
+        font-weight: 800;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: rgba(22, 35, 27, 0.58);
+      }
+
+      .eyebrow::before {
+        content: "";
+        width: 2.25rem;
+        height: 1px;
+        background: rgba(22, 35, 27, 0.32);
+      }
+
+      .hero h1 {
+        margin: 0;
+        max-width: 10ch;
+        font-family: "Fraunces", serif;
+        font-size: clamp(3.25rem, 7vw, 5.6rem);
+        line-height: 0.95;
+        letter-spacing: -0.06em;
+      }
+
+      .hero p {
+        margin: 0;
+        max-width: 47rem;
+        color: var(--muted);
+        font-size: 1.05rem;
+        line-height: 1.8;
+      }
+
+      .hero-meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.85rem;
+        padding-top: 0.25rem;
+      }
+
+      .meta-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.55rem;
+        padding: 0.7rem 1rem;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.46);
+        border: 1px solid rgba(22, 35, 27, 0.08);
+        color: rgba(22, 35, 27, 0.72);
+        font-size: 0.9rem;
+      }
+
+      .meta-pill strong {
+        color: var(--text);
+      }
+
+      .experience-section {
+        padding-top: 1.5rem;
+      }
+
+      .story-frame {
+        position: relative;
+        padding: 16px;
+        border-radius: 42px;
+        background:
+          linear-gradient(145deg, #805521 0%, #c89247 18%, #f0d49a 42%, #b98540 66%, #7d5420 100%);
+        box-shadow: var(--frame-shadow);
+      }
+
+      .story-frame::before {
+        content: "";
+        position: absolute;
+        inset: 13px;
+        border-radius: 34px;
+        border: 1px solid rgba(86, 55, 20, 0.26);
+        pointer-events: none;
+      }
+
+      .frame-inner {
+        position: relative;
+        padding: 1.4rem;
+        border-radius: 30px;
+        overflow: hidden;
+        background:
+          linear-gradient(180deg, rgba(255, 250, 244, 0.94), rgba(248, 240, 224, 0.86)),
+          linear-gradient(180deg, rgba(255, 255, 255, 0.64), rgba(255, 255, 255, 0.2));
+        border: 1px solid rgba(255, 255, 255, 0.65);
+      }
+
+      .frame-inner::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+          radial-gradient(circle at 12% 18%, rgba(130, 185, 141, 0.22), transparent 30%),
+          radial-gradient(circle at 88% 20%, rgba(217, 165, 90, 0.18), transparent 26%);
+        pointer-events: none;
+      }
+
+      .frame-header,
+      .frame-footer {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+      }
+
+      .frame-header {
+        padding-bottom: 1rem;
+      }
+
+      .frame-label {
+        display: flex;
+        flex-direction: column;
+        gap: 0.35rem;
+      }
+
+      .frame-label span {
+        font-size: 0.76rem;
+        font-weight: 800;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: rgba(22, 35, 27, 0.5);
+      }
+
+      .frame-label strong {
+        font-family: "Fraunces", serif;
+        font-size: clamp(1.55rem, 2vw, 2rem);
+        letter-spacing: -0.05em;
+      }
+
+      .frame-status {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.75rem;
+        padding: 0.75rem 1rem;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.62);
+        border: 1px solid rgba(22, 35, 27, 0.08);
+        color: rgba(22, 35, 27, 0.68);
+        font-size: 0.88rem;
+      }
+
+      .frame-status strong {
+        color: var(--text);
+      }
+
+      .status-dot {
+        width: 0.68rem;
+        height: 0.68rem;
+        border-radius: 999px;
+        background: var(--accent);
+        box-shadow: 0 0 0 8px rgba(47, 125, 87, 0.1);
+        flex: none;
+      }
+
+      .chapter-nav {
+        position: relative;
+        z-index: 1;
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 0.8rem;
+        padding: 0 0 1.1rem;
+      }
+
+      .chapter-btn {
+        appearance: none;
+        border: 1px solid rgba(22, 35, 27, 0.08);
+        border-radius: 18px;
+        background: rgba(255, 255, 255, 0.42);
+        padding: 0.95rem 1rem;
+        text-align: left;
+        color: rgba(22, 35, 27, 0.62);
+        cursor: pointer;
+        transition:
+          transform 220ms ease,
+          background 220ms ease,
+          border-color 220ms ease,
+          box-shadow 220ms ease;
+      }
+
+      .chapter-btn:hover,
+      .chapter-btn:focus-visible {
+        transform: translateY(-2px);
+        background: rgba(255, 255, 255, 0.62);
+      }
+
+      .chapter-btn.is-active {
+        background: rgba(255, 255, 255, 0.86);
+        border-color: rgba(47, 125, 87, 0.22);
+        box-shadow: 0 16px 36px rgba(47, 125, 87, 0.08);
+        color: var(--text);
+      }
+
+      .chapter-step {
+        display: block;
+        margin-bottom: 0.3rem;
+        font-size: 0.72rem;
+        font-weight: 800;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+      }
+
+      .chapter-copy {
+        display: block;
+        font-size: 0.96rem;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+      }
+
+      .story-window {
+        position: relative;
+        z-index: 1;
+        display: grid;
+        grid-template-columns: minmax(270px, 0.7fr) minmax(0, 1.3fr);
+        gap: 1.2rem;
+        min-height: 680px;
+        padding: 1.2rem;
+        border-radius: 28px;
+        background:
+          linear-gradient(180deg, rgba(24, 42, 33, 0.95), rgba(19, 33, 26, 0.92)),
+          linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0));
+        box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+        overflow: hidden;
+      }
+
+      .story-window::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+          linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+        background-size: 42px 42px;
+        opacity: 0.35;
+        pointer-events: none;
+      }
+
+      .story-side,
+      .story-main {
+        position: relative;
+        z-index: 1;
+      }
+
+      .story-side {
+        display: grid;
+        grid-template-rows: auto minmax(260px, 1fr) auto;
+        gap: 1rem;
+      }
+
+      .story-note {
+        padding: 1.25rem;
+        border-radius: 24px;
+        background: rgba(255, 247, 234, 0.94);
+        color: var(--text);
+        box-shadow: 0 20px 45px rgba(7, 10, 8, 0.14);
+      }
+
+      .story-note span {
+        display: block;
+        margin-bottom: 0.4rem;
+        font-size: 0.75rem;
+        font-weight: 800;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: rgba(22, 35, 27, 0.55);
+      }
+
+      .story-note h2 {
+        margin: 0 0 0.55rem;
+        font-family: "Fraunces", serif;
+        font-size: 1.9rem;
+        line-height: 1;
+        letter-spacing: -0.05em;
+      }
+
+      .story-note p {
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.72;
+        font-size: 0.96rem;
+      }
+
+      .speech-wrap {
+        position: relative;
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        min-height: 320px;
+      }
+
+      .speech {
+        position: absolute;
+        max-width: 210px;
+        padding: 1rem 1.05rem;
+        border-radius: 22px;
+        background: rgba(255, 247, 234, 0.96);
+        color: var(--text);
+        font-weight: 700;
+        line-height: 1.45;
+        box-shadow: 0 18px 36px rgba(7, 10, 8, 0.16);
+        border: 1px solid rgba(22, 35, 27, 0.05);
+        opacity: 0;
+        transform: translateY(18px) scale(0.96);
+        transition:
+          opacity 320ms ease,
+          transform 320ms ease;
+      }
+
+      .speech.patient {
+        top: 14%;
+        right: 12%;
+        border-bottom-right-radius: 6px;
+      }
+
+      .speech.guide {
+        top: 7%;
+        left: 7%;
+        border-bottom-left-radius: 6px;
+      }
+
+      .story-frame[data-scene="intro"] .speech,
+      .story-frame[data-scene="scan"] .speech {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+
+      .people {
+        position: relative;
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        gap: 2rem;
+        width: 100%;
+        padding-top: 2.5rem;
+      }
+
+      .person {
+        position: relative;
+        width: 116px;
+        height: 240px;
+        transition:
+          transform 420ms ease,
+          opacity 420ms ease,
+          filter 420ms ease;
+      }
+
+      .person .head {
+        position: absolute;
+        left: 50%;
+        top: 10px;
+        width: 58px;
+        height: 58px;
+        border-radius: 50%;
+        transform: translateX(-50%);
+        background: #f1c779;
+        z-index: 2;
+      }
+
+      .person .hair {
+        position: absolute;
+        left: 50%;
+        top: 2px;
+        width: 66px;
+        height: 40px;
+        border-radius: 48px 48px 24px 24px;
+        transform: translateX(-50%);
+        z-index: 3;
+      }
+
+      .person .torso {
+        position: absolute;
+        left: 50%;
+        top: 66px;
+        width: 72px;
+        height: 98px;
+        transform: translateX(-50%);
+        border-radius: 28px 28px 20px 20px;
+      }
+
+      .person .arm {
+        position: absolute;
+        top: 88px;
+        width: 14px;
+        height: 82px;
+        border-radius: 999px;
+        background: currentColor;
+        transform-origin: top center;
+      }
+
+      .person .arm.left {
+        left: 18px;
+        transform: rotate(14deg);
+      }
+
+      .person .arm.right {
+        right: 18px;
+        transform: rotate(-14deg);
+      }
+
+      .person .leg {
+        position: absolute;
+        bottom: 0;
+        width: 16px;
+        height: 88px;
+        border-radius: 999px;
+        background: #364538;
+      }
+
+      .person .leg.left {
+        left: 38px;
+      }
+
+      .person .leg.right {
+        right: 38px;
+      }
+
+      .person .shoe {
+        position: absolute;
+        bottom: -2px;
+        width: 28px;
+        height: 12px;
+        border-radius: 999px;
+        background: #203226;
+      }
+
+      .person .shoe.left {
+        left: 26px;
+      }
+
+      .person .shoe.right {
+        right: 26px;
+      }
+
+      .person.patient {
+        color: #e8a091;
+      }
+
+      .person.patient .hair {
+        background: #8f3729;
+      }
+
+      .person.patient .torso {
+        background: linear-gradient(180deg, #efb2a7, #df8e7d);
+      }
+
+      .person.patient .arm.right {
+        transform: rotate(-38deg);
+      }
+
+      .person.patient .spot {
+        position: absolute;
+        right: 28px;
+        top: 94px;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: #cf513f;
+        box-shadow: 0 0 0 5px rgba(207, 81, 63, 0.16);
+      }
+
+      .person.guide {
+        color: #7bb694;
+      }
+
+      .person.guide .hair {
+        background: #384d41;
+      }
+
+      .person.guide .torso {
+        background: linear-gradient(180deg, #b8dbcb, #86ba9e);
+      }
+
+      .person.guide .arm.left {
+        transform: rotate(24deg);
+      }
+
+      .person.guide .arm.right {
+        transform: rotate(-6deg);
+      }
+
+      .story-frame[data-scene="intro"] .person.patient,
+      .story-frame[data-scene="scan"] .person.patient {
+        transform: translateY(-4px);
+      }
+
+      .story-frame[data-scene="intro"] .person.patient .torso,
+      .story-frame[data-scene="scan"] .person.patient .torso {
+        animation: patient-sway 1.9s ease-in-out infinite;
+        transform-origin: center top;
+      }
+
+      .story-frame[data-scene="intro"] .person.guide,
+      .story-frame[data-scene="scan"] .person.guide {
+        transform: translateY(-2px);
+      }
+
+      .side-rail {
+        display: flex;
+        gap: 0.7rem;
+        flex-wrap: wrap;
+      }
+
+      .rail-chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.72rem 0.9rem;
+        border-radius: 999px;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        background: rgba(255, 255, 255, 0.06);
+        color: rgba(255, 247, 234, 0.78);
+        font-size: 0.84rem;
+      }
+
+      .rail-chip strong {
+        color: #fff6e9;
+      }
+
+      .story-main {
+        display: grid;
+        align-content: space-between;
+        gap: 1rem;
+      }
+
+      .pipeline {
+        position: relative;
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 60px minmax(0, 1.08fr) 60px minmax(0, 0.92fr);
+        gap: 0;
+        align-items: center;
+        min-height: 100%;
+      }
+
+      .station {
+        position: relative;
+        min-height: 480px;
+        padding: 1.25rem;
+        border-radius: 28px;
+        border: 1px solid rgba(255, 255, 255, 0.07);
+        background: rgba(255, 255, 255, 0.04);
+        backdrop-filter: blur(8px);
+        color: #fff8ef;
+        opacity: 0.64;
+        transform: scale(0.98) translateY(18px);
+        transition:
+          opacity 420ms ease,
+          transform 420ms ease,
+          border-color 420ms ease,
+          box-shadow 420ms ease,
+          background 420ms ease;
+      }
+
+      .station:hover {
+        opacity: 0.82;
+      }
+
+      .station-kicker {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.55rem;
+        margin-bottom: 1rem;
+        font-size: 0.76rem;
+        font-weight: 800;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: rgba(255, 247, 234, 0.62);
+      }
+
+      .station-kicker::before {
+        content: "";
+        width: 1.8rem;
+        height: 1px;
+        background: rgba(255, 247, 234, 0.26);
+      }
+
+      .station h3 {
+        margin: 0;
+        font-family: "Fraunces", serif;
+        font-size: 1.72rem;
+        line-height: 0.98;
+        letter-spacing: -0.04em;
+      }
+
+      .station p {
+        margin: 0.8rem 0 0;
+        color: rgba(255, 247, 234, 0.72);
+        font-size: 0.96rem;
+        line-height: 1.7;
+      }
+
+      .station-points {
+        display: grid;
+        gap: 0.7rem;
+        margin-top: 1.2rem;
+      }
+
+      .station-points div {
+        display: flex;
+        align-items: center;
+        gap: 0.65rem;
+        color: rgba(255, 247, 234, 0.82);
+        font-size: 0.9rem;
+      }
+
+      .station-points div::before {
+        content: "";
+        width: 0.48rem;
+        height: 0.48rem;
+        border-radius: 999px;
+        background: currentColor;
+        opacity: 0.88;
+        flex: none;
+      }
+
+      .station-display {
+        display: grid;
+        place-items: center;
+        min-height: 278px;
+        margin-bottom: 0.6rem;
+      }
+
+      .story-frame[data-scene="scan"] .station.scan,
+      .story-frame[data-scene="process"] .station.process,
+      .story-frame[data-scene="action"] .station.action {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+        border-color: rgba(255, 255, 255, 0.12);
+        box-shadow: 0 24px 60px rgba(0, 0, 0, 0.18);
+      }
+
+      .story-frame[data-scene="scan"] .station.scan {
+        background: linear-gradient(180deg, rgba(47, 125, 87, 0.18), rgba(255, 255, 255, 0.04));
+      }
+
+      .story-frame[data-scene="process"] .station.process {
+        background: linear-gradient(180deg, rgba(217, 165, 90, 0.14), rgba(255, 255, 255, 0.04));
+      }
+
+      .story-frame[data-scene="action"] .station.action {
+        background: linear-gradient(180deg, rgba(198, 90, 68, 0.14), rgba(255, 255, 255, 0.04));
+      }
+
+      .scan-visual {
+        position: relative;
+        width: 240px;
+        height: 240px;
+        border-radius: 50%;
+        background:
+          radial-gradient(circle at 35% 30%, rgba(255, 255, 255, 0.8), transparent 36%),
+          linear-gradient(180deg, rgba(255, 255, 255, 0.95), rgba(240, 228, 207, 0.9));
+        border: 1px solid rgba(255, 255, 255, 0.42);
+        box-shadow:
+          0 24px 60px rgba(4, 11, 7, 0.3),
+          inset 0 -8px 28px rgba(17, 32, 25, 0.08);
+      }
+
+      .scan-figure {
+        position: absolute;
+        inset: 18px 46px 36px 46px;
+      }
+
+      .scan-figure .head {
+        position: absolute;
+        top: 8px;
+        left: 50%;
+        width: 56px;
+        height: 62px;
+        border-radius: 50%;
+        transform: translateX(-50%);
+        background: #f1c779;
+      }
+
+      .scan-figure .neck {
+        position: absolute;
+        top: 56px;
+        left: 50%;
+        width: 24px;
+        height: 22px;
+        transform: translateX(-50%);
+        background: #f1c779;
+        border-radius: 10px;
+      }
+
+      .scan-figure .torso {
+        position: absolute;
+        left: 50%;
+        bottom: 0;
+        width: 144px;
+        height: 150px;
+        transform: translateX(-50%);
+        border-radius: 88px 88px 24px 24px;
+        background: linear-gradient(180deg, #f0b0a1, #e29483);
+      }
+
+      .scan-figure .lesion {
+        position: absolute;
+        right: 18px;
+        top: 116px;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: var(--alert);
+        box-shadow: 0 0 0 5px rgba(198, 90, 68, 0.18);
+      }
+
+      .scan-figure .mark {
+        position: absolute;
+        right: 6px;
+        top: 96px;
+        width: 40px;
+        height: 26px;
+        border-radius: 50%;
+        border: 3px solid rgba(179, 106, 92, 0.44);
+        border-left-color: transparent;
+        border-bottom-color: transparent;
+        transform: rotate(12deg);
+      }
+
+      .scan-phone {
+        position: absolute;
+        top: 36px;
+        right: 16px;
+        width: 74px;
+        height: 126px;
+        border-radius: 18px;
+        background: linear-gradient(180deg, #182821, #081109);
+        border: 2px solid rgba(255, 255, 255, 0.5);
+        transform: rotate(-15deg);
+        box-shadow: 0 20px 36px rgba(4, 11, 7, 0.26);
+      }
+
+      .scan-phone::before {
+        content: "";
+        position: absolute;
+        inset: 8px;
+        border-radius: 12px;
+        background:
+          linear-gradient(180deg, rgba(255, 255, 255, 0.88), rgba(228, 241, 234, 0.72));
+      }
+
+      .scan-phone::after {
+        content: "";
+        position: absolute;
+        left: 16px;
+        top: 30px;
+        width: 38px;
+        height: 38px;
+        border-radius: 10px;
+        border: 2px dashed rgba(47, 125, 87, 0.78);
+        background: rgba(47, 125, 87, 0.08);
+        z-index: 1;
+      }
+
+      .scan-beam {
+        position: absolute;
+        right: 74px;
+        width: 58px;
+        height: 2px;
+        background: linear-gradient(90deg, rgba(47, 125, 87, 0), rgba(47, 125, 87, 0.95), rgba(47, 125, 87, 0));
+        transform-origin: center;
+        opacity: 0.25;
+      }
+
+      .scan-beam.one {
+        top: 96px;
+      }
+
+      .scan-beam.two {
+        top: 116px;
+      }
+
+      .scan-beam.three {
+        top: 136px;
+      }
+
+      .story-frame[data-scene="scan"] .scan-beam {
+        animation: scan-beam 1.25s linear infinite;
+      }
+
+      .story-frame[data-scene="scan"] .scan-beam.two {
+        animation-delay: 160ms;
+      }
+
+      .story-frame[data-scene="scan"] .scan-beam.three {
+        animation-delay: 320ms;
+      }
+
+      .process-console {
+        width: 100%;
+        max-width: 320px;
+        padding: 1.1rem;
+        border-radius: 28px;
+        background:
+          linear-gradient(180deg, rgba(255, 249, 238, 0.92), rgba(242, 229, 204, 0.92));
+        color: var(--text);
+        box-shadow: 0 26px 60px rgba(0, 0, 0, 0.22);
+      }
+
+      .process-grid {
+        display: grid;
+        grid-template-columns: 112px 1fr;
+        gap: 1rem;
+        align-items: center;
+      }
+
+      .photo-stack {
+        position: relative;
+        height: 164px;
+      }
+
+      .photo-stack img,
+      .photo-card {
+        position: absolute;
+        width: 86px;
+        height: 106px;
+        object-fit: cover;
+        border-radius: 16px;
+        border: 2px solid rgba(22, 35, 27, 0.12);
+        box-shadow: 0 16px 32px rgba(17, 32, 25, 0.12);
+      }
+
+      .photo-card {
+        overflow: hidden;
+      }
+
+      .photo-card.back {
+        left: 0;
+        top: 0;
+        transform: rotate(-8deg);
+      }
+
+      .photo-card.mid {
+        left: 12px;
+        top: 34px;
+        transform: rotate(-1deg);
+      }
+
+      .photo-card.front {
+        left: 24px;
+        top: 62px;
+        transform: rotate(7deg);
+      }
+
+      .photo-card::after {
+        content: attr(data-view);
+        position: absolute;
+        left: 8px;
+        bottom: 8px;
+        padding: 0.22rem 0.45rem;
+        border-radius: 999px;
+        background: rgba(255, 247, 234, 0.88);
+        color: rgba(22, 35, 27, 0.72);
+        font-size: 0.62rem;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .model-block {
+        display: grid;
+        gap: 0.75rem;
+      }
+
+      .network {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0.4rem;
+        align-items: center;
+        min-height: 92px;
+      }
+
+      .network-col {
+        display: grid;
+        gap: 0.5rem;
+        justify-items: center;
+      }
+
+      .network-node {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: #d9a55a;
+        box-shadow: 0 0 0 8px rgba(217, 165, 90, 0.12);
+        opacity: 0.55;
+        transition:
+          transform 260ms ease,
+          opacity 260ms ease;
+      }
+
+      .network-col.mid .network-node {
+        width: 16px;
+        height: 16px;
+        background: #b8833a;
+      }
+
+      .network-col.last .network-node {
+        width: 20px;
+        height: 20px;
+        background: #8e622b;
+      }
+
+      .story-frame[data-scene="process"] .network-node {
+        animation: pulse-node 1.1s ease-in-out infinite alternate;
+      }
+
+      .story-frame[data-scene="process"] .network-col.mid .network-node {
+        animation-delay: 220ms;
+      }
+
+      .story-frame[data-scene="process"] .network-col.last .network-node {
+        animation-delay: 440ms;
+      }
+
+      .model-copy strong {
+        display: block;
+        font-size: 0.96rem;
+        font-weight: 800;
+      }
+
+      .model-copy p {
+        margin: 0.35rem 0 0;
+        color: rgba(22, 35, 27, 0.68);
+        font-size: 0.82rem;
+        line-height: 1.6;
+      }
+
+      .class-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.35rem;
+        padding: 0.55rem 0.8rem;
+        border-radius: 999px;
+        background: rgba(22, 35, 27, 0.06);
+        font-size: 0.75rem;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: rgba(22, 35, 27, 0.74);
+      }
+
+      .class-pill .red {
+        color: var(--alert);
+      }
+
+      .class-pill .gold {
+        color: var(--gold-deep);
+      }
+
+      .secure-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.45rem;
+        padding: 0.55rem 0.85rem;
+        border-radius: 999px;
+        color: rgba(22, 35, 27, 0.76);
+        background: rgba(47, 125, 87, 0.1);
+        border: 1px solid rgba(47, 125, 87, 0.18);
+        font-size: 0.75rem;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .secure-badge::before {
+        content: "";
+        width: 0.56rem;
+        height: 0.56rem;
+        border-radius: 999px;
+        background: var(--accent);
+      }
+
+      .action-phone {
+        width: 172px;
+        padding: 0.9rem;
+        border-radius: 32px;
+        background: linear-gradient(180deg, #111b15, #061009);
+        box-shadow:
+          0 28px 62px rgba(0, 0, 0, 0.34),
+          inset 0 0 0 8px rgba(255, 255, 255, 0.05);
+      }
+
+      .action-screen {
+        min-height: 324px;
+        padding: 0.95rem 0.88rem 1rem;
+        border-radius: 24px;
+        background:
+          linear-gradient(180deg, rgba(255, 247, 234, 0.98), rgba(251, 240, 226, 0.94)),
+          linear-gradient(180deg, rgba(198, 90, 68, 0.05), rgba(47, 125, 87, 0.04));
+        color: var(--text);
+      }
+
+      .action-status {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 0.72rem;
+        color: rgba(22, 35, 27, 0.56);
+      }
+
+      .alert-badge {
+        width: 52px;
+        height: 52px;
+        margin: 1rem auto 0.9rem;
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        font-size: 1.45rem;
+        font-weight: 800;
+        color: #fff7ea;
+        background: var(--alert);
+        box-shadow: 0 16px 36px rgba(198, 90, 68, 0.3);
+      }
+
+      .action-screen h4 {
+        margin: 0;
+        text-align: center;
+        font-size: 1rem;
+        letter-spacing: -0.03em;
+      }
+
+      .action-screen p {
+        margin: 0.3rem 0 0;
+        text-align: center;
+        color: rgba(22, 35, 27, 0.58);
+        font-size: 0.82rem;
+        line-height: 1.55;
+      }
+
+      .risk-panel {
+        margin-top: 1rem;
+        padding: 0.9rem;
+        border-radius: 18px;
+        background: var(--alert-soft);
+        border: 1px solid rgba(198, 90, 68, 0.22);
+      }
+
+      .risk-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.8rem;
+        font-size: 0.82rem;
+        font-weight: 700;
+      }
+
+      .risk-head strong {
+        color: var(--alert);
+      }
+
+      .risk-pill {
+        padding: 0.28rem 0.6rem;
+        border-radius: 999px;
+        background: rgba(198, 90, 68, 0.12);
+        color: var(--alert);
+        font-size: 0.72rem;
+      }
+
+      .risk-track {
+        width: 100%;
+        height: 8px;
+        margin-top: 0.75rem;
+        border-radius: 999px;
+        overflow: hidden;
+        background: rgba(22, 35, 27, 0.1);
+      }
+
+      .risk-fill {
+        width: 82%;
+        height: 100%;
+        border-radius: inherit;
+        background: linear-gradient(90deg, rgba(198, 90, 68, 0.72), rgba(198, 90, 68, 1));
+        transform-origin: left;
+        transform: scaleX(0.25);
+        transition: transform 520ms ease;
+      }
+
+      .story-frame[data-scene="action"] .risk-fill {
+        transform: scaleX(1);
+      }
+
+      .action-buttons {
+        display: grid;
+        gap: 0.65rem;
+        margin-top: 1rem;
+      }
+
+      .action-buttons button {
+        appearance: none;
+        border: none;
+        border-radius: 14px;
+        padding: 0.8rem 0.85rem;
+        font-weight: 800;
+        letter-spacing: -0.02em;
+        cursor: default;
+        transform: translateY(16px);
+        opacity: 0.28;
+        transition:
+          transform 320ms ease,
+          opacity 320ms ease,
+          background 320ms ease;
+      }
+
+      .action-buttons button:first-child {
+        background: var(--alert);
+        color: #fff7ea;
+      }
+
+      .action-buttons button:last-child {
+        background: rgba(47, 125, 87, 0.1);
+        color: var(--accent);
+        border: 1px solid rgba(47, 125, 87, 0.22);
+      }
+
+      .story-frame[data-scene="action"] .action-buttons button {
+        transform: translateY(0);
+        opacity: 1;
+      }
+
+      .action-buttons button:last-child {
+        transition-delay: 120ms;
+      }
+
+      .care-outcomes {
+        display: grid;
+        gap: 0.55rem;
+        margin-top: 1rem;
+      }
+
+      .care-outcomes div {
+        display: flex;
+        align-items: center;
+        gap: 0.65rem;
+        color: rgba(255, 247, 234, 0.86);
+      }
+
+      .care-outcomes div::before {
+        content: "";
+        width: 0.52rem;
+        height: 0.52rem;
+        border-radius: 999px;
+        background: var(--accent-soft);
+        box-shadow: 0 0 0 6px rgba(130, 185, 141, 0.12);
+        flex: none;
+      }
+
+      .flow-arrow {
+        position: relative;
+        display: grid;
+        place-items: center;
+        height: 100%;
+      }
+
+      .flow-arrow::before {
+        content: "";
+        width: 64px;
+        height: 2px;
+        border-radius: 999px;
+        background: linear-gradient(90deg, rgba(255, 247, 234, 0.08), rgba(255, 247, 234, 0.55), rgba(255, 247, 234, 0.08));
+      }
+
+      .flow-arrow::after {
+        content: "";
+        position: absolute;
+        right: 2px;
+        width: 14px;
+        height: 14px;
+        border-top: 2px solid rgba(255, 247, 234, 0.55);
+        border-right: 2px solid rgba(255, 247, 234, 0.55);
+        transform: rotate(45deg);
+      }
+
+      .story-progress {
+        display: grid;
+        gap: 0.8rem;
+      }
+
+      .progress-meta {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        color: rgba(255, 247, 234, 0.66);
+        font-size: 0.82rem;
+      }
+
+      .progress-meta strong {
+        color: #fff7ea;
+      }
+
+      .progress-bar {
+        width: 100%;
+        height: 6px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.08);
+        overflow: hidden;
+      }
+
+      .progress-fill {
+        width: 25%;
+        height: 100%;
+        border-radius: inherit;
+        background: linear-gradient(90deg, var(--accent), var(--gold));
+        transition: width 280ms ease;
+      }
+
+      .frame-footer {
+        padding-top: 1rem;
+      }
+
+      .footer-copy {
+        max-width: 44rem;
+      }
+
+      .footer-copy span {
+        display: block;
+        margin-bottom: 0.35rem;
+        font-size: 0.72rem;
+        font-weight: 800;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: rgba(22, 35, 27, 0.52);
+      }
+
+      .footer-copy p {
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.72;
+      }
+
+      .frame-controls {
+        display: flex;
+        align-items: center;
+        gap: 0.7rem;
+      }
+
+      .frame-controls button {
+        appearance: none;
+        border: none;
+        border-radius: 999px;
+        padding: 0.85rem 1.15rem;
+        font-weight: 800;
+        letter-spacing: -0.02em;
+        cursor: pointer;
+        transition:
+          transform 220ms ease,
+          background 220ms ease,
+          color 220ms ease,
+          box-shadow 220ms ease;
+      }
+
+      .frame-controls button:hover,
+      .frame-controls button:focus-visible {
+        transform: translateY(-2px);
+      }
+
+      .frame-controls .button-ghost {
+        background: rgba(255, 255, 255, 0.46);
+        color: var(--text);
+        border: 1px solid rgba(22, 35, 27, 0.08);
+      }
+
+      .frame-controls .button-primary {
+        background: var(--bg-strong);
+        color: var(--cream);
+        box-shadow: 0 18px 38px rgba(17, 32, 25, 0.18);
+      }
+
+      .explain-strip {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 2rem;
+        padding: 2.2rem 0 0;
+      }
+
+      .explain-item {
+        padding-top: 1rem;
+        border-top: 1px solid rgba(22, 35, 27, 0.1);
+      }
+
+      .explain-item span {
+        display: block;
+        margin-bottom: 0.45rem;
+        font-size: 0.75rem;
+        font-weight: 800;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: rgba(22, 35, 27, 0.52);
+      }
+
+      .explain-item strong {
+        display: block;
+        margin-bottom: 0.45rem;
+        font-family: "Fraunces", serif;
+        font-size: 1.35rem;
+        letter-spacing: -0.04em;
+      }
+
+      .explain-item p {
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.72;
+      }
+
+      @keyframes patient-sway {
+        0%,
+        100% {
+          transform: rotate(0deg);
+        }
+        50% {
+          transform: rotate(2.5deg);
+        }
+      }
+
+      @keyframes scan-beam {
+        0% {
+          opacity: 0;
+          transform: translateY(-10px);
+        }
+        50% {
+          opacity: 1;
+        }
+        100% {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+      }
+
+      @keyframes pulse-node {
+        from {
+          opacity: 0.45;
+          transform: scale(0.84);
+        }
+        to {
+          opacity: 1;
+          transform: scale(1.15);
+        }
+      }
+
+      @media (max-width: 1120px) {
+        .story-window {
+          grid-template-columns: 1fr;
+          min-height: auto;
+        }
+
+        .story-side {
+          grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+          grid-template-rows: auto auto;
+        }
+
+        .story-note {
+          grid-column: 1 / -1;
+        }
+
+        .side-rail {
+          grid-column: 1 / -1;
+        }
+
+        .pipeline {
+          grid-template-columns: 1fr;
+          gap: 1rem;
+        }
+
+        .flow-arrow {
+          height: 32px;
+        }
+
+        .flow-arrow::before {
+          width: 2px;
+          height: 32px;
+        }
+
+        .flow-arrow::after {
+          right: auto;
+          bottom: 2px;
+          width: 12px;
+          height: 12px;
+          border-top: 2px solid rgba(255, 247, 234, 0.55);
+          border-right: 2px solid rgba(255, 247, 234, 0.55);
+          transform: rotate(135deg);
+        }
+
+        .station {
+          min-height: auto;
+        }
+
+        .process-console {
+          max-width: none;
+        }
+      }
+
+      @media (max-width: 920px) {
+        .story-page {
+          width: min(100% - 1.4rem, 1240px);
+        }
+
+        .topbar-inner {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        .chapter-nav {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .frame-header,
+        .frame-footer {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        .frame-controls {
+          width: 100%;
+          justify-content: flex-start;
+          flex-wrap: wrap;
+        }
+
+        .explain-strip {
+          grid-template-columns: 1fr;
+          gap: 1.2rem;
+        }
+      }
+
+      @media (max-width: 720px) {
+        .hero {
+          padding-top: 2.8rem;
+        }
+
+        .hero h1 {
+          max-width: 12ch;
+          font-size: clamp(2.65rem, 14vw, 3.75rem);
+        }
+
+        .frame-inner {
+          padding: 1rem;
+        }
+
+        .story-window {
+          padding: 0.9rem;
+        }
+
+        .story-side {
+          grid-template-columns: 1fr;
+        }
+
+        .speech-wrap {
+          min-height: 280px;
+        }
+
+        .speech {
+          max-width: 170px;
+          font-size: 0.92rem;
+        }
+
+        .speech.patient {
+          right: 4%;
+        }
+
+        .speech.guide {
+          left: 2%;
+        }
+
+        .people {
+          gap: 0.8rem;
+        }
+
+        .person {
+          width: 96px;
+          height: 214px;
+        }
+
+        .person .head {
+          width: 50px;
+          height: 50px;
+        }
+
+        .person .hair {
+          width: 58px;
+          height: 34px;
+        }
+
+        .person .torso {
+          width: 62px;
+          height: 88px;
+          top: 58px;
+        }
+
+        .person .arm {
+          top: 78px;
+          height: 74px;
+        }
+
+        .person .leg {
+          height: 78px;
+        }
+
+        .chapter-nav {
+          grid-template-columns: 1fr;
+        }
+
+        .process-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .photo-stack {
+          width: 128px;
+          margin: 0 auto;
+        }
+
+        .station-display {
+          min-height: auto;
+        }
+
+        .scan-visual {
+          width: 220px;
+          height: 220px;
+        }
+
+        .action-phone {
+          width: 100%;
+          max-width: 240px;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          animation: none !important;
+          transition-duration: 0.01ms !important;
+          transition-delay: 0ms !important;
+          scroll-behavior: auto !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page-shell">
+      <div class="ambient-orb one"></div>
+      <div class="ambient-orb two"></div>
+      <div class="ambient-orb three"></div>
+
+      <main class="story-page">
+        <header class="topbar">
+          <div class="topbar-inner">
+            <div class="brand">
+              <img class="brand-mark" src="./assets/img/pelliscope.png" alt="PelliScope logo" />
+              <div class="brand-copy">
+                <strong>PelliScope</strong>
+                <span>Standalone Story Page</span>
+              </div>
+            </div>
+            <div class="header-badge">Kept separate from the home page for now</div>
+          </div>
+        </header>
+
+        <section class="hero" aria-labelledby="story-heading">
+          <p class="eyebrow">Workflow Narrative</p>
+          <h1 id="story-heading">From one scan to the right next step.</h1>
+          <p>
+            This page retells the same message from the infographic and kiosk demo as a single framed story:
+            a concern starts at home, guided capture turns into secure processing, and the app moves the user
+            toward clinic care and hygiene guidance when risk is detected.
+          </p>
+          <div class="hero-meta" aria-label="Story highlights">
+            <div class="meta-pill"><strong>3 core objects</strong> Scan, Process, Action</div>
+            <div class="meta-pill"><strong>Added context</strong> Patient and helper to preserve the story</div>
+            <div class="meta-pill"><strong>Visual match</strong> Uses the PelliScope cream, forest, and gold palette</div>
+          </div>
+        </section>
+
+        <section class="experience-section" aria-labelledby="frame-heading">
+          <div class="story-frame" id="story-frame" data-scene="intro">
+            <div class="frame-inner">
+              <div class="frame-header">
+                <div class="frame-label">
+                  <span>Framed Experience</span>
+                  <strong id="frame-heading">A calmer retelling of scan, process, and action</strong>
+                </div>
+                <div class="frame-status">
+                  <span class="status-dot" aria-hidden="true"></span>
+                  <span>Autoplay <strong id="autoplay-state">On</strong></span>
+                </div>
+              </div>
+
+              <div class="chapter-nav" aria-label="Story chapters">
+                <button class="chapter-btn is-active" data-scene-nav="intro" type="button">
+                  <span class="chapter-step">01 Concern</span>
+                  <span class="chapter-copy">The story begins at home</span>
+                </button>
+                <button class="chapter-btn" data-scene-nav="scan" type="button">
+                  <span class="chapter-step">02 Scan</span>
+                  <span class="chapter-copy">Guided capture from 1 scan</span>
+                </button>
+                <button class="chapter-btn" data-scene-nav="process" type="button">
+                  <span class="chapter-step">03 Process</span>
+                  <span class="chapter-copy">Multi-view AI analysis</span>
+                </button>
+                <button class="chapter-btn" data-scene-nav="action" type="button">
+                  <span class="chapter-step">04 Action</span>
+                  <span class="chapter-copy">Clinic care and hygiene nudges</span>
+                </button>
+              </div>
+
+              <div class="story-window">
+                <aside class="story-side" aria-live="polite">
+                  <div class="story-note">
+                    <span id="note-kicker">Scene 01</span>
+                    <h2 id="note-title">A skin concern starts at home</h2>
+                    <p id="note-body">
+                      Before any dashboard or diagnosis, the story begins with a patient and a helper deciding
+                      to use PelliScope as the first calm step.
+                    </p>
+                  </div>
+
+                  <div class="speech-wrap" aria-hidden="true">
+                    <div class="speech guide">Don't worry. Let's check <span style="color: var(--accent)">PelliScope</span>.</div>
+                    <div class="speech patient"><span style="color: var(--alert)">Ouch!</span> My skin hurts.</div>
+                    <div class="people">
+                      <div class="person guide">
+                        <div class="hair"></div>
+                        <div class="head"></div>
+                        <div class="torso"></div>
+                        <div class="arm left"></div>
+                        <div class="arm right"></div>
+                        <div class="leg left"></div>
+                        <div class="leg right"></div>
+                        <div class="shoe left"></div>
+                        <div class="shoe right"></div>
+                      </div>
+                      <div class="person patient">
+                        <div class="hair"></div>
+                        <div class="head"></div>
+                        <div class="torso"></div>
+                        <div class="arm left"></div>
+                        <div class="arm right"></div>
+                        <div class="leg left"></div>
+                        <div class="leg right"></div>
+                        <div class="shoe left"></div>
+                        <div class="shoe right"></div>
+                        <div class="spot"></div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="side-rail">
+                    <div class="rail-chip"><strong>Message</strong> Concern, capture, triage, action</div>
+                    <div class="rail-chip"><strong>Setting</strong> Patient or health worker starts the flow</div>
+                  </div>
+                </aside>
+
+                <div class="story-main">
+                  <div class="pipeline" aria-label="Scan Process Action flow">
+                    <article class="station scan" aria-labelledby="scan-title">
+                      <div class="station-display">
+                        <div class="scan-visual" aria-hidden="true">
+                          <div class="scan-figure">
+                            <div class="head"></div>
+                            <div class="neck"></div>
+                            <div class="torso"></div>
+                            <div class="lesion"></div>
+                            <div class="mark"></div>
+                          </div>
+                          <div class="scan-phone"></div>
+                          <div class="scan-beam one"></div>
+                          <div class="scan-beam two"></div>
+                          <div class="scan-beam three"></div>
+                        </div>
+                      </div>
+                      <div class="station-kicker">1. From 1 Scan</div>
+                      <h3 id="scan-title">Guided capture with just a few views.</h3>
+                      <p>
+                        The patient or health worker takes one guided scan and a small set of clear photos so the
+                        app has enough context to triage without adding friction.
+                      </p>
+                      <div class="station-points">
+                        <div>Patient / health worker captures 1-3 images</div>
+                        <div>Context, close-up, and angled detail</div>
+                        <div>Simple framing inside the phone</div>
+                      </div>
+                    </article>
+
+                    <div class="flow-arrow" aria-hidden="true"></div>
+
+                    <article class="station process" aria-labelledby="process-title">
+                      <div class="station-display">
+                        <div class="process-console" aria-hidden="true">
+                          <div class="process-grid">
+                            <div class="photo-stack">
+                              <div class="photo-card back" data-view="Close-up">
+                                <img src="./assets/img/scan-sample.jpeg" alt="" />
+                              </div>
+                              <div class="photo-card mid" data-view="Context">
+                                <img src="./assets/img/scan-sample.jpeg" alt="" />
+                              </div>
+                              <div class="photo-card front" data-view="Angle">
+                                <img src="./assets/img/scan-sample.jpeg" alt="" />
+                              </div>
+                            </div>
+                            <div class="model-block">
+                              <div class="network">
+                                <div class="network-col">
+                                  <div class="network-node"></div>
+                                  <div class="network-node"></div>
+                                  <div class="network-node"></div>
+                                </div>
+                                <div class="network-col mid">
+                                  <div class="network-node"></div>
+                                  <div class="network-node"></div>
+                                </div>
+                                <div class="network-col last">
+                                  <div class="network-node"></div>
+                                </div>
+                              </div>
+                              <div class="model-copy">
+                                <strong>Deep learning classifier</strong>
+                                <p>Multi-view input is processed into a simple infectious vs non-infectious signal.</p>
+                              </div>
+                              <div class="class-pill">
+                                <span class="red">Infectious</span>
+                                <span>vs</span>
+                                <span class="gold">Non-infectious</span>
+                              </div>
+                              <div class="secure-badge">On-device / secure</div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="station-kicker">2. Process</div>
+                      <h3 id="process-title">Multi-view images become a usable signal.</h3>
+                      <p>
+                        The middle step keeps the message from the infographic intact: the images are analyzed,
+                        compared, and reduced into a clear pre-med triage direction.
+                      </p>
+                      <div class="station-points">
+                        <div>Multiple views are considered together</div>
+                        <div>Classifier narrows infectious risk quickly</div>
+                        <div>Security stays visible, not hidden</div>
+                      </div>
+                    </article>
+
+                    <div class="flow-arrow" aria-hidden="true"></div>
+
+                    <article class="station action" aria-labelledby="action-title">
+                      <div class="station-display">
+                        <div class="action-phone" aria-hidden="true">
+                          <div class="action-screen">
+                            <div class="action-status">
+                              <span>9:41</span>
+                              <span>Care Guidance</span>
+                            </div>
+                            <div class="alert-badge">!</div>
+                            <h4>Likely infectious</h4>
+                            <p>Risk detected. Move the user to the right next step immediately.</p>
+                            <div class="risk-panel">
+                              <div class="risk-head">
+                                <strong>Infectious Risk</strong>
+                                <span class="risk-pill">High</span>
+                              </div>
+                              <div class="risk-track">
+                                <div class="risk-fill"></div>
+                              </div>
+                            </div>
+                            <div class="action-buttons">
+                              <button type="button">Visit Clinic</button>
+                              <button type="button">Hygiene Tips</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="station-kicker">3. Action</div>
+                      <h3 id="action-title">Risk becomes action, not ambiguity.</h3>
+                      <p>
+                        The result screen nudges the person toward care and hygiene guidance, keeping the core public
+                        health message exactly where it matters.
+                      </p>
+                      <div class="care-outcomes">
+                        <div>Seek clinic care early</div>
+                        <div>Limit spread through hygiene guidance</div>
+                        <div>Turn triage into a concrete next step</div>
+                      </div>
+                    </article>
+                  </div>
+
+                  <div class="story-progress">
+                    <div class="progress-meta">
+                      <span>Current chapter <strong id="progress-name">Concern at home</strong></span>
+                      <span id="progress-count">1 / 4</span>
+                    </div>
+                    <div class="progress-bar" aria-hidden="true">
+                      <div class="progress-fill" id="progress-fill"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="frame-footer">
+                <div class="footer-copy">
+                  <span>Story Meaning</span>
+                  <p id="footer-summary">
+                    The story starts with reassurance, because the value of the workflow is not only the classifier.
+                    It is the calmer path from uncertainty to a useful next action.
+                  </p>
+                </div>
+                <div class="frame-controls">
+                  <button class="button-ghost" id="prev-button" type="button">Previous</button>
+                  <button class="button-primary" id="autoplay-button" type="button" aria-pressed="true">Pause Autoplay</button>
+                  <button class="button-ghost" id="next-button" type="button">Next</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="explain-strip" aria-label="Workflow takeaway">
+            <div class="explain-item">
+              <span>Scan</span>
+              <strong>Low-friction capture</strong>
+              <p>The page keeps the original promise intact: one guided scan expands into just enough image context to start triage.</p>
+            </div>
+            <div class="explain-item">
+              <span>Process</span>
+              <strong>Explainable middle step</strong>
+              <p>The classifier and secure-processing cues stay visible so the story does not jump from photo to conclusion.</p>
+            </div>
+            <div class="explain-item">
+              <span>Action</span>
+              <strong>Care and hygiene guidance</strong>
+              <p>The final state preserves the public health message: detect risk, point toward clinic care, and guide safer behavior.</p>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script>
+      const scenes = [
+        {
+          id: "intro",
+          kicker: "Scene 01",
+          title: "A skin concern starts at home",
+          body:
+            "Before any dashboard or diagnosis, the story begins with a patient and a helper deciding to use PelliScope as the first calm step.",
+          progressName: "Concern at home",
+          summary:
+            "The story starts with reassurance, because the value of the workflow is not only the classifier. It is the calmer path from uncertainty to a useful next action.",
+        },
+        {
+          id: "scan",
+          kicker: "Scene 02",
+          title: "From one scan to a clean capture set",
+          body:
+            "The first object stays true to the infographic: one guided scan, a small group of photos, and a clear handoff into analysis.",
+          progressName: "Guided scan",
+          summary:
+            "PelliScope reduces friction at the exact moment people usually hesitate. The capture step feels manageable, not clinical or overwhelming.",
+        },
+        {
+          id: "process",
+          kicker: "Scene 03",
+          title: "Multiple views become one triage signal",
+          body:
+            "The process object keeps the middle logic visible, showing that the model sees multiple views and reduces them into a useful infectious risk direction.",
+          progressName: "Secure process",
+          summary:
+            "The processing chapter makes the AI legible. It shows that the result comes from structured multi-view analysis rather than a black-box leap.",
+        },
+        {
+          id: "action",
+          kicker: "Scene 04",
+          title: "The result points toward the next step",
+          body:
+            "The action object preserves the last message exactly: a likely infectious result triggers clinic care and hygiene guidance instead of leaving the user uncertain.",
+          progressName: "Actionable guidance",
+          summary:
+            "The story ends with care and public health intent. The app does not stop at classification. It nudges the person toward safer action.",
+        },
+      ];
+
+      const frame = document.getElementById("story-frame");
+      const noteKicker = document.getElementById("note-kicker");
+      const noteTitle = document.getElementById("note-title");
+      const noteBody = document.getElementById("note-body");
+      const footerSummary = document.getElementById("footer-summary");
+      const progressName = document.getElementById("progress-name");
+      const progressCount = document.getElementById("progress-count");
+      const progressFill = document.getElementById("progress-fill");
+      const autoplayState = document.getElementById("autoplay-state");
+      const autoplayButton = document.getElementById("autoplay-button");
+      const prevButton = document.getElementById("prev-button");
+      const nextButton = document.getElementById("next-button");
+      const sceneButtons = Array.from(document.querySelectorAll("[data-scene-nav]"));
+
+      let sceneIndex = 0;
+      let autoplay = true;
+      let timer = null;
+
+      const renderScene = () => {
+        const scene = scenes[sceneIndex];
+        frame.dataset.scene = scene.id;
+        noteKicker.textContent = scene.kicker;
+        noteTitle.textContent = scene.title;
+        noteBody.textContent = scene.body;
+        footerSummary.textContent = scene.summary;
+        progressName.textContent = scene.progressName;
+        progressCount.textContent = `${sceneIndex + 1} / ${scenes.length}`;
+        progressFill.style.width = `${((sceneIndex + 1) / scenes.length) * 100}%`;
+
+        sceneButtons.forEach((button) => {
+          const active = button.dataset.sceneNav === scene.id;
+          button.classList.toggle("is-active", active);
+          button.setAttribute("aria-pressed", String(active));
+        });
+      };
+
+      const clearTimer = () => {
+        if (timer) {
+          window.clearTimeout(timer);
+          timer = null;
+        }
+      };
+
+      const queueNext = () => {
+        clearTimer();
+        if (!autoplay) {
+          return;
+        }
+        timer = window.setTimeout(() => {
+          sceneIndex = (sceneIndex + 1) % scenes.length;
+          renderScene();
+          queueNext();
+        }, 3600);
+      };
+
+      const setAutoplay = (nextValue) => {
+        autoplay = nextValue;
+        autoplayState.textContent = autoplay ? "On" : "Off";
+        autoplayButton.textContent = autoplay ? "Pause Autoplay" : "Resume Autoplay";
+        autoplayButton.setAttribute("aria-pressed", String(autoplay));
+        queueNext();
+      };
+
+      prevButton.addEventListener("click", () => {
+        sceneIndex = (sceneIndex - 1 + scenes.length) % scenes.length;
+        renderScene();
+        queueNext();
+      });
+
+      nextButton.addEventListener("click", () => {
+        sceneIndex = (sceneIndex + 1) % scenes.length;
+        renderScene();
+        queueNext();
+      });
+
+      autoplayButton.addEventListener("click", () => {
+        setAutoplay(!autoplay);
+      });
+
+      sceneButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+          const nextIndex = scenes.findIndex((scene) => scene.id === button.dataset.sceneNav);
+          if (nextIndex === -1) {
+            return;
+          }
+          sceneIndex = nextIndex;
+          renderScene();
+          queueNext();
+        });
+      });
+
+      renderScene();
+      setAutoplay(true);
+    </script>
+  </body>
+</html>

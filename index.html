@@ -548,6 +548,175 @@
         background: var(--accent);
       }
 
+      .proof-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 1rem;
+      }
+
+      .proof-card {
+        padding: 1.7rem;
+        border-radius: 32px;
+        background: rgba(255, 251, 244, 0.76);
+        border: 1px solid rgba(22, 35, 27, 0.08);
+        box-shadow: 0 18px 45px rgba(79, 59, 30, 0.06);
+      }
+
+      .proof-card h3 {
+        margin: 0;
+        font-size: 1.45rem;
+        letter-spacing: -0.04em;
+      }
+
+      .proof-subtitle,
+      .metric-copy {
+        margin-top: 0.45rem;
+        color: var(--muted);
+        font-size: 0.92rem;
+        line-height: 1.6;
+      }
+
+      .workflow-badge,
+      .status-chip {
+        display: inline-flex;
+        align-items: center;
+        min-height: 2rem;
+        padding: 0.35rem 0.75rem;
+        border-radius: 999px;
+        font-size: 0.74rem;
+        font-weight: 800;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        background: rgba(47, 125, 87, 0.1);
+        color: #1f5a3f;
+      }
+
+      .timeline-block {
+        margin-top: 1.2rem;
+      }
+
+      .timeline-head {
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+        margin-bottom: 0.45rem;
+        font-size: 0.75rem;
+        font-weight: 800;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: rgba(22, 35, 27, 0.56);
+      }
+
+      .timeline-bar {
+        display: flex;
+        min-height: 3.25rem;
+        border-radius: 18px;
+        overflow: hidden;
+        background: rgba(22, 35, 27, 0.06);
+      }
+
+      .timeline-fill,
+      .timeline-split {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.8rem;
+        color: #fff;
+        font-size: 0.88rem;
+        font-weight: 700;
+        text-align: center;
+      }
+
+      .timeline-fill {
+        width: 100%;
+        background: rgba(92, 106, 97, 0.88);
+      }
+
+      .timeline-split.one {
+        width: 30%;
+        background: rgba(47, 125, 87, 0.92);
+      }
+
+      .timeline-split.two {
+        width: 70%;
+        background: rgba(180, 129, 54, 0.92);
+      }
+
+      .timeline-foot {
+        margin-top: 0.75rem;
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+        align-items: center;
+      }
+
+      .timeline-foot p,
+      .timeline-foot span {
+        margin: 0;
+      }
+
+      .timeline-foot span {
+        font-size: 1.1rem;
+        font-weight: 800;
+        color: var(--accent);
+      }
+
+      .bars {
+        margin-top: 1.35rem;
+        display: grid;
+        gap: 0.85rem;
+      }
+
+      .bar-row {
+        display: grid;
+        grid-template-columns: 6rem 1fr 3rem;
+        gap: 0.75rem;
+        align-items: center;
+      }
+
+      .bar-row label {
+        font-size: 0.82rem;
+        font-weight: 700;
+        color: rgba(22, 35, 27, 0.68);
+        text-align: right;
+      }
+
+      .bar-track {
+        height: 0.95rem;
+        border-radius: 999px;
+        overflow: hidden;
+        background: rgba(22, 35, 27, 0.08);
+      }
+
+      .bar-fill {
+        height: 100%;
+        border-radius: 999px;
+      }
+
+      .bar-fill.grok { width: 70%; background: rgba(99, 115, 107, 0.8); }
+      .bar-fill.gpt { width: 81%; background: rgba(94, 146, 213, 0.85); }
+      .bar-fill.gemini { width: 82%; background: rgba(112, 108, 205, 0.8); }
+      .bar-fill.pelli { width: 86%; background: linear-gradient(90deg, #2f7d57, #4ea873); }
+
+      .bar-row strong {
+        font-size: 0.84rem;
+        text-align: right;
+      }
+
+      .chip-row {
+        margin-top: 1.1rem;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.6rem;
+      }
+
+      .condition-list {
+        margin: 0.9rem 0 0;
+        color: var(--muted);
+        font-size: 0.92rem;
+        line-height: 1.75;
+      }
+
       .quote-band {
         max-width: 1200px;
         margin: 0 auto;
@@ -589,13 +758,17 @@
         padding-top: 2rem;
         padding-bottom: 6.5rem;
         display: grid;
-        grid-template-columns: minmax(260px, 0.86fr) minmax(0, 1.14fr);
-        gap: 2.5rem;
+        grid-template-columns: minmax(0, 0.92fr) minmax(320px, 0.88fr);
+        gap: 3rem;
+      }
+
+      .story-copy {
+        display: grid;
+        gap: 1.35rem;
+        align-self: start;
       }
 
       .story-intro {
-        position: sticky;
-        top: 7rem;
         align-self: start;
       }
 
@@ -616,32 +789,40 @@
 
       .story-track {
         display: grid;
-        gap: 1.1rem;
+        gap: 0;
       }
 
       .story-step {
-        padding: 2rem;
-        border-radius: var(--radius-xl);
-        background: rgba(255, 251, 244, 0.74);
-        border: 1px solid rgba(22, 35, 27, 0.08);
-        box-shadow: 0 18px 45px rgba(79, 59, 30, 0.06);
+        display: grid;
+        grid-template-columns: 3.25rem minmax(0, 1fr);
+        gap: 1rem;
+        padding: 1.45rem 0;
+        border-top: 1px solid rgba(22, 35, 27, 0.12);
+      }
+
+      .story-step:last-child {
+        border-bottom: 1px solid rgba(22, 35, 27, 0.12);
       }
 
       .story-step .step-index {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        width: 2.7rem;
-        height: 2.7rem;
-        border-radius: 999px;
-        background: rgba(47, 125, 87, 0.1);
-        color: var(--accent);
-        font-size: 0.86rem;
+        display: inline-block;
+        padding-top: 0.15rem;
+        color: rgba(47, 125, 87, 0.72);
+        font-size: 0.8rem;
         font-weight: 800;
-        letter-spacing: 0.08em;
+        letter-spacing: 0.16em;
       }
 
-      .story-step h3,
+      .story-step-copy {
+        min-width: 0;
+      }
+
+      .story-step h3 {
+        margin: 0 0 0.4rem;
+        font-size: 1.32rem;
+        letter-spacing: -0.04em;
+      }
+
       .benefit-item h3,
       .signal-card h3 {
         margin: 1rem 0 0.5rem;
@@ -649,7 +830,13 @@
         letter-spacing: -0.04em;
       }
 
-      .story-step p,
+      .story-step p {
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.7;
+        max-width: 34ch;
+      }
+
       .benefit-item p,
       .signal-card p {
         margin: 0;
@@ -657,9 +844,521 @@
         line-height: 1.7;
       }
 
+      .story-demo {
+        position: sticky;
+        top: 7rem;
+        align-self: start;
+      }
+
+      .story-box {
+        padding: 1rem;
+        border-radius: 34px;
+        background: rgba(255, 251, 244, 0.66);
+        border: 1px solid rgba(22, 35, 27, 0.08);
+        box-shadow: 0 22px 56px rgba(79, 59, 30, 0.08);
+      }
+
+      .story-box-shell {
+        aspect-ratio: 1 / 1;
+        display: grid;
+        grid-template-rows: 1fr auto;
+        gap: 0.7rem;
+      }
+
+      .story-box-top,
+      .story-box-bottom {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+      }
+
+      .story-box-top span,
+      .story-box-bottom span {
+        color: var(--muted);
+        font-size: 0.82rem;
+      }
+
+      .story-box-top {
+        display: none;
+      }
+
+      .story-box-stage {
+        position: relative;
+        overflow: hidden;
+        border-radius: 28px;
+        border: 1px solid rgba(22, 35, 27, 0.08);
+        background:
+          radial-gradient(circle at 20% 16%, rgba(130, 185, 141, 0.16), transparent 26%),
+          radial-gradient(circle at 82% 18%, rgba(217, 165, 90, 0.18), transparent 24%),
+          linear-gradient(180deg, rgba(255, 249, 240, 0.94), rgba(243, 232, 211, 0.94));
+      }
+
+      .story-scene {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 1.25rem;
+        opacity: 0;
+        transform: translateY(16px) scale(0.97);
+      }
+
+      .story-scene.scene-scan {
+        animation: storySceneScan 15s infinite;
+      }
+
+      .story-scene.scene-process {
+        animation: storySceneProcess 15s infinite;
+      }
+
+      .story-scene.scene-action {
+        animation: storySceneAction 15s infinite;
+      }
+
+      .story-scene-card {
+        width: min(19.5rem, 100%);
+        min-height: calc(100% - 1.5rem);
+        padding: 1.35rem 1.1rem;
+        border-radius: 24px;
+        background: rgba(255, 255, 255, 0.72);
+        border: 1px solid rgba(22, 35, 27, 0.08);
+        box-shadow: 0 20px 40px rgba(85, 63, 30, 0.08);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        gap: 0.8rem;
+      }
+
+      .story-scene-card > * {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+
+      .scene-scan .scene-kicker,
+      .scene-scan .scene-title {
+        animation: storyScanCopy 15s infinite;
+      }
+
+      .scene-scan .scene-visual {
+        animation: storyScanVisual 15s infinite;
+      }
+
+      .scene-scan .scene-items {
+        animation: storyScanItems 15s infinite;
+      }
+
+      .scene-process .scene-kicker,
+      .scene-process .scene-title {
+        animation: storyProcessCopy 15s infinite;
+      }
+
+      .scene-process .scene-visual {
+        animation: storyProcessVisual 15s infinite;
+      }
+
+      .scene-process .scene-items {
+        animation: storyProcessItems 15s infinite;
+      }
+
+      .scene-action .scene-kicker,
+      .scene-action .scene-title {
+        animation: storyActionCopy 15s infinite;
+      }
+
+      .scene-action .scene-visual {
+        animation: storyActionVisual 15s infinite;
+      }
+
+      .scene-action .scene-items {
+        animation: storyActionItems 15s infinite;
+      }
+
+      .scene-kicker {
+        color: rgba(47, 125, 87, 0.72);
+        font-size: 0.75rem;
+        font-weight: 800;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+      }
+
+      .scene-title {
+        margin: 0;
+        font-family: "Fraunces", serif;
+        font-size: 1.7rem;
+        line-height: 0.95;
+        letter-spacing: -0.05em;
+      }
+
+      .scene-items {
+        width: 100%;
+        display: grid;
+        gap: 0.55rem;
+      }
+
+      .scene-item {
+        padding: 0.7rem 0.85rem;
+        border-radius: 16px;
+        background: rgba(22, 35, 27, 0.04);
+        color: rgba(22, 35, 27, 0.72);
+        font-size: 0.84rem;
+        line-height: 1.45;
+      }
+
+      .scene-visual {
+        position: relative;
+        width: min(12.5rem, 100%);
+        margin: 0 auto;
+      }
+
+      .scan-visual {
+        height: 10.8rem;
+      }
+
+      .scan-body {
+        position: absolute;
+        left: 50%;
+        bottom: 0.55rem;
+        width: 7.2rem;
+        height: 6.8rem;
+        transform: translateX(-50%);
+        border-radius: 48% 48% 22% 22%;
+        background: linear-gradient(180deg, #eab1a4, #dd9381);
+      }
+
+      .scan-head {
+        position: absolute;
+        left: 50%;
+        top: 1rem;
+        width: 2.9rem;
+        height: 3.2rem;
+        transform: translateX(-50%);
+        border-radius: 50%;
+        background: #f2c879;
+      }
+
+      .scan-phone {
+        position: absolute;
+        top: 1.9rem;
+        right: 1rem;
+        width: 3.7rem;
+        height: 6.3rem;
+        border-radius: 1rem;
+        background: linear-gradient(180deg, #223228, #0d1711);
+        border: 2px solid rgba(255, 255, 255, 0.86);
+        transform: rotate(-15deg);
+        box-shadow: 0 16px 26px rgba(17, 32, 25, 0.18);
+      }
+
+      .scan-phone::before {
+        content: "";
+        position: absolute;
+        inset: 0.42rem;
+        border-radius: 0.7rem;
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(231, 240, 232, 0.86));
+      }
+
+      .scan-phone::after {
+        content: "";
+        position: absolute;
+        left: 0.95rem;
+        top: 1.45rem;
+        width: 1.55rem;
+        height: 1.55rem;
+        border-radius: 0.45rem;
+        border: 2px dashed rgba(47, 125, 87, 0.76);
+        background: rgba(47, 125, 87, 0.08);
+        z-index: 1;
+      }
+
+      .scan-beam {
+        position: absolute;
+        left: calc(50% + 1.7rem);
+        width: 3.6rem;
+        height: 2px;
+        border-radius: 999px;
+        background: linear-gradient(90deg, transparent, rgba(47, 125, 87, 0.95), transparent);
+        opacity: 0.3;
+      }
+
+      .scan-beam.one {
+        top: 4.2rem;
+      }
+
+      .scan-beam.two {
+        top: 5rem;
+      }
+
+      .scan-beam.three {
+        top: 5.8rem;
+      }
+
+      .scene-scan .scan-beam {
+        animation: scanLine 1.6s linear infinite;
+      }
+
+      .scene-scan .scan-beam.two {
+        animation-delay: 0.2s;
+      }
+
+      .scene-scan .scan-beam.three {
+        animation-delay: 0.4s;
+      }
+
+      .process-visual {
+        height: 10rem;
+      }
+
+      .process-photo {
+        position: absolute;
+        width: 4.25rem;
+        height: 5.35rem;
+        border-radius: 1rem;
+        background:
+          linear-gradient(180deg, rgba(255, 255, 255, 0), rgba(22, 35, 27, 0.12)),
+          url("./assets/img/scan-sample.jpeg") center / cover no-repeat;
+        border: 2px solid rgba(255, 255, 255, 0.82);
+        box-shadow: 0 14px 24px rgba(17, 32, 25, 0.12);
+      }
+
+      .process-photo.one {
+        left: 0.55rem;
+        top: 1.7rem;
+        transform: rotate(-10deg);
+      }
+
+      .process-photo.two {
+        left: 2.1rem;
+        top: 2.5rem;
+        transform: rotate(-2deg);
+      }
+
+      .process-photo.three {
+        left: 3.65rem;
+        top: 3.3rem;
+        transform: rotate(8deg);
+      }
+
+      .process-network {
+        position: absolute;
+        right: 0.65rem;
+        top: 1.55rem;
+        width: 5rem;
+        height: 5rem;
+      }
+
+      .process-node {
+        position: absolute;
+        border-radius: 50%;
+        background: #c48d42;
+        box-shadow: 0 0 0 6px rgba(196, 141, 66, 0.12);
+      }
+
+      .process-node.a,
+      .process-node.b,
+      .process-node.c {
+        width: 0.65rem;
+        height: 0.65rem;
+        left: 0.2rem;
+      }
+
+      .process-node.a {
+        top: 0.45rem;
+      }
+
+      .process-node.b {
+        top: 2rem;
+      }
+
+      .process-node.c {
+        top: 3.55rem;
+      }
+
+      .process-node.d,
+      .process-node.e {
+        width: 0.85rem;
+        height: 0.85rem;
+        left: 2rem;
+      }
+
+      .process-node.d {
+        top: 1rem;
+      }
+
+      .process-node.e {
+        top: 3rem;
+      }
+
+      .process-node.f {
+        width: 1rem;
+        height: 1rem;
+        top: 2rem;
+        right: 0.2rem;
+        background: #9b6828;
+      }
+
+      .process-link {
+        position: absolute;
+        height: 2px;
+        background: rgba(196, 141, 66, 0.36);
+        transform-origin: left center;
+      }
+
+      .process-link.l1 {
+        left: 0.8rem;
+        top: 0.9rem;
+        width: 1.45rem;
+        transform: rotate(16deg);
+      }
+
+      .process-link.l2 {
+        left: 0.8rem;
+        top: 2.3rem;
+        width: 1.45rem;
+        transform: rotate(-12deg);
+      }
+
+      .process-link.l3 {
+        left: 0.8rem;
+        top: 3.7rem;
+        width: 1.45rem;
+        transform: rotate(-24deg);
+      }
+
+      .process-link.l4 {
+        left: 2.8rem;
+        top: 1.5rem;
+        width: 1.3rem;
+        transform: rotate(24deg);
+      }
+
+      .process-link.l5 {
+        left: 2.8rem;
+        top: 3.25rem;
+        width: 1.3rem;
+        transform: rotate(-18deg);
+      }
+
+      .scene-process .process-node {
+        animation: processPulse 1.1s ease-in-out infinite alternate;
+      }
+
+      .scene-process .process-node.d,
+      .scene-process .process-node.e {
+        animation-delay: 0.18s;
+      }
+
+      .scene-process .process-node.f {
+        animation-delay: 0.36s;
+      }
+
+      .action-visual {
+        height: 10rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .action-phone {
+        width: 6.8rem;
+        padding: 0.4rem;
+        border-radius: 1.6rem;
+        background: linear-gradient(180deg, #1c2a21, #0e1611);
+        box-shadow: 0 18px 30px rgba(17, 32, 25, 0.22);
+      }
+
+      .action-screen {
+        padding: 0.8rem 0.55rem 0.65rem;
+        border-radius: 1.25rem;
+        background: linear-gradient(180deg, #fff7ea, #f4e7d6);
+      }
+
+      .action-alert {
+        width: 2.2rem;
+        height: 2.2rem;
+        margin: 0 auto 0.65rem;
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        background: #c86a53;
+        color: #fff7ea;
+        font-weight: 800;
+        font-size: 1rem;
+      }
+
+      .action-line {
+        height: 0.45rem;
+        border-radius: 999px;
+        background: rgba(22, 35, 27, 0.08);
+      }
+
+      .action-line.long {
+        width: 80%;
+        margin: 0 auto;
+      }
+
+      .action-line.mid {
+        width: 58%;
+        margin: 0.4rem auto 0;
+      }
+
+      .action-button {
+        margin-top: 0.55rem;
+        padding: 0.5rem 0.4rem;
+        border-radius: 0.85rem;
+        font-size: 0.68rem;
+        font-weight: 800;
+      }
+
+      .action-button.primary {
+        background: rgba(200, 106, 83, 0.18);
+        color: #b4513c;
+      }
+
+      .action-button.secondary {
+        background: rgba(47, 125, 87, 0.12);
+        color: #2f7d57;
+      }
+
+      .story-indicators {
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+      }
+
+      .story-indicators span {
+        width: 2.7rem;
+        height: 0.28rem;
+        border-radius: 999px;
+        background: rgba(22, 35, 27, 0.1);
+      }
+
+      .story-indicators .one {
+        animation: storyIndicatorOne 15s infinite;
+      }
+
+      .story-indicators .two {
+        animation: storyIndicatorTwo 15s infinite;
+      }
+
+      .story-indicators .three {
+        animation: storyIndicatorThree 15s infinite;
+      }
+
       .benefits {
         padding-top: 0;
         padding-bottom: 5.5rem;
+      }
+
+      .benefits-proof {
+        margin-bottom: 2.2rem;
+      }
+
+      .benefits-proof .eyebrow {
+        margin-bottom: 1.1rem;
       }
 
       .section-copy {
@@ -1190,6 +1889,250 @@
         }
       }
 
+      @keyframes storySceneScan {
+        0%,
+        26% {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+        }
+
+        31%,
+        100% {
+          opacity: 0;
+          transform: translateY(16px) scale(0.97);
+        }
+      }
+
+      @keyframes storySceneProcess {
+        0%,
+        35%,
+        64%,
+        100% {
+          opacity: 0;
+          transform: translateY(16px) scale(0.97);
+        }
+
+        40%,
+        59% {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+        }
+      }
+
+      @keyframes storySceneAction {
+        0%,
+        68%,
+        100% {
+          opacity: 0;
+          transform: translateY(16px) scale(0.97);
+        }
+
+        73%,
+        95% {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+        }
+      }
+
+      @keyframes storyScanCopy {
+        0%,
+        27% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+
+        31%,
+        100% {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+      }
+
+      @keyframes storyScanVisual {
+        0%,
+        27% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+
+        31%,
+        100% {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+      }
+
+      @keyframes storyScanItems {
+        0%,
+        27% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+
+        31%,
+        100% {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+      }
+
+      @keyframes storyProcessCopy {
+        0%,
+        44%,
+        100% {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+
+        48%,
+        58% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes storyProcessVisual {
+        0%,
+        47%,
+        100% {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+
+        51%,
+        58% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes storyProcessItems {
+        0%,
+        50%,
+        100% {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+
+        54%,
+        58% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes storyActionCopy {
+        0%,
+        77%,
+        100% {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+
+        81%,
+        94% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes storyActionVisual {
+        0%,
+        80%,
+        100% {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+
+        84%,
+        94% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes storyActionItems {
+        0%,
+        83%,
+        100% {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+
+        87%,
+        94% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes storyIndicatorOne {
+        0%,
+        26% {
+          background: var(--accent);
+        }
+
+        31%,
+        100% {
+          background: rgba(22, 35, 27, 0.1);
+        }
+      }
+
+      @keyframes storyIndicatorTwo {
+        0%,
+        39%,
+        63%,
+        100% {
+          background: rgba(22, 35, 27, 0.1);
+        }
+
+        40%,
+        59% {
+          background: var(--gold);
+        }
+      }
+
+      @keyframes storyIndicatorThree {
+        0%,
+        72%,
+        100% {
+          background: rgba(22, 35, 27, 0.1);
+        }
+
+        73%,
+        95% {
+          background: #c86a53;
+        }
+      }
+
+      @keyframes scanLine {
+        0% {
+          opacity: 0;
+          transform: translateY(-8px);
+        }
+
+        50% {
+          opacity: 1;
+        }
+
+        100% {
+          opacity: 0;
+          transform: translateY(8px);
+        }
+      }
+
+      @keyframes processPulse {
+        from {
+          opacity: 0.5;
+          transform: scale(0.85);
+        }
+
+        to {
+          opacity: 1;
+          transform: scale(1.1);
+        }
+      }
+
       @media (max-width: 1080px) {
         .nav-links {
           display: none;
@@ -1227,8 +2170,13 @@
           position: static;
         }
 
+        .story-demo {
+          position: static;
+        }
+
         .benefit-grid,
         .hero-offer-grid,
+        .proof-grid,
         .pricing-grid,
         .team-grid,
         .signal-grid {
@@ -1297,9 +2245,41 @@
         }
 
         .quote-band blockquote,
-        .story-step,
         .cta {
           padding: 1.5rem;
+        }
+
+        .story-step {
+          grid-template-columns: 1fr;
+          gap: 0.55rem;
+          padding: 1.2rem 0;
+        }
+
+        .story-box {
+          padding: 0.8rem;
+          border-radius: 28px;
+        }
+
+        .story-box-shell {
+          aspect-ratio: auto;
+          min-height: 29rem;
+        }
+
+        .story-scene {
+          padding: 1rem;
+        }
+
+        .scene-title {
+          font-size: 1.45rem;
+        }
+
+        .scene-item {
+          font-size: 0.8rem;
+        }
+
+        .story-scene-card {
+          width: min(18.25rem, 100%);
+          min-height: calc(100% - 1rem);
         }
 
         .care-stage {
@@ -1316,6 +2296,22 @@
 
         .care-video-frame {
           width: 12.25rem;
+        }
+
+        .timeline-head,
+        .timeline-foot {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        .bar-row {
+          grid-template-columns: 1fr;
+          gap: 0.35rem;
+        }
+
+        .bar-row label,
+        .bar-row strong {
+          text-align: left;
         }
 
         footer {
@@ -1472,58 +2468,227 @@
 
         <section class="quote-band reveal">
           <blockquote>
-            <p>People do not need more jargon in the first anxious minute. They need a clear next step.</p>
+            <p>Skin care, two clicks away.</p>
           </blockquote>
         </section>
 
         <section class="story-section" id="story">
-          <div class="story-intro reveal">
-            <p class="eyebrow">How it works</p>
-            <h2>Made to feel human on both sides of care.</h2>
-            <p>
-              For the person taking photos, it feels guided and approachable. For the clinician reviewing the case, it
-              arrives with a cleaner story, better context, and less missing information.
-            </p>
+          <div class="story-copy">
+            <div class="story-intro reveal">
+              <p class="eyebrow">How it works</p>
+              <h2>Made to feel human on both sides of care.</h2>
+              <p>
+                For the person taking photos, it feels guided and approachable. For the clinician reviewing the case,
+                it arrives with a cleaner story, better context, and less missing information.
+              </p>
+            </div>
+
+            <div class="story-track">
+              <article class="story-step reveal">
+                <span class="step-index">01</span>
+                <div class="story-step-copy">
+                  <h3>Start with what you can see.</h3>
+                  <p>
+                    Take a few photos of the affected area with just enough guidance to get useful images, without
+                    turning the moment into a technical task.
+                  </p>
+                </div>
+              </article>
+
+              <article class="story-step reveal">
+                <span class="step-index">02</span>
+                <div class="story-step-copy">
+                  <h3>Answer what actually matters.</h3>
+                  <p>
+                    A short set of questions adds the missing context around symptoms, timing, and concern, so the case
+                    feels understood before anyone even opens it.
+                  </p>
+                </div>
+              </article>
+
+              <article class="story-step reveal">
+                <span class="step-index">03</span>
+                <div class="story-step-copy">
+                  <h3>Move the case forward without the usual friction.</h3>
+                  <p>
+                    Screening details and captured images can be routed onward for clinician review, helping teams
+                    respond faster and helping people feel less stuck in uncertainty.
+                  </p>
+                </div>
+              </article>
+            </div>
           </div>
 
-          <div class="story-track">
-            <article class="story-step reveal">
-              <span class="step-index">01</span>
-              <h3>Start with what you can see.</h3>
-              <p>
-                Take a few photos of the affected area with just enough guidance to get useful images, without turning
-                the moment into a technical task.
-              </p>
-            </article>
+          <div class="story-demo reveal" aria-label="Animated workflow preview">
+            <div class="story-box">
+              <div class="story-box-shell">
+                <div class="story-box-stage">
+                  <div class="story-scene scene-scan" aria-hidden="true">
+                    <div class="story-scene-card">
+                      <span class="scene-kicker">01 Scan</span>
+                      <h3 class="scene-title">See the area clearly.</h3>
+                      <div class="scene-visual scan-visual">
+                        <div class="scan-head"></div>
+                        <div class="scan-body"></div>
+                        <div class="scan-phone"></div>
+                        <div class="scan-beam one"></div>
+                        <div class="scan-beam two"></div>
+                        <div class="scan-beam three"></div>
+                      </div>
+                      <div class="scene-items">
+                        <div class="scene-item">Capture 1-3 guided photos.</div>
+                        <div class="scene-item">Close-up and context stay together.</div>
+                      </div>
+                    </div>
+                  </div>
 
-            <article class="story-step reveal">
-              <span class="step-index">02</span>
-              <h3>Answer what actually matters.</h3>
-              <p>
-                A short set of questions adds the missing context around symptoms, timing, and concern, so the case
-                feels understood before anyone even opens it.
-              </p>
-            </article>
+                  <div class="story-scene scene-process" aria-hidden="true">
+                    <div class="story-scene-card">
+                      <span class="scene-kicker">02 Process</span>
+                      <h3 class="scene-title">Build the missing context.</h3>
+                      <div class="scene-visual process-visual">
+                        <div class="process-photo one"></div>
+                        <div class="process-photo two"></div>
+                        <div class="process-photo three"></div>
+                        <div class="process-network">
+                          <div class="process-link l1"></div>
+                          <div class="process-link l2"></div>
+                          <div class="process-link l3"></div>
+                          <div class="process-link l4"></div>
+                          <div class="process-link l5"></div>
+                          <div class="process-node a"></div>
+                          <div class="process-node b"></div>
+                          <div class="process-node c"></div>
+                          <div class="process-node d"></div>
+                          <div class="process-node e"></div>
+                          <div class="process-node f"></div>
+                        </div>
+                      </div>
+                      <div class="scene-items">
+                        <div class="scene-item">Questions add timing, symptoms, and concern.</div>
+                        <div class="scene-item">The case starts to feel understood.</div>
+                      </div>
+                    </div>
+                  </div>
 
-            <article class="story-step reveal">
-              <span class="step-index">03</span>
-              <h3>Move the case forward without the usual friction.</h3>
-              <p>
-                Screening details and captured images can be routed onward for clinician review, helping teams respond
-                faster and helping people feel less stuck in uncertainty.
-              </p>
-            </article>
+                  <div class="story-scene scene-action" aria-hidden="true">
+                    <div class="story-scene-card">
+                      <span class="scene-kicker">03 Action</span>
+                      <h3 class="scene-title">Move the case forward.</h3>
+                      <div class="scene-visual action-visual">
+                        <div class="action-phone">
+                          <div class="action-screen">
+                            <div class="action-alert">!</div>
+                            <div class="action-line long"></div>
+                            <div class="action-line mid"></div>
+                            <div class="action-button primary">Clinician Review</div>
+                            <div class="action-button secondary">Next Steps</div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="scene-items">
+                        <div class="scene-item">Images and screening details stay in one thread.</div>
+                        <div class="scene-item">Review can happen faster, with less friction.</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="story-box-bottom">
+                  <span>One object at a time</span>
+                  <div class="story-indicators" aria-hidden="true">
+                    <span class="one"></span>
+                    <span class="two"></span>
+                    <span class="three"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </section>
 
         <section class="benefits" id="care">
-          <div class="section-copy reveal">
+          <div class="benefits-proof reveal">
             <p class="eyebrow">Why it helps</p>
-            <h2>Less friction before the consult. More clarity when the case arrives.</h2>
-            <p>
-              PelliScope is designed for real first-contact moments: at home, at a front desk, inside an outreach
-              workflow, or anywhere a skin concern needs a gentler and faster start.
-            </p>
+            <div class="proof-grid">
+              <article class="proof-card">
+                <div style="display:flex; justify-content:space-between; gap:1rem; align-items:flex-start;">
+                  <div>
+                    <h3>Efficient Tele-Medicine</h3>
+                    <p class="proof-subtitle">Workflow comparison</p>
+                  </div>
+                  <span class="workflow-badge">+10 patients / 5hr shift</span>
+                </div>
+
+                <div class="timeline-block">
+                  <div class="timeline-head">
+                    <span>Traditional (No AI)</span>
+                    <span>10 min / patient</span>
+                  </div>
+                  <div class="timeline-bar">
+                    <div class="timeline-fill">Consultation (10m)</div>
+                  </div>
+                  <div class="timeline-foot">
+                    <p></p>
+                    <span>6 patients / hour</span>
+                  </div>
+                </div>
+
+                <div class="timeline-block">
+                  <div class="timeline-head" style="color:#1f5a3f;">
+                    <span>With PelliScope</span>
+                    <span>~10 min total (parallelized)</span>
+                  </div>
+                  <div class="timeline-bar" style="gap:0.3rem; background:transparent;">
+                    <div class="timeline-split one">Preliminary diagnosis (3m)</div>
+                    <div class="timeline-split two">Focused consult (7m)</div>
+                  </div>
+                  <div class="timeline-foot">
+                    <p class="metric-copy">AI triage saves 3 mins of discovery time per patient.</p>
+                    <span>8 patients / hour</span>
+                  </div>
+                </div>
+              </article>
+
+              <article class="proof-card">
+                <h3>Model performance (AUC)</h3>
+                <p class="proof-subtitle">Zero-shot comparison on dermatology benchmarks</p>
+
+                <div class="bars">
+                  <div class="bar-row">
+                    <label>Grok-4</label>
+                    <div class="bar-track"><div class="bar-fill grok"></div></div>
+                    <strong>0.70</strong>
+                  </div>
+                  <div class="bar-row">
+                    <label>GPT-5</label>
+                    <div class="bar-track"><div class="bar-fill gpt"></div></div>
+                    <strong>0.81</strong>
+                  </div>
+                  <div class="bar-row">
+                    <label>Gemini 2.5</label>
+                    <div class="bar-track"><div class="bar-fill gemini"></div></div>
+                    <strong>0.82</strong>
+                  </div>
+                  <div class="bar-row">
+                    <label style="color:#1f5a3f;">PelliScope</label>
+                    <div class="bar-track" style="height:1.2rem;"><div class="bar-fill pelli"></div></div>
+                    <strong style="color:#1f5a3f;">0.86</strong>
+                  </div>
+                </div>
+
+                <div class="chip-row">
+                  <span class="workflow-badge">Technical accuracy: 80.2%</span>
+                  <span class="status-chip">Infectious vs non-infectious flag</span>
+                </div>
+
+                <div class="condition-list">
+                  <strong style="color:var(--text);">10-condition panel</strong><br />
+                  Eczema, Allergic Contact Dermatitis, Insect Bite, Urticaria, Psoriasis, Folliculitis, Irritant
+                  Contact Dermatitis, Tinea, Herpes Zoster, Drug Rash.
+                </div>
+              </article>
+            </div>
           </div>
 
           <div class="benefit-grid">
@@ -1689,16 +2854,6 @@
               <p>
                 Grounds the workflow in practical clinical reality, helping ensure the product supports real
                 decision-making rather than sounding impressive on paper.
-              </p>
-            </article>
-
-            <article class="team-card reveal">
-              <img class="team-photo" src="./assets/members/dr.yash_crop.png" alt="Dr. Yash Patel" />
-              <h3>Dr. Yash Patel</h3>
-              <div class="team-role">Clinical Research Physician</div>
-              <p>
-                Adds another clinician-research perspective to the product, helping the workflow stay relevant to
-                practical care settings while remaining grounded in real patient-facing use.
               </p>
             </article>
 
