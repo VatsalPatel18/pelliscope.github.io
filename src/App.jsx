@@ -56,7 +56,7 @@ const PRICING_MODELS = [
   {
     title: "API Integration",
     price: "$4k",
-    period: "license + $0.5/query",
+    period: "license + 0.03$/ Query",
     features: ["Self-screening at scale", "Headless AI Component", "RESTful API Access"],
     highlight: false
   },

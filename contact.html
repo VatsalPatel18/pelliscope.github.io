@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Request Trial Access | PelliScope</title>
+  <meta name="description" content="Request a PelliScope trial, white-label rollout, or clinic demo directly from the contact page." />
+  <link rel="canonical" href="https://pelliscope.in/contact.html" />
+  <link rel="icon" href="./assets/img/pelliscope.png" />
+  <style>
+    :root {
+      --bg: #07131d;
+      --bg-soft: #0d1a28;
+      --panel: rgba(10, 18, 28, 0.86);
+      --panel-strong: rgba(13, 24, 37, 0.94);
+      --line: rgba(148, 163, 184, 0.18);
+      --line-strong: rgba(148, 163, 184, 0.28);
+      --text: #eff6ff;
+      --muted: #99abc3;
+      --muted-strong: #cad7e7;
+      --teal: #39c8b5;
+      --teal-deep: #0e8f80;
+      --amber: #f2c46d;
+      --blue: #7dd3fc;
+      --shadow: 0 30px 90px rgba(0, 0, 0, 0.38);
+      --radius: 28px;
+      --radius-sm: 18px;
+      --max: 1180px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(57, 200, 181, 0.14), transparent 32%),
+        radial-gradient(circle at top right, rgba(125, 211, 252, 0.12), transparent 28%),
+        linear-gradient(180deg, #08111a 0%, #09131d 55%, #061019 100%);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.55;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+
+    .container {
+      width: min(var(--max), calc(100% - 2rem));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      backdrop-filter: blur(18px);
+      background: rgba(6, 12, 18, 0.72);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .topbar-inner {
+      min-height: 78px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 0.9rem 0;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.8rem;
+      min-width: 0;
+    }
+
+    .brand-mark {
+      width: 46px;
+      height: 46px;
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.95);
+      padding: 5px;
+      object-fit: contain;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.24);
+    }
+
+    .brand-copy {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+    }
+
+    .brand-copy strong {
+      font-size: 1.02rem;
+      letter-spacing: 0.01em;
+    }
+
+    .brand-copy span,
+    .eyebrow,
+    .fineprint,
+    .muted {
+      color: var(--muted);
+    }
+
+    .brand-copy span {
+      font-size: 0.88rem;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      color: var(--muted-strong);
+      font-size: 0.95rem;
+    }
+
+    .nav-links a {
+      padding: 0.4rem 0.2rem;
+      transition: color 160ms ease;
+    }
+
+    .nav-links a:hover,
+    .nav-links a:focus-visible {
+      color: var(--text);
+    }
+
+    .button,
+    .button-muted {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.45rem;
+      padding: 0.95rem 1.2rem;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      transition: transform 160ms ease, background 160ms ease, border-color 160ms ease, box-shadow 160ms ease;
+      border: 1px solid transparent;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .button {
+      color: #05231d;
+      background: linear-gradient(135deg, #7ef0cb 0%, #3fd4bd 52%, #78d6ff 100%);
+      box-shadow: 0 16px 36px rgba(45, 212, 191, 0.22);
+    }
+
+    .button:hover,
+    .button:focus-visible {
+      transform: translateY(-1px);
+      box-shadow: 0 20px 46px rgba(45, 212, 191, 0.28);
+    }
+
+    .button-muted {
+      color: var(--text);
+      border-color: var(--line);
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    .button-muted:hover,
+    .button-muted:focus-visible {
+      transform: translateY(-1px);
+      border-color: rgba(125, 211, 252, 0.42);
+      background: rgba(125, 211, 252, 0.08);
+    }
+
+    .hero {
+      padding: 4.5rem 0 2.2rem;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.08fr 0.92fr;
+      gap: 1.4rem;
+      align-items: start;
+    }
+
+    .eyebrow {
+      margin: 0 0 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.22em;
+      font-size: 0.78rem;
+      color: var(--amber);
+      font-weight: 800;
+    }
+
+    h1, h2, h3, p { margin-top: 0; }
+
+    .hero h1 {
+      margin-bottom: 1rem;
+      font-size: clamp(2.55rem, 6.5vw, 5.4rem);
+      line-height: 0.94;
+      letter-spacing: -0.05em;
+      max-width: 11ch;
+    }
+
+    .lede {
+      margin-bottom: 1.2rem;
+      font-size: clamp(1.05rem, 1.5vw, 1.18rem);
+      max-width: 62ch;
+      color: var(--muted-strong);
+    }
+
+    .hero-card,
+    .contact-card,
+    .info-card {
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03));
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(14px);
+    }
+
+    .hero-card {
+      border-radius: 34px;
+      padding: 1.35rem;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .hero-card::before,
+    .contact-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(circle at top left, rgba(57, 200, 181, 0.14), transparent 32%),
+        radial-gradient(circle at bottom right, rgba(125, 211, 252, 0.12), transparent 28%);
+    }
+
+    .hero-card > *,
+    .contact-card > * { position: relative; z-index: 1; }
+
+    .signal-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin: 1.1rem 0 1.5rem;
+    }
+
+    .signal-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.68rem 0.9rem;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      color: var(--muted-strong);
+      font-size: 0.88rem;
+    }
+
+    .side-stack {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .info-card {
+      border-radius: 24px;
+      padding: 1rem 1.05rem;
+    }
+
+    .info-card strong {
+      display: block;
+      margin-bottom: 0.35rem;
+      font-size: 1rem;
+    }
+
+    .info-card span,
+    .info-card p {
+      color: var(--muted-strong);
+      font-size: 0.95rem;
+    }
+
+    .info-card p {
+      margin-bottom: 0;
+    }
+
+    .contact-section {
+      padding: 0 0 4rem;
+    }
+
+    .contact-layout {
+      display: grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 1.4rem;
+      align-items: start;
+    }
+
+    .contact-copy,
+    .contact-card {
+      border-radius: 30px;
+      padding: 1.45rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .contact-copy {
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(6, 18, 29, 0.8), rgba(8, 19, 29, 0.55));
+      box-shadow: var(--shadow);
+    }
+
+    .contact-copy h2 {
+      font-size: clamp(1.8rem, 3.2vw, 3.2rem);
+      line-height: 1;
+      letter-spacing: -0.04em;
+      margin-bottom: 0.8rem;
+    }
+
+    .contact-points {
+      display: grid;
+      gap: 0.9rem;
+      margin-top: 1.4rem;
+    }
+
+    .contact-point {
+      padding: 1rem 1.05rem;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    .contact-point strong {
+      display: block;
+      margin-bottom: 0.22rem;
+      font-size: 0.96rem;
+    }
+
+    .contact-point span {
+      color: var(--muted-strong);
+      font-size: 0.94rem;
+    }
+
+    .contact-card {
+      background: linear-gradient(180deg, rgba(11, 22, 34, 0.92), rgba(8, 16, 25, 0.95));
+    }
+
+    .contact-card h2 {
+      font-size: 1.45rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .contact-card .fineprint {
+      font-size: 0.9rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .form-grid {
+      display: grid;
+      gap: 0.95rem;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+    }
+
+    .field.full {
+      grid-column: 1 / -1;
+    }
+
+    label {
+      font-size: 0.86rem;
+      color: var(--muted);
+      font-weight: 700;
+      letter-spacing: 0.01em;
+    }
+
+    input,
+    textarea {
+      appearance: none;
+      width: 100%;
+      border-radius: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: rgba(255, 255, 255, 0.045);
+      color: var(--text);
+      padding: 0.95rem 1rem;
+      font: inherit;
+      transition: border-color 160ms ease, box-shadow 160ms ease, background 160ms ease;
+    }
+
+    input::placeholder,
+    textarea::placeholder {
+      color: #90a4ba;
+    }
+
+    input:focus,
+    textarea:focus {
+      outline: none;
+      border-color: rgba(125, 211, 252, 0.8);
+      background: rgba(125, 211, 252, 0.06);
+      box-shadow: 0 0 0 4px rgba(125, 211, 252, 0.12);
+    }
+
+    textarea {
+      min-height: 150px;
+      resize: vertical;
+    }
+
+    .button-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      margin-top: 1.2rem;
+    }
+
+    .note {
+      margin-top: 0.85rem;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .footer {
+      padding: 1.5rem 0 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .footer-inner {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 0.75rem 1rem;
+      align-items: center;
+    }
+
+    .footer a {
+      color: var(--text);
+    }
+
+    @media (max-width: 960px) {
+      .hero-grid,
+      .contact-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .nav-links {
+        display: none;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .topbar-inner {
+        align-items: flex-start;
+        padding-top: 1rem;
+      }
+
+      .brand-copy span {
+        max-width: 22ch;
+      }
+
+      .hero {
+        padding-top: 3rem;
+      }
+
+      .hero h1 {
+        max-width: 100%;
+      }
+
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <a class="brand" href="./index.html" aria-label="PelliScope home">
+        <img class="brand-mark" src="./assets/img/pelliscope.png" alt="PelliScope logo" />
+        <div class="brand-copy">
+          <strong>PelliScope</strong>
+          <span>Request a trial, then route the case into the app</span>
+        </div>
+      </a>
+
+      <nav class="nav-links" aria-label="Primary">
+        <a href="./index.html">Home</a>
+        <a href="./for-clinics.html">For Clinics</a>
+        <a href="./pricing.html">Pricing</a>
+        <a href="mailto:contact@hawkfranklin.in">Email us</a>
+      </nav>
+
+      <a class="button" href="./index.html#top">Back to site</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <p class="eyebrow">Trial access</p>
+          <h1>Request access to PelliScope.</h1>
+          <p class="lede">
+            Use this page when you want a direct trial, a clinic rollout discussion, or a branded intake flow. Your
+            request will open an email draft to <a href="mailto:contact@hawkfranklin.in">contact@hawkfranklin.in</a>
+            with your details prefilled.
+          </p>
+
+          <div class="signal-row" aria-label="Trial access notes">
+            <span class="signal-chip">Direct email handoff</span>
+            <span class="signal-chip">Fits clinic pilots</span>
+            <span class="signal-chip">Works with the Firebase app</span>
+          </div>
+
+          <div class="side-stack">
+            <div class="info-card">
+              <strong>What happens next</strong>
+              <span>Your message goes to the HawkFranklin inbox and can be followed up by email.</span>
+            </div>
+            <div class="info-card">
+              <strong>Best use case</strong>
+              <span>Trial access, branded demos, intake pilots, and clinic rollout questions.</span>
+            </div>
+            <div class="info-card">
+              <strong>Direct contact</strong>
+              <p><a href="mailto:contact@hawkfranklin.in">contact@hawkfranklin.in</a></p>
+            </div>
+          </div>
+        </div>
+
+        <aside class="hero-card">
+          <p class="eyebrow">Marked for trial access</p>
+          <h2 style="margin-bottom:0.8rem; font-size:clamp(1.5rem, 2.8vw, 2.35rem); line-height:1.02; letter-spacing:-0.04em;">
+            A short form, or a direct email if you prefer.
+          </h2>
+          <p class="muted" style="margin-bottom:0;">
+            The form below opens your email client with a structured request. If mail apps are blocked, use the direct
+            link and send the same details manually.
+          </p>
+
+          <div class="signal-row" style="margin-bottom:0;">
+            <span class="signal-chip">No backend needed</span>
+            <span class="signal-chip">No login required</span>
+            <span class="signal-chip">Fast trial routing</span>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="contact-section">
+      <div class="container contact-layout">
+        <div class="contact-copy">
+          <p class="eyebrow">Why send a request</p>
+          <h2>Keep the first step lightweight, then move into the app.</h2>
+          <p class="muted" style="font-size:1.03rem; max-width: 58ch;">
+            This is the PelliScope version of the contact experience: one clear page, one clear inbox, and a direct
+            handoff to <strong>contact@hawkfranklin.in</strong>.
+          </p>
+
+          <div class="contact-points">
+            <div class="contact-point">
+              <strong>For people testing the product</strong>
+              <span>Request trial access before sending users into the live screening flow.</span>
+            </div>
+            <div class="contact-point">
+              <strong>For clinic teams</strong>
+              <span>Ask for a branded setup, a pilot rollout, or help connecting the landing page to the app.</span>
+            </div>
+            <div class="contact-point">
+              <strong>For admin follow-up</strong>
+              <span>The request opens a mail draft that already contains the summary of your submission.</span>
+            </div>
+          </div>
+        </div>
+
+        <form class="contact-card" id="trial-request-form">
+          <h2>Request Trial Access</h2>
+          <p class="fineprint">Submitting this form opens a mail draft to contact@hawkfranklin.in.</p>
+
+          <div class="form-grid">
+            <div class="field">
+              <label for="name">Name</label>
+              <input id="name" name="name" type="text" placeholder="Your full name" required />
+            </div>
+            <div class="field">
+              <label for="org">Clinic / Organization</label>
+              <input id="org" name="org" type="text" placeholder="Pelliscope clinic or practice name" />
+            </div>
+            <div class="field">
+              <label for="email">Email</label>
+              <input id="email" name="email" type="email" placeholder="you@example.com" required />
+            </div>
+            <div class="field">
+              <label for="role">Role</label>
+              <input id="role" name="role" type="text" placeholder="Doctor, coordinator, founder..." />
+            </div>
+            <div class="field full">
+              <label for="message">What do you want to try?</label>
+              <textarea id="message" name="message" placeholder="Trial access, clinic pilot, branded rollout, Firebase hosting, or something else..."></textarea>
+            </div>
+          </div>
+
+          <div class="button-row">
+            <button class="button" type="submit">Send request</button>
+            <a class="button-muted" href="mailto:contact@hawkfranklin.in?subject=PelliScope%20Trial%20Access%20Request">Email directly</a>
+          </div>
+
+          <p class="note">If the mail app does not open, email <a href="mailto:contact@hawkfranklin.in">contact@hawkfranklin.in</a> directly with the same details.</p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div>PelliScope trial requests go to <a href="mailto:contact@hawkfranklin.in">contact@hawkfranklin.in</a>.</div>
+      <div><a href="./index.html">Back to PelliScope</a></div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("trial-request-form")?.addEventListener("submit", (event) => {
+      event.preventDefault();
+
+      const name = document.getElementById("name").value.trim();
+      const org = document.getElementById("org").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const role = document.getElementById("role").value.trim();
+      const message = document.getElementById("message").value.trim();
+
+      const subject = `PelliScope Trial Access Request - ${org || "New Request"}`;
+      const body = [
+        `Name: ${name}`,
+        `Clinic / Organization: ${org || "Not provided"}`,
+        `Email: ${email}`,
+        `Role: ${role || "Not provided"}`,
+        "",
+        "Request details:",
+        message || "Not provided",
+      ].join("\n");
+
+      window.location.href = `mailto:contact@hawkfranklin.in?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    });
+  </script>
+</body>
+</html>
