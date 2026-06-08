@@ -336,13 +336,13 @@
       }
 
       .hero-visual {
-        position: relative;
-        min-height: 41rem;
+        display: grid;
+        gap: 1rem;
       }
 
       .visual-shell {
-        position: absolute;
-        inset: 0;
+        position: relative;
+        min-height: 32rem;
         padding: 1.2rem;
         border-radius: 40px;
         background:
@@ -392,150 +392,65 @@
       }
 
       .doctor-card {
-        position: absolute;
-        left: 1.3rem;
-        bottom: 1.45rem;
-        z-index: 4;
-        width: min(15.2rem, 46%);
-        padding: 0.8rem;
-        border-radius: 28px;
-        background: rgba(255, 255, 255, 0.14);
-        border: 1px solid rgba(255, 255, 255, 0.15);
-        backdrop-filter: blur(14px);
-        box-shadow: 0 18px 50px rgba(6, 12, 18, 0.25);
+        display: grid;
+        grid-template-columns: 7.2rem minmax(0, 1fr);
+        gap: 1rem;
+        align-items: center;
+        padding: 0.85rem;
+        border-radius: 26px;
+        background: rgba(255, 255, 255, 0.74);
+        border: 1px solid rgba(16, 34, 45, 0.1);
+        box-shadow: 0 18px 50px rgba(10, 25, 34, 0.12);
       }
 
       .doctor-card img {
         width: 100%;
-        aspect-ratio: 0.88;
-        border-radius: 22px;
+        aspect-ratio: 1;
+        border-radius: 20px;
         object-fit: cover;
         object-position: center top;
       }
 
       .doctor-card strong {
         display: block;
-        margin-top: 0.85rem;
-        color: #f4fbff;
+        color: var(--text);
         font-size: 1rem;
         letter-spacing: -0.02em;
       }
 
       .doctor-card p {
         margin: 0.35rem 0 0;
-        color: rgba(223, 242, 250, 0.72);
-        font-size: 0.82rem;
+        color: var(--muted);
+        font-size: 0.86rem;
         line-height: 1.5;
       }
 
       .dashboard-card {
         position: absolute;
         top: 5.2rem;
-        right: 1.25rem;
-        bottom: 1.25rem;
-        width: min(27rem, calc(100% - 17rem));
-        padding: 1rem;
+        right: 1.2rem;
+        bottom: 1.2rem;
+        left: 1.2rem;
+        padding: 0.75rem;
         border-radius: 30px;
         background: rgba(246, 252, 255, 0.92);
         box-shadow: 0 25px 70px rgba(2, 14, 22, 0.18);
       }
 
-      .dashboard-head {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 1rem;
-      }
-
-      .dashboard-head span {
-        color: rgba(16, 34, 45, 0.54);
-        font-size: 0.72rem;
-        font-weight: 800;
-        letter-spacing: 0.1em;
-        text-transform: uppercase;
-      }
-
-      .dashboard-head strong {
-        font-size: 1rem;
-        letter-spacing: -0.03em;
-      }
-
-      .dashboard-grid {
-        margin-top: 1rem;
-        display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 0.7rem;
-      }
-
-      .metric-card {
-        padding: 0.9rem;
-        border-radius: 18px;
-        background: #f0f7fb;
-        border: 1px solid rgba(16, 34, 45, 0.07);
-      }
-
-      .metric-card span {
-        display: block;
-        color: rgba(16, 34, 45, 0.56);
-        font-size: 0.68rem;
-        font-weight: 700;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-      }
-
-      .metric-card strong {
-        display: block;
-        margin-top: 0.45rem;
-        font-size: 1.3rem;
-        letter-spacing: -0.04em;
-      }
-
       .dashboard-video {
-        margin-top: 0.95rem;
+        height: 100%;
         padding: 0.75rem;
         border-radius: 24px;
         background: linear-gradient(180deg, #162933, #0f1f28);
+        overflow: hidden;
       }
 
       .dashboard-video video {
-        width: 100%;
-        border-radius: 18px;
-        aspect-ratio: 1.05;
-        object-fit: cover;
-      }
-
-      .queue-panel {
-        margin-top: 0.95rem;
-        padding: 1rem;
-        border-radius: 22px;
-        background: #f7fbfd;
-        border: 1px solid rgba(16, 34, 45, 0.08);
-      }
-
-      .queue-row {
-        display: grid;
-        grid-template-columns: minmax(0, 1fr) auto;
-        gap: 0.9rem;
-        align-items: center;
-        padding: 0.7rem 0;
-        border-top: 1px solid rgba(16, 34, 45, 0.08);
-      }
-
-      .queue-row:first-of-type {
-        padding-top: 0;
-        border-top: 0;
-      }
-
-      .queue-row strong {
         display: block;
-        font-size: 0.95rem;
-        letter-spacing: -0.02em;
-      }
-
-      .queue-row p {
-        margin: 0.18rem 0 0;
-        color: var(--muted);
-        font-size: 0.8rem;
+        width: 100%;
+        height: 100%;
+        border-radius: 18px;
+        object-fit: cover;
       }
 
       .status-dot {
@@ -1483,12 +1398,8 @@
           padding-top: 2.8rem;
         }
 
-        .hero-visual {
+        .visual-shell {
           min-height: 34rem;
-        }
-
-        .dashboard-card {
-          width: min(29rem, calc(100% - 13rem));
         }
       }
 
@@ -1585,11 +1496,8 @@
           max-width: 100%;
         }
 
-        .hero-visual {
-          min-height: 33rem;
-        }
-
         .visual-shell {
+          min-height: 26rem;
           padding: 0.8rem;
         }
 
@@ -1603,31 +1511,16 @@
           left: 0.9rem;
           right: 0.9rem;
           top: 5.6rem;
-          bottom: 7rem;
-          width: auto;
-        }
-
-        .dashboard-grid {
-          grid-template-columns: 1fr;
+          bottom: 0.9rem;
         }
 
         .doctor-card {
-          left: 0.9rem;
-          right: 0.9rem;
-          bottom: 0.9rem;
-          width: auto;
-          display: grid;
           grid-template-columns: 5.4rem minmax(0, 1fr);
           gap: 0.9rem;
-          align-items: center;
         }
 
         .doctor-card img {
           aspect-ratio: 1;
-        }
-
-        .queue-row {
-          grid-template-columns: 1fr;
         }
 
         .status-dot {
@@ -1724,64 +1617,17 @@
               </div>
 
               <div class="dashboard-card">
-                <div class="dashboard-head">
-                  <div>
-                    <span>Your clinic dashboard</span>
-                    <strong>Branded intake, routing, and review</strong>
-                  </div>
-                  <span class="status-dot fast" style="align-self:flex-start;">Pilot ready</span>
-                </div>
-
-                <div class="dashboard-grid">
-                  <div class="metric-card">
-                    <span>Screenings today</span>
-                    <strong>42</strong>
-                  </div>
-                  <div class="metric-card">
-                    <span>Urgent routed</span>
-                    <strong>9</strong>
-                  </div>
-                  <div class="metric-card">
-                    <span>Booked consults</span>
-                    <strong>16</strong>
-                  </div>
-                </div>
-
                 <div class="dashboard-video">
-                  <video src="./assets/video/pelliscope_preview.mp4" autoplay muted loop playsinline></video>
-                </div>
-
-                <div class="queue-panel">
-                  <div class="queue-row">
-                    <div>
-                      <strong>Suspected fungal rash</strong>
-                      <p>Featured case with complete intake and triage signal.</p>
-                    </div>
-                    <span class="status-dot urgent">Urgent today</span>
-                  </div>
-                  <div class="queue-row">
-                    <div>
-                      <strong>Routine eczema follow-up</strong>
-                      <p>Queued for teleconsult routing.</p>
-                    </div>
-                    <span class="status-dot fast">Auto-routed</span>
-                  </div>
-                  <div class="queue-row">
-                    <div>
-                      <strong>Acne care inquiry</strong>
-                      <p>Review queue for later booking.</p>
-                    </div>
-                    <span class="status-dot review">Review queue</span>
-                  </div>
+                  <video src="./Videos/pelliscope-overall.mp4" autoplay muted loop playsinline controls></video>
                 </div>
               </div>
+            </div>
 
-              <div class="doctor-card">
-                <img src="./assets/members/dr.nishi_crop.png" alt="Consultant dermatologist portrait" />
-                <div>
-                  <strong>Your clinic name. Your logo. Your colors.</strong>
-                  <p>Patients see your brand first while PelliScope runs the AI workflow underneath.</p>
-                </div>
+            <div class="doctor-card">
+              <img src="./assets/members/dr.nishi_crop.png" alt="Consultant dermatologist portrait" />
+              <div>
+                <strong>Your clinic name. Your logo. Your colors.</strong>
+                <p>Patients see your brand first while PelliScope runs the AI workflow underneath.</p>
               </div>
             </div>
           </div>
