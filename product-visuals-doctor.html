@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PelliScope Doctor Product Visuals</title>
+    <meta
+      name="description"
+      content="Doctor-side PelliScope product screenshots: dermatologist onboarding, dashboard, case detail, AI verdict, and prescription workflow."
+    />
+    <meta property="og:title" content="PelliScope Doctor Product Visuals" />
+    <meta
+      property="og:description"
+      content="A screenshot-based catalogue of the doctor workflow in PelliScope."
+    />
+    <meta property="og:image" content="https://pelliscope.in/pelliscope-demo-page-screenshots/doctor_overview.jpg" />
+    <link rel="icon" href="./assets/img/pelliscope.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --ink: #101827;
+        --muted: #647084;
+        --paper: #fffaf1;
+        --cream: #f6efe3;
+        --green: #17613f;
+        --mint: #d9f4e9;
+        --night: #071020;
+        --line: rgba(24, 39, 61, 0.12);
+        --shadow: 0 24px 70px rgba(24, 39, 61, 0.16);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        color: var(--ink);
+        background:
+          radial-gradient(circle at 8% 6%, rgba(136, 224, 194, 0.52), transparent 30rem),
+          radial-gradient(circle at 82% 10%, rgba(148, 163, 184, 0.26), transparent 30rem),
+          linear-gradient(135deg, #fbf5ea 0%, #eef6f8 58%, #f7efe2 100%);
+        font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      img {
+        display: block;
+        max-width: 100%;
+      }
+
+      .shell {
+        width: min(1220px, calc(100% - 36px));
+        margin: 0 auto;
+        padding: 22px 0 72px;
+      }
+
+      .topbar {
+        position: sticky;
+        top: 14px;
+        z-index: 20;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        background: rgba(255, 250, 241, 0.86);
+        box-shadow: 0 16px 48px rgba(24, 39, 61, 0.1);
+        padding: 12px 14px;
+        backdrop-filter: blur(16px);
+      }
+
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        font-weight: 900;
+      }
+
+      .brand img {
+        width: 44px;
+        height: 44px;
+        border-radius: 15px;
+        background: white;
+        border: 1px solid var(--line);
+        padding: 5px;
+      }
+
+      .nav {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+        gap: 8px;
+      }
+
+      .nav a {
+        border-radius: 999px;
+        padding: 11px 15px;
+        color: #334155;
+        font-size: 0.88rem;
+        font-weight: 800;
+      }
+
+      .nav a.active,
+      .nav a:hover {
+        background: rgba(23, 97, 63, 0.1);
+        color: var(--green);
+      }
+
+      .hero {
+        display: grid;
+        grid-template-columns: 1fr 0.82fr;
+        gap: 34px;
+        align-items: center;
+        padding: 76px 0 44px;
+      }
+
+      .eyebrow {
+        margin: 0 0 14px;
+        color: var(--green);
+        font-size: 0.78rem;
+        font-weight: 900;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+      }
+
+      h1,
+      h2 {
+        margin: 0;
+        font-family: "Fraunces", Georgia, serif;
+        letter-spacing: -0.06em;
+      }
+
+      h1 {
+        max-width: 790px;
+        font-size: clamp(3.4rem, 8vw, 6.5rem);
+        line-height: 0.88;
+      }
+
+      h2 {
+        font-size: clamp(2.2rem, 5vw, 4.2rem);
+        line-height: 0.94;
+      }
+
+      h3 {
+        margin: 0;
+        font-size: 1.1rem;
+        letter-spacing: -0.035em;
+      }
+
+      .lede {
+        max-width: 720px;
+        margin: 24px 0 0;
+        color: var(--muted);
+        font-size: clamp(1.05rem, 2vw, 1.22rem);
+        line-height: 1.75;
+      }
+
+      .hero-card {
+        border: 1px solid var(--line);
+        border-radius: 34px;
+        background: rgba(255, 250, 241, 0.76);
+        box-shadow: var(--shadow);
+        padding: 18px;
+      }
+
+      .hero-card img {
+        width: 100%;
+        border-radius: 24px;
+        border: 1px solid rgba(255, 255, 255, 0.75);
+      }
+
+      .jump {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin: 12px 0 56px;
+        border: 1px solid var(--line);
+        border-radius: 24px;
+        background: rgba(255, 250, 241, 0.86);
+        box-shadow: 0 14px 45px rgba(24, 39, 61, 0.08);
+        padding: 10px;
+      }
+
+      .jump a {
+        border-radius: 999px;
+        padding: 11px 15px;
+        color: #334155;
+        font-weight: 800;
+      }
+
+      .section {
+        margin-top: 68px;
+      }
+
+      .section-head {
+        display: grid;
+        grid-template-columns: 0.78fr 1fr;
+        gap: 26px;
+        align-items: end;
+        margin-bottom: 28px;
+      }
+
+      .section-head p {
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.72;
+      }
+
+      .phone-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 22px;
+        margin-bottom: 24px;
+      }
+
+      .desktop-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 26px;
+      }
+
+      .shot-card {
+        border: 1px solid var(--line);
+        border-radius: 30px;
+        background: rgba(255, 250, 241, 0.8);
+        box-shadow: 0 18px 54px rgba(24, 39, 61, 0.1);
+        overflow: hidden;
+      }
+
+      .shot-image {
+        padding: 18px 18px 0;
+        background:
+          radial-gradient(circle at 50% 0%, rgba(100, 216, 200, 0.22), transparent 22rem),
+          linear-gradient(180deg, #0a1224, #080d1a);
+      }
+
+      .shot-image img {
+        width: min(100%, 360px);
+        margin: 0 auto;
+        border-radius: 22px;
+        box-shadow: 0 22px 70px rgba(0, 0, 0, 0.36);
+      }
+
+      .wide-shot .shot-image {
+        padding: 16px;
+        background: #eef3f6;
+      }
+
+      .wide-shot .shot-image img {
+        width: 100%;
+        border-radius: 18px;
+        box-shadow: 0 22px 70px rgba(24, 39, 61, 0.18);
+      }
+
+      .shot-copy {
+        padding: 18px;
+      }
+
+      .shot-copy p {
+        margin: 8px 0 0;
+        color: var(--muted);
+        line-height: 1.55;
+        font-size: 0.94rem;
+      }
+
+      .step {
+        display: inline-grid;
+        place-items: center;
+        width: 34px;
+        height: 34px;
+        border-radius: 13px;
+        background: var(--green);
+        color: white;
+        font-weight: 900;
+        margin-bottom: 12px;
+      }
+
+      .overview {
+        border: 1px solid var(--line);
+        border-radius: 34px;
+        background: rgba(255, 250, 241, 0.78);
+        box-shadow: var(--shadow);
+        padding: 18px;
+      }
+
+      .overview img {
+        width: 100%;
+        border-radius: 24px;
+      }
+
+      .note {
+        margin-top: 24px;
+        border: 1px solid var(--line);
+        border-radius: 26px;
+        background: rgba(255, 250, 241, 0.72);
+        padding: 20px;
+        color: var(--muted);
+        line-height: 1.7;
+      }
+
+      @media (max-width: 900px) {
+        .hero,
+        .section-head {
+          grid-template-columns: 1fr;
+        }
+
+        .nav a:not(.active) {
+          display: none;
+        }
+      }
+
+      @media (max-width: 560px) {
+        .shell {
+          width: min(100% - 22px, 1220px);
+          padding-top: 12px;
+        }
+
+        .topbar {
+          top: 8px;
+          border-radius: 24px;
+        }
+
+        .brand span {
+          display: none;
+        }
+
+        .hero {
+          padding-top: 48px;
+        }
+
+        .phone-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="shell">
+      <header class="topbar">
+        <a class="brand" href="./product-visuals-doctor.html">
+          <img src="./assets/img/pelliscope.png" alt="PelliScope logo" />
+          <span>PelliScope Doctor Visuals</span>
+        </a>
+        <nav class="nav" aria-label="Product visual pages">
+          <a href="./product-visuals-patient.html">Patient</a>
+          <a class="active" href="./product-visuals-doctor.html">Doctor</a>
+          <a href="./product-visuals.html">Overview</a>
+        </nav>
+      </header>
+
+      <main>
+        <section class="hero">
+          <div>
+            <p class="eyebrow">Doctor-side screenshot catalogue</p>
+            <h1>The full doctor workflow, captured from the product.</h1>
+            <p class="lede">
+              These are real workflow screenshots cropped for product catalogues: dermatologist sign-in, doctor
+              application, dashboard queue, patient case review, image inspection, AI verdict, and prescription writing.
+            </p>
+          </div>
+          <figure class="hero-card">
+            <img
+              src="./pelliscope-demo-page-screenshots/processed/doctor/10_case-detail-after-prescription.jpg"
+              alt="PelliScope doctor case detail screen after prescription workflow"
+            />
+          </figure>
+        </section>
+
+        <nav class="jump" aria-label="Doctor visual sections">
+          <a href="#doctor-onboarding">Doctor onboarding</a>
+          <a href="#doctor-workspace">Doctor workspace</a>
+          <a href="#doctor-overview">Overview sheet</a>
+        </nav>
+
+        <section class="section" id="doctor-onboarding">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">Access and onboarding</p>
+              <h2>Dermatologist entry screens.</h2>
+            </div>
+            <p>
+              The first screens are cropped to the centered product surface because they are mobile-style entry states
+              within the browser recording.
+            </p>
+          </div>
+
+          <div class="phone-grid">
+            <article class="shot-card">
+              <div class="shot-image"><img src="./pelliscope-demo-page-screenshots/processed/doctor/01_start-role-selection.jpg" alt="PelliScope doctor role selection screen" /></div>
+              <div class="shot-copy"><span class="step">1</span><h3>Role selection</h3><p>The clinician starts from the same role selector and chooses dermatologist mode.</p></div>
+            </article>
+            <article class="shot-card">
+              <div class="shot-image"><img src="./pelliscope-demo-page-screenshots/processed/doctor/02_doctor-form-start.jpg" alt="PelliScope doctor registration form" /></div>
+              <div class="shot-copy"><span class="step">2</span><h3>Doctor form</h3><p>The dermatologist enters account details before submitting an application.</p></div>
+            </article>
+            <article class="shot-card">
+              <div class="shot-image"><img src="./pelliscope-demo-page-screenshots/processed/doctor/03_doctor-form-submitted.jpg" alt="PelliScope doctor form submitted screen" /></div>
+              <div class="shot-copy"><span class="step">3</span><h3>Submitted sign-in state</h3><p>The form transitions into sign-in and account status handling for the doctor user.</p></div>
+            </article>
+          </div>
+        </section>
+
+        <section class="section" id="doctor-workspace">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">Clinical workspace</p>
+              <h2>Dashboard, case review, and prescription flow.</h2>
+            </div>
+            <p>
+              These wider screenshots preserve the actual clinical dashboard layout and patient case detail surface
+              because the useful information is spread across the full doctor workspace.
+            </p>
+          </div>
+
+          <div class="desktop-grid">
+            <article class="shot-card wide-shot">
+              <div class="shot-image"><img src="./pelliscope-demo-page-screenshots/processed/doctor/04_dashboard-empty.jpg" alt="PelliScope doctor dashboard empty state" /></div>
+              <div class="shot-copy"><span class="step">4</span><h3>Dashboard empty state</h3><p>The doctor queue can start with no assigned cases and a clean review workspace.</p></div>
+            </article>
+            <article class="shot-card wide-shot">
+              <div class="shot-image"><img src="./pelliscope-demo-page-screenshots/processed/doctor/05_dashboard-new-case.jpg" alt="PelliScope doctor dashboard with new cases" /></div>
+              <div class="shot-copy"><span class="step">5</span><h3>New case queue</h3><p>The dashboard shows assigned cases, availability, queue filters, urgency, and infectious labels.</p></div>
+            </article>
+            <article class="shot-card wide-shot">
+              <div class="shot-image"><img src="./pelliscope-demo-page-screenshots/processed/doctor/06_case-detail-loading-image.jpg" alt="PelliScope doctor case detail while image loads" /></div>
+              <div class="shot-copy"><span class="step">6</span><h3>Case detail loading</h3><p>The case detail opens with AI verdict and patient complaint while images finish loading.</p></div>
+            </article>
+            <article class="shot-card wide-shot">
+              <div class="shot-image"><img src="./pelliscope-demo-page-screenshots/processed/doctor/07_case-detail-image-loaded.jpg" alt="PelliScope doctor case detail with loaded image" /></div>
+              <div class="shot-copy"><span class="step">7</span><h3>Image loaded</h3><p>The submitted skin photo appears beside infectious alert, differentials, and action buttons.</p></div>
+            </article>
+            <article class="shot-card wide-shot">
+              <div class="shot-image"><img src="./pelliscope-demo-page-screenshots/processed/doctor/08_case-detail-selected-image.jpg" alt="PelliScope doctor case detail with selected image thumbnail" /></div>
+              <div class="shot-copy"><span class="step">8</span><h3>Selected image review</h3><p>The doctor can switch between submitted images while keeping the clinical summary visible.</p></div>
+            </article>
+            <article class="shot-card wide-shot">
+              <div class="shot-image"><img src="./pelliscope-demo-page-screenshots/processed/doctor/09_prescription-modal.jpg" alt="PelliScope prescription modal" /></div>
+              <div class="shot-copy"><span class="step">9</span><h3>Prescription modal</h3><p>The doctor adds diagnosis, medication, dosage, instructions, and patient-facing notes.</p></div>
+            </article>
+            <article class="shot-card wide-shot">
+              <div class="shot-image"><img src="./pelliscope-demo-page-screenshots/processed/doctor/10_case-detail-after-prescription.jpg" alt="PelliScope doctor case detail after prescription" /></div>
+              <div class="shot-copy"><span class="step">10</span><h3>After prescription</h3><p>The case returns to the detail view with the image, verdict, complaint, and care timeline context.</p></div>
+            </article>
+          </div>
+        </section>
+
+        <section class="section" id="doctor-overview">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">Single image overview</p>
+              <h2>Doctor overview sheet.</h2>
+            </div>
+            <p>
+              This full overview sheet is included for tools that prefer one stitched screenshot asset instead of
+              separate flow steps.
+            </p>
+          </div>
+          <figure class="overview">
+            <img src="./pelliscope-demo-page-screenshots/doctor_overview.jpg" alt="Overview sheet of all doctor workflow screenshots" />
+          </figure>
+          <div class="note">
+            Static catalogue page only. These screenshots do not connect to Firebase, GCloud, authentication, image
+            upload, prescriptions, or live clinician records.
+          </div>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>
