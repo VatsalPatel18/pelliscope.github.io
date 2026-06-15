@@ -629,10 +629,6 @@
       footer {
         padding-top: 1rem;
         padding-bottom: 3rem;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 1rem;
         color: rgba(22, 35, 27, 0.6);
       }
 
@@ -892,16 +888,38 @@
       </section>
     </main>
 
-    <footer>
-      <div class="footer-brand">
-        <img class="footer-mark" src="./assets/img/pelliscope.png" alt="PelliScope logo" />
-        <div>
-          <strong>PelliScope</strong>
-          <span>Designed to make the first step feel clearer and kinder.</span>
-        </div>
-      </div>
+          <footer>
+        <div class="footer-content" style="width: 100%; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 2.5rem; border-top: 1px solid var(--line); padding-top: 2.5rem; color: var(--muted); font-size: 0.85rem; line-height: 1.6;">
+          <div class="footer-col" style="display: flex; flex-direction: column; gap: 0.8rem;">
+            <div style="display: flex; align-items: center; gap: 0.8rem;">
+              <img class="footer-mark" src="./assets/img/pelliscope.png" alt="PelliScope logo" style="width: 2.35rem; height: 2.35rem; padding: 0.38rem; border-radius: 16px; background: rgba(47, 125, 87, 0.08); border: 1px solid rgba(47, 125, 87, 0.1);" />
+              <strong style="font-size: 1rem; color: var(--text); font-family: 'Plus Jakarta Sans', sans-serif;">PelliScope</strong>
+            </div>
+            <span>Designed to make the first step feel clearer and kinder. An initiative of HawkFranklin Research.</span>
+            <span style="font-size: 0.76rem; color: rgba(22, 35, 27, 0.4); margin-top: 0.5rem;">© 2026 HawkFranklin Research. All rights reserved.</span>
+          </div>
 
-      <div class="footer-meta">Live app: app.pelliscope.in</div>
-    </footer>
+          <div class="footer-col" style="display: flex; flex-direction: column; gap: 0.6rem;">
+            <strong style="font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text); margin-bottom: 0.2rem;">Legal Policies</strong>
+            <a href="./terms.html" style="color: inherit; text-decoration: none; transition: color 0.2s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--muted)'">Terms & Conditions</a>
+            <a href="./privacy.html" style="color: inherit; text-decoration: none; transition: color 0.2s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--muted)'">Privacy Policy</a>
+            <a href="./refunds.html" style="color: inherit; text-decoration: none; transition: color 0.2s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--muted)'">Refund & Cancellation Policy</a>
+          </div>
+
+          <div class="footer-col" style="display: flex; flex-direction: column; gap: 0.6rem;">
+            <strong style="font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text); margin-bottom: 0.2rem;">Contact Support</strong>
+            <span>Email: <a href="mailto:support@hawkfranklin.in" style="color: var(--accent); text-decoration: none; font-weight: 500;">support@hawkfranklin.in</a></span>
+            <span>Phone: +91 9978146918</span>
+            <span style="font-size: 0.8rem; line-height: 1.4;">
+              5-3, B7/266, Jatipura Classics, Block B, Central Park, Kalyani, West Bengal, 741235
+            </span>
+          </div>
+
+          <div class="footer-col" style="display: flex; flex-direction: column; gap: 0.6rem;">
+            <strong style="font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text); margin-bottom: 0.2rem;">Application</strong>
+            <a href="https://app.pelliscope.in" style="color: inherit; text-decoration: none; transition: color 0.2s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--muted)'">Live App: app.pelliscope.in</a>
+          </div>
+        </div>
+      </footer>
   </body>
 </html>

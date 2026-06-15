@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Refund & Cancellation Policy — PelliScope</title>
+    <meta name="description" content="PelliScope Refund & Cancellation Policy. Clear details on our flat consultation fee and our 48-hour response guarantee." />
+    <link rel="icon" type="image/png" href="./assets/img/pelliscope.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #f7f0e1;
+        --bg-strong: #112019;
+        --bg-soft: #e8dcc4;
+        --panel: rgba(255, 248, 235, 0.78);
+        --line: rgba(17, 32, 25, 0.12);
+        --text: #16231b;
+        --muted: #516357;
+        --cream: #fff7ea;
+        --accent: #2f7d57;
+        --shadow: 0 30px 80px rgba(15, 23, 18, 0.14);
+      }
+
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        margin: 0;
+        font-family: "Plus Jakarta Sans", sans-serif;
+        color: var(--text);
+        background:
+          radial-gradient(circle at 10% 0%, rgba(130, 185, 141, 0.26), transparent 30%),
+          radial-gradient(circle at 90% 14%, rgba(217, 165, 90, 0.22), transparent 28%),
+          linear-gradient(180deg, #fbf5e9 0%, #f3ead7 42%, #f7f0e1 100%);
+        overflow-x: hidden;
+      }
+
+      a { color: inherit; text-decoration: none; }
+
+      .ambient-orb {
+        position: fixed;
+        z-index: -2;
+        border-radius: 999px;
+        filter: blur(90px);
+        opacity: 0.55;
+        pointer-events: none;
+      }
+
+      .ambient-orb.one {
+        width: 28rem;
+        height: 28rem;
+        top: -10rem;
+        left: -12rem;
+        background: rgba(132, 188, 145, 0.38);
+      }
+
+      .ambient-orb.two {
+        width: 26rem;
+        height: 26rem;
+        right: -8rem;
+        top: 22rem;
+        background: rgba(217, 165, 90, 0.34);
+      }
+
+      .topbar {
+        position: sticky;
+        top: 0;
+        z-index: 40;
+        padding: 1rem 1.25rem;
+      }
+
+      .topbar-inner {
+        max-width: 1240px;
+        margin: 0 auto;
+        padding: 0.85rem 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        border: 1px solid rgba(255, 255, 255, 0.45);
+        border-radius: 999px;
+        background: rgba(255, 248, 235, 0.62);
+        backdrop-filter: blur(20px);
+        box-shadow: 0 15px 40px rgba(50, 41, 28, 0.08);
+      }
+
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.85rem;
+      }
+
+      .brand-mark {
+        width: 2.75rem;
+        height: 2.75rem;
+        padding: 0.45rem;
+        border-radius: 18px;
+        background: linear-gradient(180deg, rgba(47, 125, 87, 0.18), rgba(255, 255, 255, 0.76));
+        border: 1px solid rgba(47, 125, 87, 0.18);
+      }
+
+      .brand-copy strong,
+      .footer-brand strong {
+        display: block;
+        font-size: 0.98rem;
+        letter-spacing: -0.03em;
+      }
+
+      .brand-copy span {
+        display: block;
+        font-size: 0.74rem;
+        color: var(--muted);
+      }
+
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 1.4rem;
+        color: rgba(22, 35, 27, 0.74);
+        font-size: 0.95rem;
+      }
+
+      .button,
+      .button-muted {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 3rem;
+        padding: 0.85rem 1.25rem;
+        border-radius: 999px;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+      }
+
+      .button {
+        background: #112019;
+        color: var(--cream);
+        box-shadow: 0 18px 38px rgba(17, 32, 25, 0.22);
+      }
+
+      .button-muted {
+        color: var(--text);
+        border: 1px solid rgba(22, 35, 27, 0.12);
+        background: rgba(255, 255, 255, 0.4);
+      }
+
+      .container {
+        max-width: 1240px;
+        margin: 0 auto;
+        padding-left: 1.25rem;
+        padding-right: 1.25rem;
+      }
+
+      .content-section {
+        padding-top: 4rem;
+        padding-bottom: 6rem;
+      }
+
+      .policy-card {
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: 32px;
+        padding: 3rem;
+        max-width: 860px;
+        margin: 0 auto;
+        box-shadow: var(--shadow);
+        backdrop-filter: blur(8px);
+      }
+
+      h1 {
+        font-family: "Fraunces", serif;
+        font-size: clamp(2.2rem, 5vw, 3.5rem);
+        line-height: 1.08;
+        letter-spacing: -0.04em;
+        margin: 0 0 1.5rem;
+        color: var(--text);
+      }
+
+      h2 {
+        font-family: "Fraunces", serif;
+        font-size: 1.8rem;
+        letter-spacing: -0.02em;
+        margin: 2rem 0 1rem;
+        color: var(--text);
+      }
+
+      p, li {
+        font-size: 1.05rem;
+        line-height: 1.65;
+        color: var(--text);
+        margin: 0 0 1.25rem;
+      }
+
+      ul {
+        margin: 0 0 1.5rem;
+        padding-left: 1.5rem;
+      }
+
+      li {
+        margin-bottom: 0.5rem;
+      }
+
+      .last-updated {
+        font-size: 0.88rem;
+        color: var(--muted);
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        margin-bottom: 2rem;
+      }
+
+      .highlight-box {
+        background: rgba(47, 125, 87, 0.06);
+        border-left: 4px solid var(--accent);
+        padding: 1.5rem;
+        border-radius: 0 16px 16px 0;
+        margin: 1.5rem 0;
+      }
+
+      .highlight-box p {
+        margin: 0;
+        font-weight: 500;
+      }
+
+      footer {
+        max-width: 1240px;
+        margin: 0 auto;
+        padding-left: 1.25rem;
+        padding-right: 1.25rem;
+        padding-top: 3rem;
+        padding-bottom: 4rem;
+      }
+
+      @media (max-width: 760px) {
+        .topbar { padding: 0.9rem 0.8rem; }
+        .topbar-inner { padding: 0.75rem; }
+        .nav-links { display: none; }
+        .policy-card { padding: 1.75rem; border-radius: 20px; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="ambient-orb one"></div>
+    <div class="ambient-orb two"></div>
+
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="./index.html" aria-label="PelliScope home">
+          <img class="brand-mark" src="./assets/img/pelliscope.png" alt="PelliScope logo" />
+          <div class="brand-copy">
+            <strong>PelliScope</strong>
+            <span>From first concern to clearer next step</span>
+          </div>
+        </a>
+
+        <nav class="nav-links" aria-label="Primary">
+          <a href="./index.html#care">Why it helps</a>
+          <a href="./index.html#clinician">Care flow</a>
+          <a href="./for-clinics.html">For Clinics</a>
+          <a href="./pricing.html">Pricing</a>
+          <a href="./contact.html">Contact Us</a>
+          <a href="https://app.pelliscope.in">Try now</a>
+        </nav>
+
+        <div class="button-row">
+          <a class="button-muted" href="./for-clinics.html">For Clinics</a>
+          <a class="button" href="https://app.pelliscope.in">Try now</a>
+        </div>
+      </div>
+    </header>
+
+    <main class="container content-section">
+      <article class="policy-card">
+        <p class="last-updated">Last Updated: June 15, 2026</p>
+        <h1>Refund & Cancellation Policy</h1>
+        
+        <p>
+          At PelliScope, operated by <strong>HawkFranklin Research</strong>, we are dedicated to providing a professional, timely, and supportive experience for all patients seeking dermatology consultation reviews. Please read our policy regarding pricing, cancellations, and refunds below.
+        </p>
+
+        <h2>1. Consultation Fee</h2>
+        <p>
+          Our platform matches you with a qualified dermatologist for clinical review. All consultations are charged at a flat platform price of <strong>₹399</strong> (inclusive of all applicable platform costs).
+        </p>
+
+        <h2>2. Our 48-Hour Response Guarantee</h2>
+        <p>
+          We value your health and your time. PelliScope guarantees that your selected practitioner will review your uploaded photos, answers to clinical questionnaires, and issue a professional response within a maximum of <strong>48 hours</strong> from the time of successful payment.
+        </p>
+
+        <div class="highlight-box">
+          <p>
+            If the dermatologist fails to review your submitted case within this 48-hour SLA window, our system automatically cancels the request. A full refund of the ₹399 consultation fee will be instantly initiated back to your original payment method.
+          </p>
+        </div>
+
+        <h2>3. How Refunds Are Processed</h2>
+        <ul>
+          <li><strong>Automated SLA Refund:</strong> In the event of a doctor non-response beyond 48 hours, the refund is initiated automatically by our servers. You do not need to take any action.</li>
+          <li><strong>Pre-Review Cancellation:</strong> If you wish to cancel your case submission before the dermatologist has accessed or reviewed your record, you may request a refund by emailing our support desk.</li>
+          <li><strong>Timeline:</strong> Once a refund is initiated, please allow <strong>5 to 7 business days</strong> for the funds to reflect in your bank account, card statement, or UPI wallet, in accordance with standard bank processing times.</li>
+        </ul>
+
+        <h2>4. Contact Support</h2>
+        <p>
+          For any questions, refund queries, or payment issues, please reach out directly to our customer support team:
+        </p>
+        <ul>
+          <li><strong>Email:</strong> <a href="mailto:support@hawkfranklin.in" style="color: var(--accent); font-weight: 600;">support@hawkfranklin.in</a></li>
+          <li><strong>Phone:</strong> +91 9978146918</li>
+          <li><strong>Address:</strong> 5-3, B7/266, Jatipura Classics, Block B, Central Park, Kalyani, West Bengal, 741235</li>
+        </ul>
+      </article>
+    </main>
+
+    <footer>
+      <div class="footer-content" style="width: 100%; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 2.5rem; border-top: 1px solid var(--line); padding-top: 2.5rem; color: var(--muted); font-size: 0.85rem; line-height: 1.6;">
+        <div class="footer-col" style="display: flex; flex-direction: column; gap: 0.8rem;">
+          <div style="display: flex; align-items: center; gap: 0.8rem;">
+            <img class="footer-mark" src="./assets/img/pelliscope.png" alt="PelliScope logo" style="width: 2.35rem; height: 2.35rem; padding: 0.38rem; border-radius: 16px; background: rgba(47, 125, 87, 0.08); border: 1px solid rgba(47, 125, 87, 0.1);" />
+            <strong style="font-size: 1rem; color: var(--text); font-family: 'Plus Jakarta Sans', sans-serif;">PelliScope</strong>
+          </div>
+          <span>Designed to make the first step feel clearer and kinder. An initiative of HawkFranklin Research.</span>
+          <span style="font-size: 0.76rem; color: rgba(22, 35, 27, 0.4); margin-top: 0.5rem;">© 2026 HawkFranklin Research. All rights reserved.</span>
+        </div>
+
+        <div class="footer-col" style="display: flex; flex-direction: column; gap: 0.6rem;">
+          <strong style="font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text); margin-bottom: 0.2rem;">Legal Policies</strong>
+          <a href="./terms.html" style="color: inherit; text-decoration: none; transition: color 0.2s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--muted)'">Terms & Conditions</a>
+          <a href="./privacy.html" style="color: inherit; text-decoration: none; transition: color 0.2s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--muted)'">Privacy Policy</a>
+          <a href="./refunds.html" style="color: inherit; text-decoration: none; transition: color 0.2s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--muted)'">Refund & Cancellation Policy</a>
+        </div>
+
+        <div class="footer-col" style="display: flex; flex-direction: column; gap: 0.6rem;">
+          <strong style="font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text); margin-bottom: 0.2rem;">Contact Support</strong>
+          <span>Email: <a href="mailto:support@hawkfranklin.in" style="color: var(--accent); text-decoration: none; font-weight: 500;">support@hawkfranklin.in</a></span>
+          <span>Phone: +91 9978146918</span>
+          <span style="font-size: 0.8rem; line-height: 1.4;">
+            5-3, B7/266, Jatipura Classics, Block B, Central Park, Kalyani, West Bengal, 741235
+          </span>
+        </div>
+
+        <div class="footer-col" style="display: flex; flex-direction: column; gap: 0.6rem;">
+          <strong style="font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text); margin-bottom: 0.2rem;">Application</strong>
+          <a href="https://app.pelliscope.in" style="color: inherit; text-decoration: none; transition: color 0.2s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--muted)'">Live App: app.pelliscope.in</a>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
