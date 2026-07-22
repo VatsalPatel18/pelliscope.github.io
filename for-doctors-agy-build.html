@@ -1,0 +1,1420 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>PelliScope for Doctors | Consult on your terms</title>
+    <link rel="canonical" href="https://pelliscope.in/for-doctors-agy-build.html" />
+    <meta
+      name="description"
+      content="Join the PelliScope clinician pilot: meet patients through structured digital intake, consult remotely in regions where you are licensed, and build a flexible digital practice."
+    />
+    <meta name="theme-color" content="#f7f2e9" />
+    <link rel="icon" type="image/png" href="./assets/img/pelliscope.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --ink: #162a20;
+        --muted: #5d7166;
+        --paper: #fffaf3;
+        --paper-strong: #fffdf8;
+        --green: #176844;
+        --green-dark: #0d3e2b;
+        --green-soft: #dff3e9;
+        --gold: #d3a54d;
+        --terracotta: #df735b;
+        --line: rgba(22, 63, 43, 0.13);
+        --shadow: 0 26px 72px rgba(25, 54, 39, 0.14);
+        --header-h: 72px;
+        --progress-h: 30px;
+        --sans: "Plus Jakarta Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        --serif: "Fraunces", Georgia, serif;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        overflow: hidden;
+        color: var(--ink);
+        background: #f4f1e9;
+        font-family: var(--sans);
+      }
+
+      button,
+      a {
+        font: inherit;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      button:focus-visible,
+      a:focus-visible {
+        outline: 3px solid rgba(211, 165, 77, 0.72);
+        outline-offset: 3px;
+      }
+
+      .ambient {
+        position: fixed;
+        inset: 0;
+        overflow: hidden;
+        pointer-events: none;
+      }
+
+      .ambient::before,
+      .ambient::after {
+        position: absolute;
+        width: 46vw;
+        aspect-ratio: 1;
+        border-radius: 50%;
+        filter: blur(18px);
+        content: "";
+      }
+
+      .ambient::before {
+        top: -22vw;
+        left: -16vw;
+        background: rgba(144, 211, 179, 0.34);
+      }
+
+      .ambient::after {
+        right: -18vw;
+        bottom: -25vw;
+        background: rgba(238, 191, 114, 0.3);
+      }
+
+      .topbar {
+        position: fixed;
+        inset: 0 0 auto;
+        z-index: 100;
+        height: var(--header-h);
+        border-bottom: 1px solid var(--line);
+        background: rgba(255, 251, 245, 0.88);
+        backdrop-filter: blur(18px);
+        -webkit-backdrop-filter: blur(18px);
+      }
+
+      .topbar-inner {
+        width: min(1380px, calc(100% - 44px));
+        height: 100%;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 24px;
+      }
+
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 11px;
+        min-width: max-content;
+      }
+
+      .brand-mark {
+        width: 42px;
+        height: 42px;
+        padding: 4px;
+        overflow: hidden;
+        border: 1px solid rgba(23, 104, 68, 0.2);
+        border-radius: 13px;
+        background: #fff;
+        box-shadow: 0 6px 18px rgba(22, 56, 38, 0.08);
+      }
+
+      .brand-mark img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+
+      .brand-copy {
+        display: grid;
+        line-height: 1.02;
+      }
+
+      .brand-name {
+        font-size: 1.18rem;
+        font-weight: 800;
+        letter-spacing: -0.04em;
+      }
+
+      .brand-role {
+        margin-top: 4px;
+        color: var(--green);
+        font-size: 0.64rem;
+        font-weight: 800;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
+      .topnav {
+        display: flex;
+        align-items: center;
+        gap: 30px;
+        color: #496055;
+        font-size: 0.9rem;
+        font-weight: 600;
+      }
+
+      .topnav a:hover {
+        color: var(--green);
+      }
+
+      .nav-cta,
+      .button-primary,
+      .button-secondary {
+        min-height: 48px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        border-radius: 15px;
+        padding: 12px 20px;
+        font-size: 0.88rem;
+        font-weight: 800;
+        transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease;
+      }
+
+      .nav-cta,
+      .button-primary {
+        color: #fff;
+        background: var(--green);
+        box-shadow: 0 10px 24px rgba(23, 104, 68, 0.2);
+      }
+
+      .button-secondary {
+        border: 1px solid var(--line);
+        color: var(--ink);
+        background: rgba(255, 255, 255, 0.72);
+      }
+
+      .nav-cta:hover,
+      .button-primary:hover,
+      .button-secondary:hover {
+        transform: translateY(-2px);
+      }
+
+      .progress-shell {
+        position: fixed;
+        top: var(--header-h);
+        right: 0;
+        left: 0;
+        z-index: 90;
+        height: var(--progress-h);
+        display: grid;
+        place-items: center;
+        pointer-events: none;
+      }
+
+      .progress {
+        width: min(720px, calc(100% - 48px));
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        gap: 8px;
+        pointer-events: auto;
+      }
+
+      .progress-step {
+        height: 5px;
+        padding: 0;
+        overflow: hidden;
+        border: 0;
+        border-radius: 999px;
+        cursor: pointer;
+        background: rgba(26, 72, 49, 0.13);
+      }
+
+      .progress-step::after {
+        display: block;
+        width: 0;
+        height: 100%;
+        border-radius: inherit;
+        background: linear-gradient(90deg, var(--green), var(--gold));
+        content: "";
+        transition: width 360ms ease;
+      }
+
+      .progress-step.is-complete::after,
+      .progress-step.is-active::after {
+        width: 100%;
+      }
+
+      .deck {
+        position: relative;
+        z-index: 10;
+        height: calc(100dvh - var(--header-h));
+        margin-top: var(--header-h);
+        overflow-x: hidden;
+        overflow-y: auto;
+        overscroll-behavior-y: contain;
+        scroll-behavior: smooth;
+        scroll-snap-type: y mandatory;
+        scrollbar-width: none;
+      }
+
+      .deck::-webkit-scrollbar {
+        display: none;
+      }
+
+      .slide {
+        position: relative;
+        width: 100%;
+        height: calc(100dvh - var(--header-h));
+        display: grid;
+        place-items: center;
+        padding: calc(var(--progress-h) + 10px) 28px 24px;
+        scroll-snap-align: start;
+        scroll-snap-stop: always;
+      }
+
+      .slide::before {
+        position: absolute;
+        inset: 0;
+        opacity: 0.48;
+        background:
+          radial-gradient(circle at 12% 20%, rgba(175, 225, 199, 0.42), transparent 27rem),
+          radial-gradient(circle at 92% 78%, rgba(239, 196, 125, 0.35), transparent 26rem),
+          linear-gradient(145deg, #f3f8f2 0%, #fffaf3 52%, #f7efe1 100%);
+        content: "";
+      }
+
+      .slide:nth-child(even)::before {
+        background:
+          radial-gradient(circle at 88% 16%, rgba(160, 219, 191, 0.35), transparent 26rem),
+          radial-gradient(circle at 10% 82%, rgba(230, 172, 132, 0.24), transparent 24rem),
+          linear-gradient(145deg, #fffaf3 0%, #edf7f1 58%, #f8f1e5 100%);
+      }
+
+      .stage {
+        position: relative;
+        width: min(1180px, 94vw);
+        height: min(700px, calc(100dvh - var(--header-h) - var(--progress-h) - 52px));
+        display: grid;
+        grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+        gap: clamp(28px, 4vw, 64px);
+        align-items: center;
+        overflow: hidden;
+        border: 1px solid rgba(255, 255, 255, 0.82);
+        border-radius: 34px;
+        padding: clamp(30px, 4vw, 52px);
+        background: rgba(255, 252, 247, 0.79);
+        box-shadow: var(--shadow);
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
+      }
+
+      .stage::before {
+        position: absolute;
+        inset: 0 0 auto;
+        height: 4px;
+        background: linear-gradient(90deg, var(--green), var(--gold), var(--terracotta));
+        content: "";
+      }
+
+      .copy,
+      .visual {
+        position: relative;
+        z-index: 1;
+        min-width: 0;
+      }
+
+      .eyebrow {
+        width: fit-content;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        margin: 0 0 18px;
+        border: 1px solid rgba(23, 104, 68, 0.18);
+        border-radius: 999px;
+        padding: 7px 11px;
+        color: #15593d;
+        background: rgba(223, 243, 233, 0.8);
+        font-size: 0.68rem;
+        font-weight: 800;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+      }
+
+      .eyebrow::before {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: var(--green);
+        box-shadow: 0 0 0 5px rgba(23, 104, 68, 0.08);
+        content: "";
+      }
+
+      h1,
+      h2 {
+        margin: 0;
+        font-family: var(--serif);
+        font-size: clamp(2.35rem, 4vw, 4.25rem);
+        font-weight: 600;
+        line-height: 0.98;
+        letter-spacing: -0.055em;
+      }
+
+      .accent {
+        color: var(--green);
+        font-style: italic;
+      }
+
+      .lede {
+        max-width: 590px;
+        margin: 22px 0 0;
+        color: var(--muted);
+        font-size: clamp(0.98rem, 1.35vw, 1.08rem);
+        line-height: 1.66;
+      }
+
+      .points {
+        display: grid;
+        gap: 12px;
+        margin: 24px 0 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .points li {
+        display: grid;
+        grid-template-columns: 24px 1fr;
+        gap: 11px;
+        align-items: start;
+        font-size: 0.91rem;
+        line-height: 1.45;
+      }
+
+      .check {
+        width: 24px;
+        height: 24px;
+        display: grid;
+        place-items: center;
+        border-radius: 8px;
+        color: var(--green);
+        background: var(--green-soft);
+        font-size: 0.78rem;
+        font-weight: 900;
+      }
+
+      .actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 26px;
+      }
+
+      .microcopy {
+        margin: 14px 0 0;
+        color: #748278;
+        font-size: 0.72rem;
+        line-height: 1.45;
+      }
+
+      .visual {
+        height: min(490px, 60vh);
+        display: grid;
+        place-items: center;
+      }
+
+      .browser {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        max-height: 470px;
+        overflow: hidden;
+        border: 1px solid var(--line);
+        border-radius: 24px;
+        background: #fff;
+        box-shadow: 0 24px 60px rgba(19, 48, 32, 0.17);
+      }
+
+      .browser-head {
+        height: 42px;
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        border-bottom: 1px solid var(--line);
+        padding: 0 15px;
+        color: #547063;
+        background: #f8f3ea;
+        font-size: 0.7rem;
+        font-weight: 700;
+      }
+
+      .browser-head span:not(.browser-label) {
+        width: 9px;
+        height: 9px;
+        flex: 0 0 auto;
+        border-radius: 50%;
+      }
+
+      .browser-head span:nth-child(1) { background: var(--terracotta); }
+      .browser-head span:nth-child(2) { background: #e9b864; }
+      .browser-head span:nth-child(3) { background: #5bae83; }
+
+      .browser-label {
+        margin-left: auto;
+      }
+
+      .browser img {
+        width: 100%;
+        height: calc(100% - 42px);
+        display: block;
+        object-fit: cover;
+        object-position: top;
+      }
+
+      .float-card {
+        position: absolute;
+        right: -18px;
+        bottom: 30px;
+        max-width: 230px;
+        border: 1px solid rgba(23, 104, 68, 0.17);
+        border-radius: 20px;
+        padding: 17px 18px;
+        background: rgba(255, 253, 248, 0.96);
+        box-shadow: 0 18px 44px rgba(20, 52, 35, 0.16);
+      }
+
+      .float-card strong {
+        display: block;
+        color: var(--green);
+        font-family: var(--serif);
+        font-size: 1.45rem;
+        line-height: 1.05;
+      }
+
+      .float-card span {
+        display: block;
+        margin-top: 6px;
+        color: var(--muted);
+        font-size: 0.72rem;
+        line-height: 1.35;
+      }
+
+      .connection-map {
+        width: min(100%, 510px);
+        display: grid;
+        grid-template-columns: 1fr 82px 1fr;
+        align-items: center;
+      }
+
+      .person-card {
+        min-height: 230px;
+        display: grid;
+        align-content: center;
+        justify-items: center;
+        gap: 12px;
+        border: 1px solid var(--line);
+        border-radius: 28px;
+        padding: 24px 18px;
+        text-align: center;
+        background: rgba(255, 255, 255, 0.78);
+        box-shadow: 0 18px 50px rgba(27, 61, 42, 0.1);
+      }
+
+      .avatar {
+        width: 68px;
+        height: 68px;
+        display: grid;
+        place-items: center;
+        border-radius: 24px;
+        color: #fff;
+        background: var(--green);
+        font-family: var(--serif);
+        font-size: 1.7rem;
+      }
+
+      .person-card:last-child .avatar {
+        color: var(--green-dark);
+        background: #e8c98c;
+      }
+
+      .person-card strong {
+        font-size: 0.94rem;
+      }
+
+      .person-card small {
+        color: var(--muted);
+        font-size: 0.72rem;
+        line-height: 1.45;
+      }
+
+      .connector {
+        position: relative;
+        height: 2px;
+        background: linear-gradient(90deg, var(--green), var(--gold));
+      }
+
+      .connector::after {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 36px;
+        height: 36px;
+        display: grid;
+        place-items: center;
+        border: 1px solid var(--line);
+        border-radius: 50%;
+        color: var(--green);
+        background: var(--paper-strong);
+        box-shadow: 0 8px 20px rgba(24, 64, 43, 0.12);
+        content: "↔";
+        font-weight: 800;
+        transform: translate(-50%, -50%);
+      }
+
+      .availability {
+        width: min(100%, 500px);
+        display: grid;
+        gap: 14px;
+      }
+
+      .availability-card {
+        display: grid;
+        grid-template-columns: 58px 1fr auto;
+        gap: 15px;
+        align-items: center;
+        border: 1px solid var(--line);
+        border-radius: 20px;
+        padding: 15px;
+        background: rgba(255, 255, 255, 0.8);
+        box-shadow: 0 13px 36px rgba(26, 60, 41, 0.09);
+      }
+
+      .day {
+        display: grid;
+        place-items: center;
+        border-radius: 14px;
+        padding: 10px 4px;
+        color: var(--green);
+        background: var(--green-soft);
+        font-size: 0.7rem;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .availability-card strong,
+      .availability-card small {
+        display: block;
+      }
+
+      .availability-card strong {
+        font-size: 0.87rem;
+      }
+
+      .availability-card small {
+        margin-top: 4px;
+        color: var(--muted);
+        font-size: 0.7rem;
+      }
+
+      .status {
+        border-radius: 999px;
+        padding: 7px 10px;
+        color: var(--green);
+        background: var(--green-soft);
+        font-size: 0.65rem;
+        font-weight: 800;
+      }
+
+      .workspace-stack {
+        position: relative;
+        width: min(100%, 510px);
+        height: 390px;
+      }
+
+      .workspace-card {
+        position: absolute;
+        width: 74%;
+        min-height: 240px;
+        display: grid;
+        align-content: space-between;
+        border: 1px solid var(--line);
+        border-radius: 27px;
+        padding: 24px;
+        background: rgba(255, 255, 255, 0.93);
+        box-shadow: 0 22px 52px rgba(27, 60, 41, 0.14);
+      }
+
+      .workspace-card:nth-child(1) {
+        top: 0;
+        left: 0;
+        transform: rotate(-4deg);
+      }
+
+      .workspace-card:nth-child(2) {
+        right: 0;
+        bottom: 0;
+        transform: rotate(4deg);
+      }
+
+      .workspace-card .mini-logo {
+        width: 45px;
+        height: 45px;
+        display: grid;
+        place-items: center;
+        border-radius: 15px;
+        color: #fff;
+        background: var(--green);
+        font-family: var(--serif);
+        font-size: 1.2rem;
+      }
+
+      .workspace-card:nth-child(2) .mini-logo {
+        color: #70471d;
+        background: #f3d49b;
+      }
+
+      .workspace-card h3 {
+        margin: 30px 0 8px;
+        font-family: var(--serif);
+        font-size: 1.5rem;
+      }
+
+      .workspace-card p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 0.76rem;
+        line-height: 1.5;
+      }
+
+      .pilot-card {
+        width: min(100%, 500px);
+        border: 1px solid rgba(23, 104, 68, 0.18);
+        border-radius: 30px;
+        padding: clamp(28px, 4vw, 46px);
+        background: linear-gradient(150deg, var(--green-dark), #176844);
+        color: #fff;
+        box-shadow: 0 28px 68px rgba(18, 63, 42, 0.25);
+      }
+
+      .pilot-card .pilot-label {
+        color: #bde2ce;
+        font-size: 0.7rem;
+        font-weight: 800;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
+      .pilot-card h3 {
+        margin: 18px 0 0;
+        font-family: var(--serif);
+        font-size: clamp(2rem, 3vw, 3rem);
+        line-height: 1.02;
+      }
+
+      .pilot-card ul {
+        display: grid;
+        gap: 12px;
+        margin: 24px 0 0;
+        padding: 0;
+        list-style: none;
+        color: #e4f1e9;
+        font-size: 0.84rem;
+      }
+
+      .pilot-card li::before {
+        margin-right: 9px;
+        color: #e9bf72;
+        content: "✓";
+        font-weight: 900;
+      }
+
+      .reveal {
+        opacity: 0;
+        transform: translateY(22px);
+        transition: opacity 520ms ease, transform 520ms cubic-bezier(0.22, 1, 0.36, 1);
+        transition-delay: var(--delay, 0ms);
+      }
+
+      .slide.is-active .reveal {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .side-controls {
+        position: fixed;
+        top: 50%;
+        right: 24px;
+        z-index: 80;
+        display: grid;
+        gap: 10px;
+        transform: translateY(-50%);
+      }
+
+      .side-controls button {
+        width: 46px;
+        height: 46px;
+        border: 1px solid var(--line);
+        border-radius: 50%;
+        cursor: pointer;
+        color: var(--ink);
+        background: rgba(255, 253, 248, 0.9);
+        box-shadow: 0 11px 28px rgba(23, 55, 37, 0.12);
+        font-size: 1rem;
+      }
+
+      .side-controls button:disabled {
+        cursor: default;
+        opacity: 0.32;
+      }
+
+      @media (max-width: 900px) {
+        :root {
+          --header-h: 64px;
+          --progress-h: 28px;
+        }
+
+        .topbar-inner {
+          width: calc(100% - 24px);
+        }
+
+        .topnav a:not(.nav-cta) {
+          display: none;
+        }
+
+        .slide {
+          padding: calc(var(--progress-h) + 4px) 12px 10px;
+        }
+
+        .stage {
+          width: 100%;
+          height: calc(100dvh - var(--header-h) - var(--progress-h) - 14px);
+          grid-template-columns: 1fr;
+          grid-template-rows: max-content minmax(0, 1fr);
+          gap: 14px;
+          align-items: stretch;
+          border-radius: 26px;
+          padding: 22px 20px 18px;
+        }
+
+        .copy {
+          align-self: start;
+          min-height: min-content;
+        }
+
+        .visual {
+          height: auto;
+          min-height: 0;
+          align-self: stretch;
+        }
+
+        h1,
+        h2 {
+          font-size: clamp(2rem, 8.7vw, 2.75rem);
+          line-height: 1.01;
+        }
+
+        .eyebrow {
+          margin-bottom: 13px;
+          padding: 6px 9px;
+          font-size: 0.6rem;
+        }
+
+        .lede {
+          margin-top: 14px;
+          font-size: 0.88rem;
+          line-height: 1.5;
+        }
+
+        .points {
+          gap: 8px;
+          margin-top: 15px;
+        }
+
+        .points li {
+          grid-template-columns: 21px 1fr;
+          gap: 9px;
+          font-size: 0.78rem;
+          line-height: 1.38;
+        }
+
+        .check {
+          width: 21px;
+          height: 21px;
+          border-radius: 7px;
+          font-size: 0.66rem;
+        }
+
+        .actions {
+          gap: 9px;
+          margin-top: 16px;
+        }
+
+        .button-primary,
+        .button-secondary {
+          min-height: 44px;
+          flex: 1 1 140px;
+          padding: 10px 14px;
+          font-size: 0.78rem;
+        }
+
+        .microcopy {
+          display: none;
+        }
+
+        .browser {
+          max-height: none;
+          border-radius: 18px;
+        }
+
+        .browser-head {
+          height: 31px;
+          padding: 0 11px;
+          font-size: 0.58rem;
+        }
+
+        .browser img {
+          height: calc(100% - 31px);
+        }
+
+        .float-card {
+          right: 8px;
+          bottom: 10px;
+          max-width: 170px;
+          border-radius: 15px;
+          padding: 11px 12px;
+        }
+
+        .float-card strong {
+          font-size: 1.08rem;
+        }
+
+        .connection-map {
+          grid-template-columns: 1fr 52px 1fr;
+        }
+
+        .person-card {
+          min-height: 150px;
+          gap: 8px;
+          border-radius: 20px;
+          padding: 13px 9px;
+        }
+
+        .avatar {
+          width: 48px;
+          height: 48px;
+          border-radius: 17px;
+          font-size: 1.2rem;
+        }
+
+        .person-card strong {
+          font-size: 0.73rem;
+        }
+
+        .person-card small {
+          font-size: 0.59rem;
+        }
+
+        .availability {
+          gap: 8px;
+        }
+
+        .availability-card {
+          grid-template-columns: 46px 1fr auto;
+          gap: 10px;
+          border-radius: 15px;
+          padding: 9px;
+        }
+
+        .day {
+          padding: 8px 2px;
+          font-size: 0.58rem;
+        }
+
+        .availability-card strong {
+          font-size: 0.7rem;
+        }
+
+        .availability-card small,
+        .status {
+          font-size: 0.56rem;
+        }
+
+        .workspace-stack {
+          height: 100%;
+          max-height: 260px;
+        }
+
+        .workspace-card {
+          min-height: 150px;
+          border-radius: 18px;
+          padding: 15px;
+        }
+
+        .workspace-card .mini-logo {
+          width: 34px;
+          height: 34px;
+          border-radius: 11px;
+          font-size: 0.9rem;
+        }
+
+        .workspace-card h3 {
+          margin: 18px 0 5px;
+          font-size: 1rem;
+        }
+
+        .workspace-card p {
+          font-size: 0.59rem;
+        }
+
+        .pilot-card {
+          align-self: center;
+          border-radius: 22px;
+          padding: 22px;
+        }
+
+        .pilot-card h3 {
+          margin-top: 12px;
+          font-size: 1.8rem;
+        }
+
+        .pilot-card ul {
+          gap: 8px;
+          margin-top: 16px;
+          font-size: 0.72rem;
+        }
+
+        .side-controls {
+          display: none;
+        }
+      }
+
+      @media (max-width: 520px) {
+        .brand-mark {
+          width: 38px;
+          height: 38px;
+        }
+
+        .brand-name {
+          font-size: 1rem;
+        }
+
+        .brand-role {
+          display: none;
+        }
+
+        .nav-cta {
+          min-height: 42px;
+          padding: 10px 14px;
+          border-radius: 14px;
+          font-size: 0.76rem;
+        }
+
+        .progress {
+          width: calc(100% - 38px);
+          gap: 5px;
+        }
+      }
+
+      @media (max-height: 720px) and (max-width: 900px) {
+        .stage {
+          gap: 9px;
+          padding: 16px 17px 14px;
+        }
+
+        .eyebrow {
+          margin-bottom: 8px;
+        }
+
+        h1,
+        h2 {
+          font-size: clamp(1.72rem, 7.6vw, 2.2rem);
+        }
+
+        .lede {
+          margin-top: 9px;
+          font-size: 0.77rem;
+        }
+
+        .points {
+          display: none;
+        }
+
+        .actions {
+          margin-top: 11px;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          scroll-behavior: auto !important;
+          transition-duration: 0.01ms !important;
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="ambient" aria-hidden="true"></div>
+
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="./index.html" aria-label="PelliScope home">
+          <span class="brand-mark"><img src="./assets/img/pelliscope.png" alt="" /></span>
+          <span class="brand-copy">
+            <span class="brand-name">PelliScope</span>
+            <span class="brand-role">Clinician network</span>
+          </span>
+        </a>
+
+        <nav class="topnav" aria-label="Primary navigation">
+          <a href="./index.html">Patient view</a>
+          <a href="./for-clinics.html">For clinics</a>
+          <a href="./pricing.html">Pricing</a>
+          <a class="nav-cta" href="https://app.pelliscope.in" target="_blank" rel="noopener">
+            Doctor sign in <span aria-hidden="true">→</span>
+          </a>
+        </nav>
+      </div>
+    </header>
+
+    <div class="progress-shell" aria-label="Story progress">
+      <div class="progress">
+        <button class="progress-step is-active" type="button" data-slide="0" aria-label="Go to slide 1"></button>
+        <button class="progress-step" type="button" data-slide="1" aria-label="Go to slide 2"></button>
+        <button class="progress-step" type="button" data-slide="2" aria-label="Go to slide 3"></button>
+        <button class="progress-step" type="button" data-slide="3" aria-label="Go to slide 4"></button>
+        <button class="progress-step" type="button" data-slide="4" aria-label="Go to slide 5"></button>
+        <button class="progress-step" type="button" data-slide="5" aria-label="Go to slide 6"></button>
+        <button class="progress-step" type="button" data-slide="6" aria-label="Go to slide 7"></button>
+      </div>
+    </div>
+
+    <main class="deck" id="deck">
+      <section class="slide is-active" id="slide-1" aria-labelledby="title-1">
+        <div class="stage">
+          <div class="copy">
+            <p class="eyebrow reveal" style="--delay: 40ms">15-second story · 01</p>
+            <h1 class="reveal" id="title-1" style="--delay: 100ms">
+              Your next consultation can start <span class="accent">anywhere.</span>
+            </h1>
+            <p class="lede reveal" style="--delay: 170ms">
+              Set your availability, receive structured skin-concern cases, and consult from your phone or laptop in regions where you are licensed.
+            </p>
+            <ul class="points reveal" style="--delay: 230ms">
+              <li><span class="check">✓</span><span><strong>Your schedule.</strong> Open hours only when they work for you.</span></li>
+              <li><span class="check">✓</span><span><strong>Your scope.</strong> Accept cases suited to your practice.</span></li>
+              <li><span class="check">✓</span><span><strong>Your professional fee.</strong> Make remote clinical time worthwhile.</span></li>
+            </ul>
+            <div class="actions reveal" style="--delay: 290ms">
+              <a class="button-primary" href="mailto:partnerships@hawkfranklin.in?subject=PelliScope%20European%20Clinician%20Pilot">Join clinician pilot <span aria-hidden="true">→</span></a>
+              <a class="button-secondary" href="#slide-2" data-jump="1">See how it works ↓</a>
+            </div>
+            <p class="microcopy reveal" style="--delay: 330ms">Pilot access is subject to credential and regional eligibility review.</p>
+          </div>
+
+          <div class="visual reveal" style="--delay: 180ms">
+            <div class="browser">
+              <div class="browser-head">
+                <span></span><span></span><span></span>
+                <span class="browser-label">PelliScope clinician workspace</span>
+              </div>
+              <img src="./pelliscope-demo-page-screenshots/doctor/05_dashboard-new-case.jpg" alt="PelliScope clinician dashboard showing an organized case queue" />
+            </div>
+            <div class="float-card">
+              <strong>You choose when.</strong>
+              <span>Turn available clinical hours into remote consultations.</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide" id="slide-2" aria-labelledby="title-2">
+        <div class="stage">
+          <div class="copy">
+            <p class="eyebrow reveal" style="--delay: 40ms">Structured intake · 02</p>
+            <h2 class="reveal" id="title-2" style="--delay: 100ms">
+              Less inbox chasing. <span class="accent">More clinical time.</span>
+            </h2>
+            <p class="lede reveal" style="--delay: 170ms">
+              Before you open a case, the patient has already shared guided photographs, symptoms, duration, and the reason they are seeking help.
+            </p>
+            <ul class="points reveal" style="--delay: 230ms">
+              <li><span class="check">1</span><span>Patients follow one consistent intake flow.</span></li>
+              <li><span class="check">2</span><span>PelliScope organises the information into a readable case.</span></li>
+              <li><span class="check">3</span><span>You interpret, communicate, and make every clinical decision.</span></li>
+            </ul>
+          </div>
+
+          <div class="visual reveal" style="--delay: 180ms">
+            <div class="browser">
+              <div class="browser-head">
+                <span></span><span></span><span></span>
+                <span class="browser-label">One structured case</span>
+              </div>
+              <img src="./pelliscope-demo-page-screenshots/doctor/08_case-detail-selected-image.jpg" alt="Structured patient case with photographs and history in the clinician workspace" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide" id="slide-3" aria-labelledby="title-3">
+        <div class="stage">
+          <div class="copy">
+            <p class="eyebrow reveal" style="--delay: 40ms">The connection layer · 03</p>
+            <h2 class="reveal" id="title-3" style="--delay: 100ms">
+              Meet patients when they need <span class="accent">direction.</span>
+            </h2>
+            <p class="lede reveal" style="--delay: 170ms">
+              PelliScope is a trusted connection layer between people with skin concerns and participating clinicians—not a public social feed and not a replacement for medical judgment.
+            </p>
+            <ul class="points reveal" style="--delay: 230ms">
+              <li><span class="check">✓</span><span>Patients remain in control of who receives their case.</span></li>
+              <li><span class="check">✓</span><span>Clinicians see requests appropriate to their licensed region.</span></li>
+              <li><span class="check">✓</span><span>Private health information stays inside the consultation workflow.</span></li>
+            </ul>
+          </div>
+
+          <div class="visual reveal" style="--delay: 180ms">
+            <div class="connection-map" aria-label="Patient connected securely to a clinician through PelliScope">
+              <article class="person-card">
+                <span class="avatar" aria-hidden="true">P</span>
+                <strong>Patient</strong>
+                <small>Shares a concern and chooses a clinician.</small>
+              </article>
+              <div class="connector" aria-hidden="true"></div>
+              <article class="person-card">
+                <span class="avatar" aria-hidden="true">Dr</span>
+                <strong>Licensed clinician</strong>
+                <small>Reviews, consults, and decides the next step.</small>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide" id="slide-4" aria-labelledby="title-4">
+        <div class="stage">
+          <div class="copy">
+            <p class="eyebrow reveal" style="--delay: 40ms">Remote consultation · 04</p>
+            <h2 class="reveal" id="title-4" style="--delay: 100ms">
+              One case file. <span class="accent">A human conversation.</span>
+            </h2>
+            <p class="lede reveal" style="--delay: 170ms">
+              Move from intake to clinician review through one continuous case thread. Keep the patient’s photographs, history, notes, and follow-up together.
+            </p>
+            <ul class="points reveal" style="--delay: 230ms">
+              <li><span class="check">✓</span><span>Review the concern before the consultation begins.</span></li>
+              <li><span class="check">✓</span><span>Ask focused follow-up questions instead of repeating intake.</span></li>
+              <li><span class="check">✓</span><span>Recommend a digital follow-up or an in-person examination.</span></li>
+            </ul>
+          </div>
+
+          <div class="visual reveal" style="--delay: 180ms">
+            <div class="browser">
+              <div class="browser-head">
+                <span></span><span></span><span></span>
+                <span class="browser-label">Review and follow-up</span>
+              </div>
+              <img src="./pelliscope-demo-page-screenshots/doctor/07_case-detail-image-loaded.jpg" alt="Clinician review screen with a patient case and care notes" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide" id="slide-5" aria-labelledby="title-5">
+        <div class="stage">
+          <div class="copy">
+            <p class="eyebrow reveal" style="--delay: 40ms">Flexible practice · 05</p>
+            <h2 class="reveal" id="title-5" style="--delay: 100ms">
+              Make spare clinical hours <span class="accent">useful.</span>
+            </h2>
+            <p class="lede reveal" style="--delay: 170ms">
+              Offer remote availability around your existing work. Accept only the cases you have time and the appropriate professional scope to review.
+            </p>
+            <ul class="points reveal" style="--delay: 230ms">
+              <li><span class="check">✓</span><span>Choose recurring hours or open a short consultation window.</span></li>
+              <li><span class="check">✓</span><span>See the consultation terms before accepting a case.</span></li>
+              <li><span class="check">✓</span><span>Build additional income from completed consultations.</span></li>
+            </ul>
+          </div>
+
+          <div class="visual reveal" style="--delay: 180ms">
+            <div class="availability" aria-label="Example flexible clinician schedule">
+              <article class="availability-card">
+                <span class="day">Tue</span>
+                <span><strong>Evening consultation window</strong><small>18:30–20:00 · Remote</small></span>
+                <span class="status">Open</span>
+              </article>
+              <article class="availability-card">
+                <span class="day">Thu</span>
+                <span><strong>After-clinic reviews</strong><small>19:00–21:00 · Remote</small></span>
+                <span class="status">Open</span>
+              </article>
+              <article class="availability-card">
+                <span class="day">Sat</span>
+                <span><strong>Weekend case review</strong><small>10:00–12:00 · Remote</small></span>
+                <span class="status">Open</span>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide" id="slide-6" aria-labelledby="title-6">
+        <div class="stage">
+          <div class="copy">
+            <p class="eyebrow reveal" style="--delay: 40ms">Independent or clinic-led · 06</p>
+            <h2 class="reveal" id="title-6" style="--delay: 100ms">
+              Your practice. Your name. <span class="accent">One workspace.</span>
+            </h2>
+            <p class="lede reveal" style="--delay: 170ms">
+              Start as an independent clinician or bring PelliScope into an established clinic. The care relationship remains yours.
+            </p>
+            <ul class="points reveal" style="--delay: 230ms">
+              <li><span class="check">✓</span><span>A professional profile for independent consultations.</span></li>
+              <li><span class="check">✓</span><span>A clinic-branded entry point for existing patients.</span></li>
+              <li><span class="check">✓</span><span>One organised workspace as the practice grows.</span></li>
+            </ul>
+            <div class="actions reveal" style="--delay: 290ms">
+              <a class="button-secondary" href="./for-clinics.html">Explore clinic setup →</a>
+            </div>
+          </div>
+
+          <div class="visual reveal" style="--delay: 180ms">
+            <div class="workspace-stack" aria-label="Independent clinician and clinic-branded workspace options">
+              <article class="workspace-card">
+                <span class="mini-logo">Dr</span>
+                <div><h3>Independent practice</h3><p>Your availability, patient cases, consultation record, and professional identity.</p></div>
+              </article>
+              <article class="workspace-card">
+                <span class="mini-logo">C</span>
+                <div><h3>Clinic workspace</h3><p>Your clinic name, patient entry point, and shared care workflow.</p></div>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide" id="slide-7" aria-labelledby="title-7">
+        <div class="stage">
+          <div class="copy">
+            <p class="eyebrow reveal" style="--delay: 40ms">European clinician pilot · 07</p>
+            <h2 class="reveal" id="title-7" style="--delay: 100ms">
+              Help shape a better way to deliver <span class="accent">digital dermatology.</span>
+            </h2>
+            <p class="lede reveal" style="--delay: 170ms">
+              We are inviting licensed dermatologists and clinics to test structured remote consultations and help us build country by country.
+            </p>
+            <div class="actions reveal" style="--delay: 230ms">
+              <a class="button-primary" href="mailto:partnerships@hawkfranklin.in?subject=PelliScope%20European%20Clinician%20Pilot&amp;body=Hello%20PelliScope%20team%2C%0A%0AI%20am%20interested%20in%20the%20European%20clinician%20pilot.%0A%0ACountry%20of%20practice%3A%0ASpecialty%3A%0AProfessional%20registration%3A%0A">Apply to the pilot →</a>
+              <a class="button-secondary" href="https://app.pelliscope.in" target="_blank" rel="noopener">Open doctor portal</a>
+            </div>
+            <p class="microcopy reveal" style="--delay: 290ms">PelliScope supports connection, intake, and consultation workflow. Clinicians retain responsibility for all professional decisions.</p>
+          </div>
+
+          <div class="visual reveal" style="--delay: 180ms">
+            <article class="pilot-card">
+              <span class="pilot-label">Founding clinician group</span>
+              <h3>Build it with us.</h3>
+              <ul>
+                <li>Credential and regional eligibility review</li>
+                <li>Direct product feedback sessions</li>
+                <li>Early access to consultation tools</li>
+                <li>Country-by-country rollout</li>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div class="side-controls" aria-label="Slide controls">
+      <button id="previous" type="button" aria-label="Previous slide">↑</button>
+      <button id="next" type="button" aria-label="Next slide">↓</button>
+    </div>
+
+    <script>
+      (() => {
+        const deck = document.getElementById("deck");
+        const slides = Array.from(document.querySelectorAll(".slide"));
+        const steps = Array.from(document.querySelectorAll(".progress-step"));
+        const previous = document.getElementById("previous");
+        const next = document.getElementById("next");
+        const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        let activeIndex = 0;
+
+        function setActive(index) {
+          activeIndex = index;
+          slides.forEach((slide, slideIndex) => slide.classList.toggle("is-active", slideIndex === index));
+          steps.forEach((step, stepIndex) => {
+            step.classList.toggle("is-active", stepIndex === index);
+            step.classList.toggle("is-complete", stepIndex < index);
+            step.setAttribute("aria-current", stepIndex === index ? "step" : "false");
+          });
+          previous.disabled = index === 0;
+          next.disabled = index === slides.length - 1;
+        }
+
+        function goTo(index) {
+          if (index < 0 || index >= slides.length) return;
+          slides[index].scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "start" });
+        }
+
+        const observer = new IntersectionObserver(
+          (entries) => {
+            const visible = entries
+              .filter((entry) => entry.isIntersecting)
+              .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+            if (visible) setActive(slides.indexOf(visible.target));
+          },
+          { root: deck, threshold: [0.55, 0.72] }
+        );
+
+        slides.forEach((slide) => observer.observe(slide));
+        steps.forEach((step) => step.addEventListener("click", () => goTo(Number(step.dataset.slide))));
+        document.querySelectorAll("[data-jump]").forEach((link) => {
+          link.addEventListener("click", (event) => {
+            event.preventDefault();
+            goTo(Number(link.dataset.jump));
+          });
+        });
+
+        previous.addEventListener("click", () => goTo(activeIndex - 1));
+        next.addEventListener("click", () => goTo(activeIndex + 1));
+
+        window.addEventListener("keydown", (event) => {
+          if (["ArrowDown", "PageDown", " "].includes(event.key)) {
+            event.preventDefault();
+            goTo(activeIndex + 1);
+          }
+          if (["ArrowUp", "PageUp"].includes(event.key)) {
+            event.preventDefault();
+            goTo(activeIndex - 1);
+          }
+          if (event.key === "Home") goTo(0);
+          if (event.key === "End") goTo(slides.length - 1);
+        });
+
+        setActive(0);
+
+        const initialSlide = slides.findIndex((slide) => `#${slide.id}` === window.location.hash);
+        if (initialSlide > 0) {
+          window.setTimeout(() => goTo(initialSlide), 0);
+        }
+      })();
+    </script>
+  </body>
+</html>
