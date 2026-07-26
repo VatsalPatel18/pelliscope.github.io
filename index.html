@@ -458,6 +458,15 @@
         line-height: 1.5;
       }
 
+      .hero-badge a {
+        display: inline-block;
+        margin-top: 0.55rem;
+        color: #1f5a3f;
+        font-size: 0.78rem;
+        font-weight: 750;
+        text-decoration: none;
+      }
+
       .hero-badge.left {
         top: 1.4rem;
         left: -3rem;
@@ -2408,8 +2417,8 @@
             </div>
 
             <div class="hero-offer-grid" aria-label="Product highlights">
-              <div class="hero-offer">Free check-up for infectious screening</div>
-              <div class="hero-offer">Paid pathway for differential diagnosis</div>
+              <div class="hero-offer">Secure preparation for dermatologist review</div>
+              <div class="hero-offer">₹399 clinician consultation when requested</div>
               <div class="hero-offer">Runs on everyday clinic hardware</div>
               <div class="hero-offer">Works in patchy-network settings</div>
             </div>
@@ -2423,9 +2432,10 @@
                     <path d="M12 2v20M2 12h20M5 5l14 14M19 5L5 19"/>
                   </svg>
                 </span>
-                <strong>Validated</strong>
+                <strong>Research transparency</strong>
               </div>
-              <p>80.2% balanced accuracy on technical validation set.</p>
+              <p>Internal validation published as a preprint, with limitations stated clearly.</p>
+              <a href="./clinical-validation.html">Read methods and limitations →</a>
             </div>
 
             <div class="workflow-sim" aria-hidden="true">
@@ -2515,75 +2525,72 @@
                     <h3>Efficient Tele-Medicine</h3>
                     <p class="proof-subtitle">Workflow comparison</p>
                   </div>
-                  <span class="workflow-badge">+10 patients / 5hr shift</span>
+                  <span class="workflow-badge">Illustrative workflow</span>
                 </div>
 
                 <div class="timeline-block">
                   <div class="timeline-head">
-                    <span>Traditional (No AI)</span>
-                    <span>10 min / patient</span>
+                    <span>Unstructured intake</span>
+                    <span>Before consultation</span>
                   </div>
                   <div class="timeline-bar">
-                    <div class="timeline-fill">Consultation (10m)</div>
+                    <div class="timeline-fill">History gathering during consultation</div>
                   </div>
                   <div class="timeline-foot">
                     <p></p>
-                    <span>6 patients / hour</span>
+                    <span>Baseline varies by clinic</span>
                   </div>
                 </div>
 
                 <div class="timeline-block">
                   <div class="timeline-head" style="color:#1f5a3f;">
-                    <span>With PelliScope</span>
-                    <span>~10 min total (parallelized)</span>
+                    <span>Structured PelliScope intake</span>
+                    <span>Prepared before review</span>
                   </div>
                   <div class="timeline-bar" style="gap:0.3rem; background:transparent;">
-                    <div class="timeline-split one">Preliminary diagnosis (3m)</div>
-                    <div class="timeline-split two">Focused consult (7m)</div>
+                    <div class="timeline-split one">Photos + context</div>
+                    <div class="timeline-split two">Clinician review</div>
                   </div>
                   <div class="timeline-foot">
-                    <p class="metric-copy">AI triage saves 3 mins of discovery time per patient.</p>
-                    <span>8 patients / hour</span>
+                    <p class="metric-copy">Actual time savings must be measured prospectively in each clinical setting.</p>
+                    <span>No throughput guarantee</span>
                   </div>
                 </div>
               </article>
 
               <article class="proof-card">
-                <h3>Model performance (AUC)</h3>
-                <p class="proof-subtitle">Zero-shot comparison on dermatology benchmarks</p>
+                <h3>Internal validation, clearly labelled</h3>
+                <p class="proof-subtitle">Case-level research model evaluated on the public SCIN dataset</p>
 
                 <div class="bars">
                   <div class="bar-row">
-                    <label>Grok-4</label>
-                    <div class="bar-track"><div class="bar-fill grok"></div></div>
-                    <strong>0.70</strong>
+                    <label>Cases</label>
+                    <div class="bar-track"><div class="bar-fill pelli" style="width:100%"></div></div>
+                    <strong>2,336</strong>
                   </div>
                   <div class="bar-row">
-                    <label>GPT-5</label>
-                    <div class="bar-track"><div class="bar-fill gpt"></div></div>
-                    <strong>0.81</strong>
+                    <label>Locked test micro AUC</label>
+                    <div class="bar-track"><div class="bar-fill pelli" style="width:84.9%"></div></div>
+                    <strong>0.849</strong>
                   </div>
                   <div class="bar-row">
-                    <label>Gemini 2.5</label>
-                    <div class="bar-track"><div class="bar-fill gemini"></div></div>
-                    <strong>0.82</strong>
-                  </div>
-                  <div class="bar-row">
-                    <label style="color:#1f5a3f;">PelliScope</label>
-                    <div class="bar-track" style="height:1.2rem;"><div class="bar-fill pelli"></div></div>
-                    <strong style="color:#1f5a3f;">0.86</strong>
+                    <label>Locked test macro AUC</label>
+                    <div class="bar-track"><div class="bar-fill pelli" style="width:80%"></div></div>
+                    <strong>0.800</strong>
                   </div>
                 </div>
 
                 <div class="chip-row">
-                  <span class="workflow-badge">Technical accuracy: 80.2%</span>
-                  <span class="status-chip">Infectious vs non-infectious flag</span>
+                  <span class="workflow-badge">Internal validation only</span>
+                  <span class="status-chip">Preprint · not peer reviewed</span>
                 </div>
 
                 <div class="condition-list">
-                  <strong style="color:var(--text);">10-condition panel</strong><br />
-                  Eczema, Allergic Contact Dermatitis, Insect Bite, Urticaria, Psoriasis, Folliculitis, Irritant
-                  Contact Dermatitis, Tinea, Herpes Zoster, Drug Rash.
+                  AUC measures ranking discrimination across thresholds; it does not mean “84.9% correct.” External,
+                  prospective and subgroup validation remain outstanding.
+                </div>
+                <div class="button-row" style="margin-top:1rem;">
+                  <a class="button-muted" href="./clinical-validation.html">Clinical Validation</a>
                 </div>
               </article>
             </div>
@@ -2606,7 +2613,7 @@
             </article>
 
             <article class="benefit-item reveal">
-              <h3>For Soverign Clinics</h3>
+              <h3>For clinics and health systems</h3>
               <p>
                 It helps cases arrive with better structure, a clearer sense of urgency, and a smoother path into the
                 review queue.
@@ -2667,8 +2674,8 @@
             <p class="eyebrow">Ready to try it</p>
             <h2>Bring more clarity to the first touchpoint of care.</h2>
             <p>
-              The product is live. If this direction feels right, the next step is straightforward: review this draft,
-              refine the language you want to keep, and point the main landing page toward a warmer, more human story.
+              Prepare a structured skin case for review, then request a clinician consultation when professional
+              guidance is needed. Screening supports the handoff; diagnosis and treatment remain clinician-led.
             </p>
 
             <div class="button-row">
@@ -2693,7 +2700,7 @@
               <span class="tag">Integration</span>
               <h3>API Integration</h3>
               <div class="price-line">
-                <strong>0.03$ PER qUERY</strong>
+                <strong>From ₹3 per query</strong>
               </div>
               <p>For teams that want PelliScope inside an existing patient journey, portal, or intake layer.</p>
               <ul class="pricing-list">
@@ -2707,7 +2714,7 @@
               <span class="tag">Deployment</span>
               <h3>Clinic Personal Setup</h3>
               <div class="price-line">
-                <strong>$20 / month</strong>
+                <strong>From ₹1,699 / month</strong>
                 <span>per instance for your clinic personal setup</span>
               </div>
               <p>Open to re-branding for clinics, hospitals, and programs that want the full guided experience.</p>

@@ -1,0 +1,349 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PelliScope | Clinical Validation</title>
+    <meta
+      name="description"
+      content="Methods, results, limitations and current evidence for the PelliScope case-level dermatology research model."
+    />
+    <link rel="canonical" href="https://pelliscope.in/clinical-validation.html" />
+    <link rel="icon" type="image/png" href="./assets/img/pelliscope.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #f7f0e1;
+        --paper: rgba(255, 251, 244, 0.86);
+        --text: #16231b;
+        --muted: #516357;
+        --accent: #2f7d57;
+        --line: rgba(22, 35, 27, 0.11);
+        --shadow: 0 24px 70px rgba(50, 41, 28, 0.09);
+      }
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        margin: 0;
+        color: var(--text);
+        font-family: "Plus Jakarta Sans", sans-serif;
+        background:
+          radial-gradient(circle at 10% 0%, rgba(130, 185, 141, 0.25), transparent 30%),
+          radial-gradient(circle at 92% 16%, rgba(217, 165, 90, 0.18), transparent 26%),
+          var(--bg);
+      }
+      a { color: inherit; }
+      .topbar {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        padding: 1rem 1.25rem;
+      }
+      .topbar-inner {
+        max-width: 1160px;
+        margin: 0 auto;
+        padding: 0.8rem 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        border: 1px solid rgba(255,255,255,.5);
+        border-radius: 999px;
+        background: rgba(255,248,235,.74);
+        backdrop-filter: blur(18px);
+        box-shadow: 0 15px 40px rgba(50,41,28,.07);
+      }
+      .brand { display: flex; align-items: center; gap: .75rem; text-decoration: none; font-weight: 800; }
+      .brand img { width: 2.6rem; height: 2.6rem; padding: .4rem; object-fit: contain; border-radius: 16px; background: rgba(47,125,87,.1); }
+      .back {
+        padding: .7rem 1rem;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        text-decoration: none;
+        font-size: .88rem;
+        font-weight: 750;
+      }
+      main, footer { width: min(1160px, calc(100% - 2.5rem)); margin: 0 auto; }
+      .hero { padding: clamp(4rem, 9vw, 8rem) 0 4rem; }
+      .eyebrow {
+        margin: 0 0 1rem;
+        color: var(--accent);
+        font-size: .75rem;
+        font-weight: 800;
+        letter-spacing: .17em;
+        text-transform: uppercase;
+      }
+      h1, h2 { margin: 0; font-family: "Fraunces", serif; font-weight: 600; letter-spacing: -.05em; line-height: .98; }
+      h1 { max-width: 11ch; font-size: clamp(3.2rem, 8vw, 7rem); }
+      h2 { font-size: clamp(2rem, 4vw, 3.6rem); }
+      h3 { margin: 0 0 .75rem; letter-spacing: -.035em; font-size: 1.25rem; }
+      p, li { color: var(--muted); line-height: 1.72; }
+      .hero-copy { max-width: 760px; font-size: 1.08rem; }
+      .notice {
+        margin-top: 2rem;
+        padding: 1rem 1.1rem;
+        display: flex;
+        gap: .75rem;
+        align-items: flex-start;
+        border: 1px solid rgba(146,91,31,.2);
+        border-radius: 18px;
+        background: rgba(255,241,210,.7);
+      }
+      .notice strong { color: #744515; }
+      .metrics {
+        margin: 0 0 5rem;
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 1rem;
+      }
+      .metric, .card, .table-wrap {
+        border: 1px solid var(--line);
+        background: var(--paper);
+        box-shadow: var(--shadow);
+      }
+      .metric { padding: 1.4rem; border-radius: 24px; }
+      .metric strong { display: block; margin-bottom: .4rem; font-size: clamp(1.8rem, 4vw, 3rem); letter-spacing: -.06em; }
+      .metric span { color: var(--muted); font-size: .84rem; line-height: 1.45; }
+      .section { padding: 0 0 5rem; }
+      .section-head { max-width: 760px; margin-bottom: 1.5rem; }
+      .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+      .card { padding: 1.5rem; border-radius: 28px; }
+      .card p:last-child, .card ul:last-child { margin-bottom: 0; }
+      .table-wrap { overflow-x: auto; border-radius: 28px; }
+      table { width: 100%; min-width: 680px; border-collapse: collapse; }
+      th, td { padding: 1rem 1.1rem; text-align: left; vertical-align: top; border-bottom: 1px solid var(--line); line-height: 1.55; }
+      th { color: var(--text); font-size: .76rem; text-transform: uppercase; letter-spacing: .1em; }
+      td { color: var(--muted); }
+      tr:last-child td { border-bottom: 0; }
+      .source-row { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1.5rem; }
+      .button {
+        display: inline-flex;
+        min-height: 3rem;
+        padding: .8rem 1.1rem;
+        align-items: center;
+        justify-content: center;
+        border-radius: 999px;
+        background: #112019;
+        color: #fff7ea;
+        font-weight: 750;
+        text-decoration: none;
+      }
+      .button.alt { color: var(--text); background: rgba(255,255,255,.5); border: 1px solid var(--line); }
+      .meaning {
+        padding: clamp(1.5rem, 4vw, 3rem);
+        border-radius: 34px;
+        color: rgba(255,247,234,.96);
+        background: linear-gradient(140deg, #112019, #17392b);
+      }
+      .meaning p, .meaning li { color: rgba(255,247,234,.72); }
+      footer { padding: 2rem 0 3rem; border-top: 1px solid var(--line); color: var(--muted); font-size: .84rem; }
+      @media (max-width: 820px) {
+        .metrics, .grid { grid-template-columns: 1fr 1fr; }
+      }
+      @media (max-width: 560px) {
+        .topbar { padding: .7rem; }
+        .topbar-inner { border-radius: 22px; }
+        .brand span { display: none; }
+        main, footer { width: min(100% - 1.4rem, 1160px); }
+        .metrics, .grid { grid-template-columns: 1fr; }
+        .hero { padding-top: 3rem; }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="./">
+          <img src="./assets/img/pelliscope.png" alt="" />
+          <span>PelliScope</span>
+        </a>
+        <a class="back" href="./">Back to PelliScope</a>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <p class="eyebrow">Clinical validation · evidence record</p>
+        <h1>What the current evidence does—and does not—show.</h1>
+        <p class="hero-copy">
+          PelliScope’s published research evaluates a case-level dermatology model on deidentified, patient-submitted
+          photographs from the public SCIN dataset. The study is an internal retrospective validation. It is not an
+          external clinical validation and does not establish autonomous diagnostic use.
+        </p>
+        <div class="notice">
+          <strong>Research status:</strong>
+          <span>The current manuscript is a v1 medRxiv preprint, posted 1 June 2026, and has not been peer reviewed.</span>
+        </div>
+      </section>
+
+      <section class="metrics" aria-label="Study summary">
+        <article class="metric"><strong>2,336</strong><span>multi-photo dermatology cases</span></article>
+        <article class="metric"><strong>5,041</strong><span>image records across those cases</span></article>
+        <article class="metric"><strong>0.849</strong><span>locked-test micro ROC-AUC</span></article>
+        <article class="metric"><strong>0.800</strong><span>locked-test macro ROC-AUC</span></article>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <p class="eyebrow">Dataset and procedure</p>
+          <h2>Case-wise evaluation, with the final test split held back.</h2>
+        </div>
+        <div class="grid">
+          <article class="card">
+            <h3>Dataset source</h3>
+            <p>
+              The study used the public Skin Condition Image Network (SCIN), a deidentified collection of
+              self-submitted images and symptom information from adults in the United States. The evaluated subset
+              covered ten common inflammatory, allergic and infectious dermatology conditions.
+            </p>
+          </article>
+          <article class="card">
+            <h3>Split and validation procedure</h3>
+            <p>
+              Cases—not individual photographs—were divided 60%/20%/20% into training, validation and locked test
+              sets: 1,401 / 467 / 468 cases. Repeated stratified experiments were followed by one final evaluation on
+              the held-out test set. No external hospital or prospective clinical cohort was used.
+            </p>
+          </article>
+          <article class="card">
+            <h3>Inclusion criteria</h3>
+            <ul>
+              <li>SCIN submissions considered diagnosable in the source data.</li>
+              <li>One to three photographs associated with a single patient case.</li>
+              <li>A dermatologist differential containing at least one of the ten target conditions.</li>
+              <li>Images and metadata passing the source dataset’s deidentification and quality process.</li>
+            </ul>
+          </article>
+          <article class="card">
+            <h3>Exclusion criteria and documentation gap</h3>
+            <p>
+              Cases outside the ten-condition target vocabulary and source entries not suitable for diagnostic review
+              were not part of the evaluated subset. The v1 manuscript does not publish a complete row-by-row
+              exclusion flow; this remains a documentation gap to close in a future version.
+            </p>
+          </article>
+        </div>
+        <div class="source-row">
+          <a class="button" href="https://doi.org/10.64898/2026.05.21.26353816" target="_blank" rel="noopener">Read the preprint</a>
+          <a class="button alt" href="https://github.com/google-research-datasets/scin" target="_blank" rel="noopener">Explore the SCIN dataset</a>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <p class="eyebrow">Result interpretation</p>
+          <h2>Numbers need context.</h2>
+        </div>
+        <div class="meaning">
+          <h3>What “AUC 0.86” means</h3>
+          <p>
+            The rounded 0.86 figure comes from a repeated-experiment micro ROC-AUC of 0.863. ROC-AUC measures how well
+            the model ranks positive and negative examples across decision thresholds. It does not mean that the model
+            made the correct diagnosis in 86% of patient cases. The final locked held-out test produced a micro
+            ROC-AUC of 0.849 and macro ROC-AUC of 0.800.
+          </p>
+          <h3>What “80.2%” means</h3>
+          <p>
+            80.2% appeared in earlier PelliScope material as an internal balanced-accuracy summary. It is not a
+            headline result in the current v1 preprint. PelliScope therefore does not use it here as a public clinical
+            performance claim until the exact evaluation artifact and thresholding procedure are versioned and
+            published.
+          </p>
+          <h3>Confidence intervals</h3>
+          <p>
+            The v1 manuscript does not report confidence intervals for the headline locked-test AUC values. We state
+            that absence rather than implying precision the current report does not establish.
+          </p>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <p class="eyebrow">Subgroups and robustness</p>
+          <h2>Important analyses are still outstanding.</h2>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Area</th><th>What is available</th><th>Current conclusion</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Skin tone</td>
+                <td>SCIN contains estimated Fitzpatrick and Monk Skin Tone annotations.</td>
+                <td>The current study did not establish definitive subgroup performance because several strata were sparse. No parity claim is made.</td>
+              </tr>
+              <tr>
+                <td>Device type</td>
+                <td>Patient-submitted images reflect varied real-world capture conditions.</td>
+                <td>No completed device-specific performance table is reported in v1. Device-level robustness remains to be evaluated.</td>
+              </tr>
+              <tr>
+                <td>Image quality</td>
+                <td>The source data underwent quality and safety screening.</td>
+                <td>No stratified performance table by blur, lighting, resolution or framing is reported in v1.</td>
+              </tr>
+              <tr>
+                <td>Geography</td>
+                <td>The evaluated SCIN cohort consists of United States volunteers.</td>
+                <td>Results should not be assumed to transfer to Indian or other clinical populations without external validation.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <p class="eyebrow">Known limitations</p>
+          <h2>What must happen before broader clinical claims.</h2>
+        </div>
+        <div class="grid">
+          <article class="card">
+            <h3>Evidence limitations</h3>
+            <ul>
+              <li>Retrospective internal validation only.</li>
+              <li>No prospective workflow or patient-outcome study.</li>
+              <li>No external Indian, European or hospital validation cohort.</li>
+              <li>Ten-condition subset rather than open-world dermatology.</li>
+              <li>Source labels are dermatologist differentials, not encounter-confirmed final diagnoses.</li>
+              <li>Calibration and subgroup reliability are not fully established.</li>
+            </ul>
+          </article>
+          <article class="card">
+            <h3>Intended interpretation</h3>
+            <p>
+              The current evidence supports continued research into case organisation, review support and
+              triage-oriented workflows. It does not support replacing a dermatologist, diagnosing from an
+              advertisement, or treating an AI screening output as a medical decision.
+            </p>
+            <p>
+              PelliScope’s public patient pathway is therefore described as secure preparation for clinician review.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="card">
+          <p class="eyebrow">Version record</p>
+          <h2>Model and evaluation date</h2>
+          <p>
+            This page describes the DermAssist/PelliScope case-level gated-attention multiple-instance learning model
+            reported in preprint v1, posted 1 June 2026. The page was reviewed on 26 July 2026. No production model
+            version is represented as externally clinically validated.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      PelliScope · HawkFranklin Research (OPC) Private Limited · Research information, not medical advice.
+    </footer>
+  </body>
+</html>
