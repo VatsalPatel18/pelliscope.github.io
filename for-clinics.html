@@ -30,10 +30,10 @@
     <meta name="twitter:image" content="https://pelliscope.in/assets/clinic-deck/og-clinics.png" />
     <link rel="icon" type="image/png" href="./assets/img/pelliscope.png" />
     <link rel="preload" href="./assets/clinic-deck/fonts/geist.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href="./assets/clinic-deck/phone/01-concern.png" as="image" />
+    <link rel="preload" href="./assets/clinic-deck/case/context.jpeg" as="image" />
     <link rel="stylesheet" href="./assets/clinic-deck.css" />
     <script defer src="./assets/clinic-deck.js"></script>
-    <noscript><style>.scene-reveal{opacity:1!important;transform:none!important}.phone-frame:not(:first-child){display:none}</style></noscript>
+    <noscript><style>.scene-reveal{opacity:1!important;transform:none!important}.phone-screen:not(:first-child){display:none}.capture-context{opacity:1!important;transform:none!important}</style></noscript>
   </head>
   <body>
     <div class="deck-page">
@@ -72,7 +72,7 @@
               <p class="scene-lede scene-reveal">
                 Guided intake, photographs and AI-assisted screening—organised before clinical review begins.
               </p>
-              <div class="cover-tags scene-reveal" aria-label="PelliScope benefits">
+              <div class="cover-tags scene-reveal" role="group" aria-label="PelliScope benefits">
                 <span>Prepared cases</span><span>Clinical control</span><span>Continuous follow-up</span>
               </div>
               <button class="scroll-cue scene-reveal" type="button" data-next aria-label="Continue to the patient journey">
@@ -80,30 +80,34 @@
               </button>
             </div>
 
-            <div class="case-orbit scene-reveal" aria-label="A patient concern becoming an organised case">
-              <div class="orbit-ring ring-one"></div>
-              <div class="orbit-ring ring-two"></div>
-              <article class="signal-card signal-message"><small>CONCERN</small><strong>“It appeared two days ago.”</strong></article>
-              <article class="signal-card signal-photos">
-                <small>PHOTOGRAPHS</small>
-                <div class="real-case-photos">
-                  <figure>
-                    <img src="./assets/clinic-deck/case/context.jpeg" alt="Example context photograph of a skin concern" width="1080" height="810" />
-                    <span>Context</span>
-                  </figure>
-                  <figure>
-                    <img src="./assets/clinic-deck/case/angled.jpeg" alt="Example angled photograph of the same skin concern" width="810" height="1080" />
-                    <span>Angled</span>
-                  </figure>
-                </div>
-              </article>
-              <article class="signal-card signal-context"><small>CONTEXT</small><strong>Itchy · forearm · 2 days</strong></article>
-              <article class="prepared-case">
-                <span class="case-pulse"></span>
-                <small>PREPARED CASE</small>
-                <strong>Ready for clinical review</strong>
-                <div><i></i><i></i><i></i></div>
-              </article>
+            <div class="capture-theatre scene-reveal" data-capture-story data-capture-state="0">
+              <p class="sr-only">A four-step demonstration shows a patient concern, a context photograph, an angled photograph and the information becoming a prepared clinical case.</p>
+              <div class="capture-demo" aria-hidden="true">
+                <article class="concern-slip">
+                  <span>01 · CONCERN</span>
+                  <strong>“It appeared two days ago and feels itchy.”</strong>
+                  <div><i></i>Forearm <i></i>2 days</div>
+                </article>
+
+                <figure class="capture-photo capture-context">
+                  <img src="./assets/clinic-deck/case/context.jpeg" alt="" width="1080" height="810" />
+                  <b class="capture-corner corner-one"></b><b class="capture-corner corner-two"></b><b class="capture-corner corner-three"></b><b class="capture-corner corner-four"></b>
+                  <figcaption><span>02 · CONTEXT VIEW</span><strong>Area and distribution</strong><i>✓ Captured</i></figcaption>
+                </figure>
+
+                <figure class="capture-photo capture-angle">
+                  <img src="./assets/clinic-deck/case/angled.jpeg" alt="" width="810" height="1080" />
+                  <figcaption><span>03 · ANGLED VIEW</span><strong>Surface detail</strong><i>✓ Captured</i></figcaption>
+                </figure>
+
+                <article class="case-packet">
+                  <div class="packet-head"><span>PS</span><p><small>PREPARED CASE</small><strong>PS-2048</strong></p><i>Ready</i></div>
+                  <div class="packet-photo-pair"><img src="./assets/clinic-deck/case/context.jpeg" alt="" /><img src="./assets/clinic-deck/case/angled.jpeg" alt="" /></div>
+                  <div class="packet-checks"><span>✓ Concern organised</span><span>✓ 2 views attached</span><span>✓ Screening context ready</span></div>
+                </article>
+
+                <div class="capture-progress"><i></i><i></i><i></i><i></i><span>Concern → prepared case</span></div>
+              </div>
             </div>
           </div>
         </section>
@@ -116,7 +120,7 @@
               <p class="scene-lede scene-reveal">
                 The patient begins on any phone. No registration wall before the first step, and no loose photos arriving without context.
               </p>
-              <div class="patient-steps scene-reveal" aria-label="Patient journey stages">
+              <div class="patient-steps scene-reveal" role="group" aria-label="Patient journey stages">
                 <button class="is-active" type="button" data-phone-step="0"><span>01</span><strong>Concern</strong></button>
                 <button type="button" data-phone-step="1"><span>02</span><strong>Photos</strong></button>
                 <button type="button" data-phone-step="2"><span>03</span><strong>Direction</strong></button>
@@ -125,13 +129,57 @@
               <p class="clinical-boundary scene-reveal">AI-assisted screening supports preparation and routing. It is not a diagnosis.</p>
             </div>
 
-            <div class="phone-story scene-reveal" data-phone-story aria-label="Animated four-step patient journey">
+            <div class="phone-story scene-reveal" data-phone-story aria-describedby="phone-story-description">
+              <p class="sr-only" id="phone-story-description">A four-step interface demonstration shows a patient describing a concern, adding guided photographs, receiving AI-assisted direction and connecting the prepared case to a clinic.</p>
               <div class="phone-aura" aria-hidden="true"></div>
-              <div class="phone-stage" aria-live="polite">
-                <img class="phone-frame is-active" data-phone-frame="0" src="./assets/clinic-deck/phone/01-concern.png" alt="Patient describing a skin concern in PelliScope" width="352" height="660" />
-                <img class="phone-frame" data-phone-frame="1" src="./assets/clinic-deck/phone/02-photos.png" alt="Patient adding guided photographs" width="352" height="660" loading="lazy" />
-                <img class="phone-frame" data-phone-frame="2" src="./assets/clinic-deck/phone/03-direction.png" alt="PelliScope showing that the prepared case is ready for a next step" width="352" height="660" loading="lazy" />
-                <img class="phone-frame" data-phone-frame="3" src="./assets/clinic-deck/phone/04-connected.png" alt="Prepared case connected to a dermatologist" width="352" height="660" loading="lazy" />
+              <div class="phone-shell" aria-hidden="true">
+                <div class="phone-hardware"><span></span><i></i></div>
+                <div class="phone-display">
+                  <div class="phone-status"><span>09:41</span><span>● 5G ▰</span></div>
+                  <div class="phone-app-bar"><img src="./assets/img/pelliscope.png" alt="" /><strong>PelliScope</strong><span>Private</span></div>
+                  <div class="phone-screens">
+                    <section class="phone-screen is-active" data-phone-screen="0">
+                      <p class="screen-step">YOUR SKIN CHECK · 01</p>
+                      <h3>What are you worried about?</h3>
+                      <div class="concern-prompt"><i></i><p>“This appeared two days ago and feels itchy.”</p></div>
+                      <div class="symptom-chips"><span>Itchy</span><span>2 days</span><span>Forearm</span></div>
+                      <button type="button" tabindex="-1">Continue <span>→</span></button>
+                    </section>
+
+                    <section class="phone-screen" data-phone-screen="1">
+                      <p class="screen-step">ADD PHOTOGRAPHS · 02</p>
+                      <h3>Show what changed.</h3>
+                      <div class="phone-photo-grid">
+                        <figure><img src="./assets/clinic-deck/case/context.jpeg" alt="" /><span>Context</span><i>✓</i></figure>
+                        <figure><img src="./assets/clinic-deck/case/angled.jpeg" alt="" /><span>Angled</span><i>✓</i></figure>
+                        <div><b>+</b><span>Add view</span></div>
+                      </div>
+                      <div class="capture-guide"><i></i><p><strong>Good light detected</strong>Keep the area in focus.</p></div>
+                      <button type="button" tabindex="-1">Review photographs <span>→</span></button>
+                    </section>
+
+                    <section class="phone-screen direction-screen" data-phone-screen="2">
+                      <p class="screen-step">AI-ASSISTED SCREEN · 03</p>
+                      <div class="analysis-visual">
+                        <img src="./assets/clinic-deck/case/angled.jpeg" alt="" />
+                        <span class="scan-beam"></span><i class="scan-corner scan-a"></i><i class="scan-corner scan-b"></i><i class="scan-corner scan-c"></i><i class="scan-corner scan-d"></i>
+                      </div>
+                      <h3>Your case is ready for the next step.</h3>
+                      <div class="analysis-list"><span>✓ Photographs checked</span><span>✓ Symptoms organised</span><span>→ Clinician review recommended</span></div>
+                      <small>Screening is not a diagnosis.</small>
+                    </section>
+
+                    <section class="phone-screen connected-screen" data-phone-screen="3">
+                      <p class="screen-step">CONNECTED · 04</p>
+                      <div class="sent-visual"><span>You</span><i><b></b></i><span>Dr</span></div>
+                      <h3>Your prepared case stays together.</h3>
+                      <p class="screen-copy">Photographs, symptoms and screening context travel in one private care thread.</p>
+                      <div class="status-card"><i></i><p><strong>Awaiting clinical review</strong>Return to this case at any time.</p></div>
+                      <button type="button" tabindex="-1">Open my case <span>→</span></button>
+                    </section>
+                  </div>
+                  <span class="phone-home-indicator"></span>
+                </div>
               </div>
               <div class="phone-controls">
                 <div class="phone-meter" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
@@ -158,13 +206,46 @@
               </div>
             </div>
 
-            <div class="dashboard-stage scene-reveal">
-              <div class="browser-frame">
-                <div class="browser-bar"><span></span><span></span><span></span><small>CLINICIAN WORKSPACE · DEMONSTRATION</small></div>
-                <img src="./assets/clinic-deck/doctor/case-queue.jpg" alt="PelliScope clinician review queue with prepared cases and workflow filters" width="1440" height="948" loading="lazy" />
+            <div class="dashboard-stage scene-reveal" data-queue-demo>
+              <p class="sr-only" id="queue-description">A simulated PelliScope review queue contains four prepared cases with workflow, screening, differential and risk information. The highlighted case advances automatically while this scene is visible.</p>
+              <div class="interface-paper dashboard-paper" aria-hidden="true">
+                <header class="product-header">
+                  <div class="product-brand"><img src="./assets/img/pelliscope.png" alt="" /><span><strong>PelliScope</strong><small>Clinician workspace</small></span></div>
+                  <div class="availability-pill"><i></i>Available for reviews</div>
+                </header>
+                <div class="queue-heading"><div><span>REVIEW QUEUE</span><h3><strong>3 new</strong> prepared cases</h3></div><button type="button" tabindex="-1">↻ Refresh</button></div>
+                <div class="queue-metrics">
+                  <article data-queue-metric="new"><span>New review</span><strong>3</strong></article>
+                  <article class="is-active" data-queue-metric="urgent"><span>Urgent</span><strong>1</strong></article>
+                  <article class="is-active" data-queue-metric="infectious"><span>Infectious</span><strong>2</strong></article>
+                  <article data-queue-metric="treatment"><span>Treatment sent</span><strong>1</strong></article>
+                  <article data-queue-metric="follow"><span>Follow-up</span><strong>1</strong></article>
+                </div>
+                <div class="queue-filters"><span class="is-active">All cases</span><span>New review</span><span>Urgent</span><span>Follow-up</span><i>Search Patient ID</i></div>
+                <div class="case-queue">
+                  <article class="queue-row is-active" data-queue-case data-queue-metric-key="urgent infectious">
+                    <div class="queue-identity"><b>P</b><p><strong>PS-2048</strong><span>34y · Female · Today</span></p><em>Urgent</em></div>
+                    <div class="queue-screen infectious"><i></i><p><strong>Infectious</strong><span>Insect Bite · 61%</span></p></div>
+                    <span class="risk-badge high">High</span><b class="row-arrow">›</b>
+                  </article>
+                  <article class="queue-row" data-queue-case data-queue-metric-key="new">
+                    <div class="queue-identity"><b>N</b><p><strong>PS-2051</strong><span>28y · Male · Today</span></p><em>New review</em></div>
+                    <div class="queue-screen clear"><i></i><p><strong>Non-infectious</strong><span>Eczema · 58%</span></p></div>
+                    <span class="risk-badge low">Low</span><b class="row-arrow">›</b>
+                  </article>
+                  <article class="queue-row" data-queue-case data-queue-metric-key="treatment">
+                    <div class="queue-identity"><b>R</b><p><strong>PS-2054</strong><span>41y · Female · Yesterday</span></p><em>Treatment sent</em></div>
+                    <div class="queue-screen clear"><i></i><p><strong>Non-infectious</strong><span>Allergic contact dermatitis · 49%</span></p></div>
+                    <span class="risk-badge low">Low</span><b class="row-arrow">›</b>
+                  </article>
+                  <article class="queue-row" data-queue-case data-queue-metric-key="follow infectious">
+                    <div class="queue-identity"><b>A</b><p><strong>PS-2057</strong><span>39y · Male · Yesterday</span></p><em>Follow-up</em></div>
+                    <div class="queue-screen infectious"><i></i><p><strong>Infectious</strong><span>Folliculitis · 44%</span></p></div>
+                    <span class="risk-badge moderate">Moderate</span><b class="row-arrow">›</b>
+                  </article>
+                </div>
+                <footer class="simulation-label"><i></i>Simulated data · Interface demonstration</footer>
               </div>
-              <article class="float-note note-one"><small>QUEUE</small><strong>Cases sorted by clinical workflow</strong></article>
-              <article class="float-note note-two"><small>CONTEXT</small><strong>Photos and intake stay together</strong></article>
             </div>
           </div>
         </section>
@@ -184,13 +265,49 @@
               </div>
             </div>
 
-            <div class="review-visual scene-reveal">
-              <div class="detail-window">
-                <div class="detail-window-label">CASE DETAIL · INTERFACE DEMONSTRATION</div>
-                <img src="./assets/clinic-deck/doctor/case-detail.jpg" alt="PelliScope clinician case detail with protected images, screening context and care timeline" width="1440" height="948" loading="lazy" />
+            <div class="review-visual scene-reveal" data-clinical-demo data-case-state="infectious">
+              <p class="sr-only" id="clinical-description">A simulated patient record shows protected clinical photographs, complaint and symptom context, AI-assisted screening, differential predictions, care timeline and clinician action representations. It alternates between two internally consistent demonstration cases.</p>
+              <div class="clinical-theatre" aria-hidden="true">
+                <div class="interface-paper queue-paper-peek"><span>REVIEW QUEUE</span><i></i><i></i><i></i></div>
+
+                <article class="interface-paper patient-paper">
+                  <header class="case-header">
+                    <div class="case-person"><b data-case-initial>P</b><p><span>PATIENT CASE</span><strong data-case-id>PS-2048</strong></p></div>
+                    <div class="case-meta"><span data-case-meta>34y · Female</span><i data-case-risk>High risk</i></div>
+                  </header>
+                  <div class="patient-record">
+                    <section class="record-images">
+                      <figure class="record-primary"><img data-case-main-image src="./assets/clinic-deck/case/insect-bite-1.jpg" alt="" /></figure>
+                      <div class="record-thumbs">
+                        <figure class="is-active" data-case-thumb="0"><img data-case-image="0" src="./assets/clinic-deck/case/insect-bite-1.jpg" alt="" /><span>Context</span></figure>
+                        <figure data-case-thumb="1"><img data-case-image="1" src="./assets/clinic-deck/case/insect-bite-2.jpg" alt="" /><span>Angled</span></figure>
+                        <figure class="close-view" data-case-thumb="2"><img data-case-image="2" src="./assets/clinic-deck/case/insect-bite-1.jpg" alt="" /><span>Closer</span></figure>
+                      </div>
+                      <div class="case-complaint"><span>PATIENT COMPLAINT</span><strong data-case-complaint>Itchy raised spots reported for two days.</strong><div data-case-chips><i>Itchy</i><i>2 days</i><i>Upper arm</i></div></div>
+                    </section>
+
+                    <section class="record-context">
+                      <div class="screening-banner infectious" data-case-banner><i></i><p><strong data-case-screen-title>Infectious signal detected</strong><span data-case-screen-copy>Clinical review required promptly.</span></p></div>
+                      <div class="differential-card">
+                        <header><span>AI-ASSISTED DIFFERENTIALS</span><small>Screening context</small></header>
+                        <div class="differential-row"><p><strong data-diff-name="0">Insect Bite</strong><span data-diff-value="0">61%</span></p><i><b data-diff-bar="0" style="--bar:61%"></b></i></div>
+                        <div class="differential-row"><p><strong data-diff-name="1">Urticaria</strong><span data-diff-value="1">23%</span></p><i><b data-diff-bar="1" style="--bar:23%"></b></i></div>
+                        <div class="differential-row"><p><strong data-diff-name="2">Folliculitis</strong><span data-diff-value="2">11%</span></p><i><b data-diff-bar="2" style="--bar:11%"></b></i></div>
+                      </div>
+                      <div class="care-timeline"><span>CARE TIMELINE</span><div><i></i><p><strong>Intake received</strong><small>Today · 09:24</small></p></div><div><i></i><p><strong>Prepared for review</strong><small>Today · 09:26</small></p></div></div>
+                    </section>
+                  </div>
+                  <footer class="case-actions"><span>Clinical note</span><span>Prescribe</span><span>Request clinic visit</span></footer>
+                </article>
+
+                <article class="interface-paper screening-paper">
+                  <span>03 · SCREENING CONTEXT</span>
+                  <div class="screening-verdict infectious" data-screening-paper><i></i><p><strong data-paper-title>Infectious</strong><small data-paper-copy>Signal for prompt review</small></p></div>
+                  <div class="paper-score"><span>LEADING DIFFERENTIAL</span><strong data-paper-differential>Insect Bite</strong><i><b data-paper-bar style="--bar:61%"></b></i><small data-paper-percent>61%</small></div>
+                  <p>AI-assisted screening supports preparation. Clinical interpretation remains with the dermatologist.</p>
+                  <footer><i></i>Simulated data · Interface demonstration</footer>
+                </article>
               </div>
-              <div class="review-lens lens-a"><small>IMAGE SET</small><strong>3 protected views</strong></div>
-              <div class="review-lens lens-b"><small>CARE TIMELINE</small><strong>Context persists</strong></div>
             </div>
           </div>
         </section>
@@ -205,7 +322,7 @@
               <p class="scene-lede scene-reveal">The next step stays attached to the case instead of disappearing into separate messages and files.</p>
             </div>
 
-            <div class="care-map scene-reveal" aria-label="Clinical actions connected to one patient case">
+            <div class="care-map scene-reveal" role="img" aria-label="Clinical actions connected to one patient case">
               <div class="care-core"><small>PATIENT CASE</small><strong>PS · 2048</strong><span>reviewed</span></div>
               <article class="care-action action-note"><span>01</span><strong>Clinical note</strong><small>Document the interpretation.</small></article>
               <article class="care-action action-rx"><span>02</span><strong>Prescription</strong><small>Compose multiple medicines.</small></article>
@@ -265,7 +382,7 @@
               <p class="close-note scene-reveal">Clinical decisions remain with qualified professionals. Product availability and payment features vary by service region.</p>
             </div>
 
-            <div class="outcome-strip scene-reveal" aria-label="PelliScope outcomes">
+            <div class="outcome-strip scene-reveal" role="group" aria-label="PelliScope outcomes">
               <article><span>01</span><strong>Prepared arrival</strong><small>Photos and context before review.</small></article>
               <article><span>02</span><strong>Clinical control</strong><small>Interpret, route and follow up.</small></article>
               <article><span>03</span><strong>Connected record</strong><small>One patient journey, not loose files.</small></article>

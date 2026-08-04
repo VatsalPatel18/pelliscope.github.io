@@ -72,7 +72,7 @@
 
   document.addEventListener("keydown", (event) => {
     const interactive = event.target instanceof HTMLElement
-      && ["INPUT", "TEXTAREA", "SELECT"].includes(event.target.tagName);
+      && Boolean(event.target.closest("button, a, input, textarea, select"));
     if (interactive) return;
 
     if (["ArrowDown", "PageDown", " "].includes(event.key)) {
@@ -93,9 +93,34 @@
     }
   });
 
+  // The opening plays once as concern -> photographs -> prepared case.
+  const captureStory = document.querySelector("[data-capture-story]");
+  let captureState = reducedMotion.matches ? 3 : 0;
+  let captureTimer;
+
+  const renderCapture = (state) => {
+    captureState = clamp(state, 0, 3);
+    if (captureStory) captureStory.dataset.captureState = String(captureState);
+  };
+
+  const stopCapture = () => window.clearInterval(captureTimer);
+  const scheduleCapture = () => {
+    stopCapture();
+    if (reducedMotion.matches || activeIndex !== 0 || !captureStory) return;
+    captureTimer = window.setInterval(() => {
+      if (captureState >= 3) {
+        stopCapture();
+        return;
+      }
+      renderCapture(captureState + 1);
+    }, 2100);
+  };
+
+  renderCapture(captureState);
+
   // Four-beat patient phone story. It runs only while its scene is visible.
   const phoneStory = document.querySelector("[data-phone-story]");
-  const phoneFrames = [...document.querySelectorAll("[data-phone-frame]")];
+  const phoneScreens = [...document.querySelectorAll("[data-phone-screen]")];
   const phoneSteps = [...document.querySelectorAll("[data-phone-step]")];
   const phoneMeter = [...document.querySelectorAll(".phone-meter i")];
   const phoneToggle = document.querySelector("[data-phone-toggle]");
@@ -104,11 +129,11 @@
   let phoneTimer;
 
   const renderPhone = (index) => {
-    phoneIndex = clamp(index, 0, phoneFrames.length - 1);
+    phoneIndex = clamp(index, 0, phoneScreens.length - 1);
 
-    phoneFrames.forEach((frame, frameIndex) => {
-      frame.classList.toggle("is-active", frameIndex === phoneIndex);
-      frame.classList.toggle("is-before", frameIndex < phoneIndex);
+    phoneScreens.forEach((screen, screenIndex) => {
+      screen.classList.toggle("is-active", screenIndex === phoneIndex);
+      screen.classList.toggle("is-before", screenIndex < phoneIndex);
     });
 
     phoneSteps.forEach((step, stepIndex) => {
@@ -127,9 +152,9 @@
 
   const schedulePhone = () => {
     stopPhone();
-    if (phonePaused || activeIndex !== 1 || phoneFrames.length < 2) return;
+    if (phonePaused || activeIndex !== 1 || phoneScreens.length < 2) return;
     phoneTimer = window.setInterval(() => {
-      if (phoneIndex === phoneFrames.length - 1) {
+      if (phoneIndex === phoneScreens.length - 1) {
         stopPhone();
         return;
       }
@@ -148,7 +173,7 @@
     phonePaused = !phonePaused;
     phoneToggle.classList.toggle("is-paused", phonePaused);
     phoneToggle.setAttribute("aria-label", phonePaused ? "Play patient journey animation" : "Pause patient journey animation");
-    if (!phonePaused && phoneIndex === phoneFrames.length - 1) renderPhone(0);
+    if (!phonePaused && phoneIndex === phoneScreens.length - 1) renderPhone(0);
     schedulePhone();
   });
 
@@ -157,21 +182,196 @@
   phoneStory?.addEventListener("focusin", stopPhone);
   phoneStory?.addEventListener("focusout", schedulePhone);
 
-  document.addEventListener("deck:scene", (event) => {
-    if (event.detail.index === 1) {
-      if (phoneIndex === phoneFrames.length - 1 && !phonePaused) renderPhone(0);
-      schedulePhone();
-    } else {
-      stopPhone();
-    }
-  });
-
   if (phonePaused && phoneToggle) {
     phoneToggle.classList.add("is-paused");
     phoneToggle.setAttribute("aria-label", "Play patient journey animation");
   }
 
   renderPhone(0);
+
+  // Prepared-arrival queue: a passive simulation, never live patient data.
+  const queueDemo = document.querySelector("[data-queue-demo]");
+  const queueCases = [...document.querySelectorAll("[data-queue-case]")];
+  const queueMetrics = [...document.querySelectorAll("[data-queue-metric]")];
+  let queueIndex = 0;
+  let queueTimer;
+
+  const renderQueue = (index) => {
+    queueIndex = clamp(index, 0, Math.max(queueCases.length - 1, 0));
+    const metricKeys = (queueCases[queueIndex]?.dataset.queueMetricKey || "").split(" ");
+    queueCases.forEach((row, rowIndex) => row.classList.toggle("is-active", rowIndex === queueIndex));
+    queueMetrics.forEach((metric) => metric.classList.toggle("is-active", metricKeys.includes(metric.dataset.queueMetric)));
+  };
+
+  const stopQueue = () => window.clearInterval(queueTimer);
+  const scheduleQueue = () => {
+    stopQueue();
+    if (reducedMotion.matches || activeIndex !== 2 || queueCases.length < 2) return;
+    queueTimer = window.setInterval(() => renderQueue((queueIndex + 1) % queueCases.length), 3000);
+  };
+
+  queueDemo?.addEventListener("mouseenter", stopQueue);
+  queueDemo?.addEventListener("mouseleave", scheduleQueue);
+  renderQueue(0);
+
+  // Clinical review alternates between complete, internally consistent cases.
+  const clinicalDemo = document.querySelector("[data-clinical-demo]");
+  const clinicalCases = [
+    {
+      state: "infectious",
+      initial: "P",
+      id: "PS-2048",
+      meta: "34y · Female",
+      risk: "High risk",
+      images: [
+        "./assets/clinic-deck/case/insect-bite-1.jpg",
+        "./assets/clinic-deck/case/insect-bite-2.jpg",
+        "./assets/clinic-deck/case/insect-bite-1.jpg",
+      ],
+      complaint: "Itchy raised spots reported for two days.",
+      chips: ["Itchy", "2 days", "Upper arm"],
+      screenTitle: "Infectious signal detected",
+      screenCopy: "Clinical review required promptly.",
+      paperTitle: "Infectious",
+      paperCopy: "Signal for prompt review",
+      differentials: [["Insect Bite", 61], ["Urticaria", 23], ["Folliculitis", 11]],
+    },
+    {
+      state: "clear",
+      initial: "N",
+      id: "PS-2051",
+      meta: "28y · Male",
+      risk: "Low risk",
+      images: [
+        "./assets/clinic-deck/case/eczema-1.jpg",
+        "./assets/clinic-deck/case/eczema-2.jpg",
+        "./assets/clinic-deck/case/eczema-1.jpg",
+      ],
+      complaint: "Dry recurring patch reported for one week.",
+      chips: ["Dry", "1 week", "Ankle"],
+      screenTitle: "Non-infectious likely",
+      screenCopy: "No immediate contagion markers found.",
+      paperTitle: "Non-infectious",
+      paperCopy: "Routine clinical review",
+      differentials: [["Eczema", 58], ["Contact dermatitis", 24], ["Psoriasis", 10]],
+    },
+  ];
+  let clinicalCaseIndex = 0;
+  let clinicalImageIndex = 0;
+  let clinicalCaseTimer;
+  let clinicalImageTimer;
+  let clinicalTransitionTimer;
+
+  const setText = (selector, value) => {
+    const node = clinicalDemo?.querySelector(selector);
+    if (node) node.textContent = value;
+  };
+
+  const renderClinicalImage = (index) => {
+    if (!clinicalDemo) return;
+    const currentCase = clinicalCases[clinicalCaseIndex];
+    clinicalImageIndex = clamp(index, 0, currentCase.images.length - 1);
+    const mainImage = clinicalDemo.querySelector("[data-case-main-image]");
+    const primaryFrame = clinicalDemo.querySelector(".record-primary");
+    if (mainImage) mainImage.src = currentCase.images[clinicalImageIndex];
+    primaryFrame?.classList.toggle("is-close", clinicalImageIndex === 2);
+    clinicalDemo.querySelectorAll("[data-case-thumb]").forEach((thumb, thumbIndex) => {
+      thumb.classList.toggle("is-active", thumbIndex === clinicalImageIndex);
+    });
+  };
+
+  const renderClinicalCase = (index) => {
+    if (!clinicalDemo) return;
+    clinicalCaseIndex = clamp(index, 0, clinicalCases.length - 1);
+    clinicalImageIndex = 0;
+    const currentCase = clinicalCases[clinicalCaseIndex];
+    clinicalDemo.dataset.caseState = currentCase.state;
+    setText("[data-case-initial]", currentCase.initial);
+    setText("[data-case-id]", currentCase.id);
+    setText("[data-case-meta]", currentCase.meta);
+    setText("[data-case-risk]", currentCase.risk);
+    setText("[data-case-complaint]", currentCase.complaint);
+    setText("[data-case-screen-title]", currentCase.screenTitle);
+    setText("[data-case-screen-copy]", currentCase.screenCopy);
+    setText("[data-paper-title]", currentCase.paperTitle);
+    setText("[data-paper-copy]", currentCase.paperCopy);
+    setText("[data-paper-differential]", currentCase.differentials[0][0]);
+    setText("[data-paper-percent]", `${currentCase.differentials[0][1]}%`);
+
+    const chipRow = clinicalDemo.querySelector("[data-case-chips]");
+    if (chipRow) chipRow.innerHTML = currentCase.chips.map((chip) => `<i>${chip}</i>`).join("");
+
+    const banner = clinicalDemo.querySelector("[data-case-banner]");
+    const paperVerdict = clinicalDemo.querySelector("[data-screening-paper]");
+    [banner, paperVerdict].forEach((node) => {
+      node?.classList.toggle("infectious", currentCase.state === "infectious");
+      node?.classList.toggle("clear", currentCase.state === "clear");
+    });
+
+    currentCase.images.forEach((source, imageIndex) => {
+      const image = clinicalDemo.querySelector(`[data-case-image="${imageIndex}"]`);
+      if (image) image.src = source;
+    });
+
+    currentCase.differentials.forEach(([name, value], differentialIndex) => {
+      setText(`[data-diff-name="${differentialIndex}"]`, name);
+      setText(`[data-diff-value="${differentialIndex}"]`, `${value}%`);
+      const bar = clinicalDemo.querySelector(`[data-diff-bar="${differentialIndex}"]`);
+      if (bar) bar.style.setProperty("--bar", `${value}%`);
+    });
+    const paperBar = clinicalDemo.querySelector("[data-paper-bar]");
+    if (paperBar) paperBar.style.setProperty("--bar", `${currentCase.differentials[0][1]}%`);
+    renderClinicalImage(0);
+  };
+
+  const stopClinical = () => {
+    window.clearInterval(clinicalCaseTimer);
+    window.clearInterval(clinicalImageTimer);
+    window.clearTimeout(clinicalTransitionTimer);
+    clinicalDemo?.classList.remove("is-transitioning");
+  };
+
+  const scheduleClinical = () => {
+    stopClinical();
+    if (reducedMotion.matches || activeIndex !== 3 || !clinicalDemo) return;
+    clinicalImageTimer = window.setInterval(() => {
+      const total = clinicalCases[clinicalCaseIndex].images.length;
+      renderClinicalImage((clinicalImageIndex + 1) % total);
+    }, 1900);
+    clinicalCaseTimer = window.setInterval(() => {
+      clinicalDemo.classList.add("is-transitioning");
+      clinicalTransitionTimer = window.setTimeout(() => {
+        renderClinicalCase((clinicalCaseIndex + 1) % clinicalCases.length);
+        clinicalDemo.classList.remove("is-transitioning");
+      }, 320);
+    }, 6000);
+  };
+
+  clinicalDemo?.addEventListener("mouseenter", stopClinical);
+  clinicalDemo?.addEventListener("mouseleave", scheduleClinical);
+  renderClinicalCase(0);
+
+  document.addEventListener("deck:scene", (event) => {
+    if (event.detail.index === 0) {
+      renderCapture(reducedMotion.matches ? 3 : 0);
+      scheduleCapture();
+    } else {
+      stopCapture();
+    }
+
+    if (event.detail.index === 1) {
+      if (phoneIndex === phoneScreens.length - 1 && !phonePaused) renderPhone(0);
+      schedulePhone();
+    } else {
+      stopPhone();
+    }
+
+    if (event.detail.index === 2) scheduleQueue();
+    else stopQueue();
+
+    if (event.detail.index === 3) scheduleClinical();
+    else stopClinical();
+  });
 
   shareButton?.addEventListener("click", async () => {
     const data = {
