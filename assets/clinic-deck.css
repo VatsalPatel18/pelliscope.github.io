@@ -524,20 +524,49 @@ img {
   animation: signal-float 5.4s 0.5s ease-in-out infinite;
 }
 
-.signal-photos div {
+.signal-photos .real-case-photos {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 5px;
 }
 
-.signal-photos i {
-  height: 36px;
-  border-radius: 7px;
-  background: linear-gradient(135deg, #b87969, #e8ba9e);
+.signal-photos figure {
+  position: relative;
+  height: 62px;
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid rgba(245, 248, 245, 0.16);
+  border-radius: 8px;
+  background: #1b2b2f;
 }
 
-.signal-photos i:nth-child(2) { background: linear-gradient(135deg, #e8c0ac, #8f5f55); }
-.signal-photos i:nth-child(3) { background: linear-gradient(135deg, #a6675d, #f0c3a7); }
+.signal-photos img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.signal-photos figure:first-child img {
+  object-position: 52% 48%;
+}
+
+.signal-photos figure:last-child img {
+  object-position: 48% 58%;
+}
+
+.signal-photos figure span {
+  position: absolute;
+  right: 4px;
+  bottom: 4px;
+  padding: 3px 5px;
+  border-radius: 4px;
+  color: var(--porcelain);
+  background: rgba(7, 29, 36, 0.76);
+  font: 650 5px/1 "Geist Mono", monospace;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  backdrop-filter: blur(5px);
+}
 
 .signal-context {
   right: 4%;
