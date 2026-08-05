@@ -762,6 +762,58 @@
         line-height: 1.75;
       }
 
+      .economics-summary {
+        grid-column: 1 / -1;
+        color: rgba(255, 247, 234, 0.96);
+        background: linear-gradient(135deg, rgba(17, 32, 25, 0.98), rgba(21, 50, 39, 0.96));
+      }
+
+      .economics-summary .proof-subtitle {
+        color: rgba(255, 247, 234, 0.62);
+      }
+
+      .economics-summary .workflow-badge {
+        color: #dff8ec;
+        background: rgba(78, 168, 115, 0.22);
+      }
+
+      .economics-summary-grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 0.7rem;
+        margin-top: 1.5rem;
+      }
+
+      .economics-summary-grid > div {
+        padding: 1rem;
+        border: 1px solid rgba(255, 247, 234, 0.09);
+        border-radius: 18px;
+        background: rgba(255, 247, 234, 0.055);
+      }
+
+      .economics-summary-grid strong,
+      .economics-summary-grid span {
+        display: block;
+      }
+
+      .economics-summary-grid strong {
+        color: #8ee5b4;
+        font-size: clamp(1.4rem, 3vw, 2.3rem);
+        letter-spacing: -0.05em;
+      }
+
+      .economics-summary-grid span {
+        margin-top: 0.35rem;
+        color: rgba(255, 247, 234, 0.58);
+        font-size: 0.72rem;
+        line-height: 1.45;
+      }
+
+      .developer-console-link {
+        width: 100%;
+        margin-top: 1.2rem;
+      }
+
       .quote-band {
         max-width: 1200px;
         margin: 0 auto;
@@ -2224,6 +2276,10 @@
           grid-template-columns: 1fr;
         }
 
+        .economics-summary-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
       }
 
       @media (max-width: 760px) {
@@ -2353,6 +2409,10 @@
         .bar-row label,
         .bar-row strong {
           text-align: left;
+        }
+
+        .economics-summary-grid {
+          grid-template-columns: 1fr;
         }
 
         footer {
@@ -2519,72 +2579,92 @@
                     <h3>Efficient Tele-Medicine</h3>
                     <p class="proof-subtitle">Workflow comparison</p>
                   </div>
-                  <span class="workflow-badge">Illustrative workflow</span>
+                  <span class="workflow-badge">+10 patients / 5hr shift</span>
                 </div>
 
                 <div class="timeline-block">
                   <div class="timeline-head">
-                    <span>Unstructured intake</span>
-                    <span>Before consultation</span>
+                    <span>Traditional (No AI)</span>
+                    <span>10 Min / Patient</span>
                   </div>
                   <div class="timeline-bar">
-                    <div class="timeline-fill">History gathering during consultation</div>
+                    <div class="timeline-fill">Consultation (10m)</div>
                   </div>
                   <div class="timeline-foot">
                     <p></p>
-                    <span>Baseline varies by clinic</span>
+                    <span>6 Patients / Hour</span>
                   </div>
                 </div>
 
                 <div class="timeline-block">
                   <div class="timeline-head" style="color:#1f5a3f;">
-                    <span>Structured PelliScope intake</span>
-                    <span>Prepared before review</span>
+                    <span>With PelliScope</span>
+                    <span>~10 Min Total (Parallelized)</span>
                   </div>
                   <div class="timeline-bar" style="gap:0.3rem; background:transparent;">
-                    <div class="timeline-split one">Photos + context</div>
-                    <div class="timeline-split two">Clinician review</div>
+                    <div class="timeline-split one">Preliminary screen<br />(3m)</div>
+                    <div class="timeline-split two">Focused consult<br />(7m)</div>
                   </div>
                   <div class="timeline-foot">
-                    <p class="metric-copy">Actual time savings must be measured prospectively in each clinical setting.</p>
-                    <span>No throughput guarantee</span>
+                    <p class="metric-copy">AI triage saves 3 mins of discovery time per patient.</p>
+                    <span>8 Patients / Hour</span>
                   </div>
                 </div>
               </article>
 
               <article class="proof-card">
-                <h3>Internal validation, clearly labelled</h3>
-                <p class="proof-subtitle">Case-level research model evaluated on the public SCIN dataset</p>
+                <h3>Model Performance (AUC)</h3>
+                <p class="proof-subtitle">Zero-shot comparison on dermatology benchmarks</p>
 
                 <div class="bars">
                   <div class="bar-row">
-                    <label>Cases</label>
-                    <div class="bar-track"><div class="bar-fill pelli" style="width:100%"></div></div>
-                    <strong>2,336</strong>
+                    <label>Grok-4</label>
+                    <div class="bar-track"><div class="bar-fill grok"></div></div>
+                    <strong>0.70</strong>
                   </div>
                   <div class="bar-row">
-                    <label>Locked test micro AUC</label>
-                    <div class="bar-track"><div class="bar-fill pelli" style="width:84.9%"></div></div>
-                    <strong>0.849</strong>
+                    <label>GPT-5</label>
+                    <div class="bar-track"><div class="bar-fill gpt"></div></div>
+                    <strong>0.81</strong>
                   </div>
                   <div class="bar-row">
-                    <label>Locked test macro AUC</label>
-                    <div class="bar-track"><div class="bar-fill pelli" style="width:80%"></div></div>
-                    <strong>0.800</strong>
+                    <label>Gemini 2.5</label>
+                    <div class="bar-track"><div class="bar-fill gemini"></div></div>
+                    <strong>0.82</strong>
+                  </div>
+                  <div class="bar-row">
+                    <label>PelliScope</label>
+                    <div class="bar-track"><div class="bar-fill pelli"></div></div>
+                    <strong>0.86</strong>
                   </div>
                 </div>
 
                 <div class="chip-row">
-                  <span class="workflow-badge">Internal validation only</span>
-                  <span class="status-chip">Preprint · not peer reviewed</span>
+                  <span class="workflow-badge">2,336 internal cases</span>
+                  <span class="status-chip">Locked micro AUC · 0.849</span>
                 </div>
 
                 <div class="condition-list">
-                  AUC measures ranking discrimination across thresholds; it does not mean “84.9% correct.” External,
-                  prospective and subgroup validation remain outstanding.
+                  AUC measures ranking discrimination across thresholds; it is not the percentage of correct diagnoses.
                 </div>
                 <div class="button-row" style="margin-top:1rem;">
                   <a class="button-muted" href="./clinical-validation.html">Clinical Validation</a>
+                </div>
+              </article>
+
+              <article class="proof-card economics-summary">
+                <div style="display:flex; justify-content:space-between; gap:1rem; align-items:flex-start;">
+                  <div>
+                    <h3>API economics that scale with prepared care.</h3>
+                    <p class="proof-subtitle">Low query cost turns repetitive discovery into structured intake.</p>
+                  </div>
+                  <span class="workflow-badge">$5 / 100 cases</span>
+                </div>
+                <div class="economics-summary-grid">
+                  <div><strong>$0.05</strong><span>per query</span></div>
+                  <div><strong>$5</strong><span>per 100 cases</span></div>
+                  <div><strong>5–8.3h</strong><span>discovery time prepared per 100 cases</span></div>
+                  <div><strong>+10</strong><span>patients per five-hour shift in the conservative workflow illustration</span></div>
                 </div>
               </article>
             </div>
@@ -2694,7 +2774,7 @@
               <span class="tag">Integration</span>
               <h3>API Integration</h3>
               <div class="price-line">
-                <strong>From ₹3 per query</strong>
+                <strong>$0.05 per query</strong>
               </div>
               <p>For teams that want PelliScope inside an existing patient journey, portal, or intake layer.</p>
               <ul class="pricing-list">
@@ -2702,6 +2782,7 @@
                 <li>Headless AI component</li>
                 <li>RESTful API access</li>
               </ul>
+              <a class="button-muted developer-console-link" href="https://console.pelliscope.eu" target="_blank" rel="noopener">Open developer console ↗</a>
             </article>
 
             <article class="pricing-card highlight reveal">

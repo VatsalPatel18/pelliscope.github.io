@@ -159,7 +159,7 @@
         return;
       }
       renderPhone(phoneIndex + 1);
-    }, 2600);
+    }, 5200);
   };
 
   phoneSteps.forEach((step, index) => {

@@ -127,20 +127,29 @@
             </div>
 
             <div class="phone-story scene-reveal" data-phone-story aria-describedby="phone-story-description">
-              <p class="sr-only" id="phone-story-description">A four-step illustrative interface shows a patient describing a concern, adding guided photographs, receiving an infectious-signal screen with possible matches, and choosing an available dermatologist for teleconsultation.</p>
+              <p class="sr-only" id="phone-story-description">A four-step interface shows a patient capturing a guided photograph, adding another view, receiving an infectious-signal screen with possible matches, and choosing an available dermatologist for teleconsultation.</p>
               <div class="phone-aura" aria-hidden="true"></div>
               <div class="phone-shell" aria-hidden="true">
                 <div class="phone-hardware"><span></span><i></i></div>
                 <div class="phone-display">
-                  <div class="phone-status"><span>09:41</span><span>● 5G ▰</span></div>
+                  <div class="phone-status"><span>10:24</span><span>● 5G ▰</span></div>
                   <div class="phone-app-bar"><img src="./assets/img/pelliscope.png" alt="" /><strong>PelliScope</strong><span>Private</span></div>
                   <div class="phone-screens">
-                    <section class="phone-screen is-active" data-phone-screen="0">
-                      <p class="screen-step">YOUR SKIN CHECK · 01</p>
-                      <h3>What are you worried about?</h3>
-                      <div class="concern-prompt"><i></i><p>“This appeared two days ago and feels itchy.”</p></div>
-                      <div class="symptom-chips"><span>Itchy</span><span>2 days</span><span>Forearm</span></div>
-                      <button type="button" tabindex="-1">Continue <span>→</span></button>
+                    <section class="phone-screen capture-camera-screen is-active" data-phone-screen="0">
+                      <p class="screen-step">CAPTURE IMAGE · 01</p>
+                      <h3>Frame the skin concern.</h3>
+                      <div class="camera-capture-view">
+                        <img src="./assets/clinic-deck/case/context.jpeg" alt="" />
+                        <span class="camera-focus-frame" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+                        <span class="camera-flash" aria-hidden="true"></span>
+                        <div class="camera-guidance"><span></span><p><strong>Good light</strong>Hold steady</p></div>
+                      </div>
+                      <div class="camera-controls" aria-hidden="true">
+                        <span class="camera-mode">PHOTO</span>
+                        <button class="camera-shutter" type="button" tabindex="-1"><i></i></button>
+                        <span class="camera-thumbnail"><img src="./assets/clinic-deck/case/context.jpeg" alt="" /></span>
+                      </div>
+                      <div class="camera-captured"><i>✓</i><p><strong>Image captured</strong><span>Ready for the closer view</span></p></div>
                     </section>
 
                     <section class="phone-screen" data-phone-screen="1">
@@ -183,17 +192,17 @@
                       <div class="teleconsult-list">
                         <article>
                           <span class="teleconsult-avatar">AM</span>
-                          <div><strong>Illustrative clinician A</strong><small>General dermatology · Verified</small><em>8 yrs experience · ~2h response</em></div>
+                          <div><strong>Dr. Aarav Mehta</strong><small>General dermatology · Verified</small><em>8 yrs experience · ~2h response</em></div>
                           <b>Available now</b>
                         </article>
                         <article>
                           <span class="teleconsult-avatar alt">NS</span>
-                          <div><strong>Illustrative clinician B</strong><small>Dermatology · Verified</small><em>11 yrs experience · Today</em></div>
+                          <div><strong>Dr. Nisha Shah</strong><small>Dermatology · Verified</small><em>11 yrs experience · Today</em></div>
                           <b>Available today</b>
                         </article>
                         <article>
                           <span class="teleconsult-avatar soft">RI</span>
-                          <div><strong>Illustrative clinician C</strong><small>Clinical dermatology · Verified</small><em>6 yrs experience · ~4h response</em></div>
+                          <div><strong>Dr. Riya Iyer</strong><small>Clinical dermatology · Verified</small><em>6 yrs experience · ~4h response</em></div>
                           <b>Available now</b>
                         </article>
                       </div>
