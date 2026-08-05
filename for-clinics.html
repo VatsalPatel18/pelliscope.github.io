@@ -116,10 +116,7 @@
           <div class="scene-inner patient-layout">
             <div class="scene-copy patient-copy">
               <p class="scene-kicker scene-reveal">01 / Patient entry</p>
-              <h2 id="patient-title" class="scene-reveal">Four moments.<br /><em>One prepared case.</em></h2>
-              <p class="scene-lede scene-reveal">
-                The patient begins on any phone. No registration wall before the first step, and no loose photos arriving without context.
-              </p>
+              <h2 id="patient-title" class="scene-reveal">Preliminary screening.<br /><em>Before the clinic.</em></h2>
               <div class="patient-steps scene-reveal" role="group" aria-label="Patient journey stages">
                 <button class="is-active" type="button" data-phone-step="0"><span>01</span><strong>Concern</strong></button>
                 <button type="button" data-phone-step="1"><span>02</span><strong>Photos</strong></button>
@@ -130,7 +127,7 @@
             </div>
 
             <div class="phone-story scene-reveal" data-phone-story aria-describedby="phone-story-description">
-              <p class="sr-only" id="phone-story-description">A four-step interface demonstration shows a patient describing a concern, adding guided photographs, receiving AI-assisted direction and connecting the prepared case to a clinic.</p>
+              <p class="sr-only" id="phone-story-description">A four-step illustrative interface shows a patient describing a concern, adding guided photographs, receiving an infectious-signal screen with possible matches, and choosing an available dermatologist for teleconsultation.</p>
               <div class="phone-aura" aria-hidden="true"></div>
               <div class="phone-shell" aria-hidden="true">
                 <div class="phone-hardware"><span></span><i></i></div>
@@ -158,24 +155,49 @@
                       <button type="button" tabindex="-1">Review photographs <span>→</span></button>
                     </section>
 
-                    <section class="phone-screen direction-screen" data-phone-screen="2">
-                      <p class="screen-step">AI-ASSISTED SCREEN · 03</p>
-                      <div class="analysis-visual">
-                        <img src="./assets/clinic-deck/case/angled.jpeg" alt="" />
-                        <span class="scan-beam"></span><i class="scan-corner scan-a"></i><i class="scan-corner scan-b"></i><i class="scan-corner scan-c"></i><i class="scan-corner scan-d"></i>
+                    <section class="phone-screen direction-screen screening-result-screen" data-phone-screen="2">
+                      <p class="screen-step">SCREENING RESULT · 03</p>
+                      <div class="screening-verdict">
+                        <span aria-hidden="true">!</span>
+                        <div><small>PRELIMINARY SIGNAL</small><strong>Infectious</strong></div>
                       </div>
-                      <h3>Your case is ready for the next step.</h3>
-                      <div class="analysis-list"><span>✓ Photographs checked</span><span>✓ Symptoms organised</span><span>→ Clinician review recommended</span></div>
-                      <small>Screening is not a diagnosis.</small>
+                      <div class="signal-scores" aria-label="Illustrative infectious and non-infectious scores">
+                        <div class="signal-score infectious-score"><p><span>Infectious</span><strong>81%</strong></p><i><b></b></i></div>
+                        <div class="signal-score noninfectious-score"><p><span>Non-infectious</span><strong>23%</strong></p><i><b></b></i></div>
+                      </div>
+                      <div class="possible-matches">
+                        <p>TOP POSSIBLE MATCHES <small>Illustrative</small></p>
+                        <ol>
+                          <li><span>01</span><strong>Herpes Zoster</strong><b>92%</b><i style="--match: 92%"></i></li>
+                          <li><span>02</span><strong>Herpes Simplex</strong><b>68%</b><i style="--match: 68%"></i></li>
+                          <li><span>03</span><strong>Viral Exanthem</strong><b>41%</b><i style="--match: 41%"></i></li>
+                        </ol>
+                      </div>
+                      <small>Informational screening · not a diagnosis</small>
                     </section>
 
-                    <section class="phone-screen connected-screen" data-phone-screen="3">
-                      <p class="screen-step">CONNECTED · 04</p>
-                      <div class="sent-visual"><span>You</span><i><b></b></i><span>Dr</span></div>
-                      <h3>Your prepared case stays together.</h3>
-                      <p class="screen-copy">Photographs, symptoms and screening context travel in one private care thread.</p>
-                      <div class="status-card"><i></i><p><strong>Awaiting clinical review</strong>Return to this case at any time.</p></div>
-                      <button type="button" tabindex="-1">Open my case <span>→</span></button>
+                    <section class="phone-screen connected-screen clinician-list-screen" data-phone-screen="3">
+                      <p class="screen-step">SELECT A CLINICIAN · 04</p>
+                      <h3>Available for teleconsultation.</h3>
+                      <p class="clinician-list-copy">Choose a verified dermatologist to review this screening case.</p>
+                      <div class="teleconsult-list">
+                        <article>
+                          <span class="teleconsult-avatar">AM</span>
+                          <div><strong>Illustrative clinician A</strong><small>General dermatology · Verified</small><em>8 yrs experience · ~2h response</em></div>
+                          <b>Available now</b>
+                        </article>
+                        <article>
+                          <span class="teleconsult-avatar alt">NS</span>
+                          <div><strong>Illustrative clinician B</strong><small>Dermatology · Verified</small><em>11 yrs experience · Today</em></div>
+                          <b>Available today</b>
+                        </article>
+                        <article>
+                          <span class="teleconsult-avatar soft">RI</span>
+                          <div><strong>Illustrative clinician C</strong><small>Clinical dermatology · Verified</small><em>6 yrs experience · ~4h response</em></div>
+                          <b>Available now</b>
+                        </article>
+                      </div>
+                      <button type="button" tabindex="-1">View teleconsultation <span>→</span></button>
                     </section>
                   </div>
                   <span class="phone-home-indicator"></span>

@@ -767,30 +767,51 @@ img {
 .phone-photo-grid > div { display: grid; place-items: center; align-content: center; gap: 3px; color: #8fa9aa; }
 .phone-photo-grid > div b { font-size: 18px; font-weight: 350; }
 .phone-photo-grid > div span { font-size: 7px; }
-.capture-guide, .status-card { display: flex; align-items: center; gap: 9px; margin-top: 10px; padding: 10px; border: 1px solid rgba(43, 224, 173, 0.17); border-radius: 10px; background: rgba(43, 224, 173, 0.06); }
-.capture-guide i, .status-card i { flex: 0 0 auto; width: 7px; height: 7px; border-radius: 50%; background: var(--mint); box-shadow: 0 0 0 5px rgba(43, 224, 173, 0.08); }
-.capture-guide p, .status-card p { display: grid; gap: 2px; margin: 0; color: #78999a; font-size: 7px; line-height: 1.35; }
-.capture-guide strong, .status-card strong { color: #d7e4e2; font-size: 8px; }
-.analysis-visual { position: relative; width: 155px; height: 155px; margin: 0 auto 14px; overflow: hidden; border-radius: 50%; background: #173039; box-shadow: 0 0 0 7px rgba(43, 224, 173, 0.06); }
-.analysis-visual img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 58%; }
-.scan-beam { position: absolute; top: 0; left: 10%; width: 80%; height: 2px; background: var(--mint); box-shadow: 0 0 14px var(--mint); animation: phone-scan 2.2s ease-in-out infinite; animation-play-state: paused; }
-@keyframes phone-scan { 50% { transform: translateY(150px); } }
-.scan-corner { position: absolute; width: 21px; height: 21px; border-color: var(--mint); border-style: solid; }
-.scan-a { top: 20px; left: 20px; border-width: 2px 0 0 2px; }.scan-b { top: 20px; right: 20px; border-width: 2px 2px 0 0; }.scan-c { right: 20px; bottom: 20px; border-width: 0 2px 2px 0; }.scan-d { bottom: 20px; left: 20px; border-width: 0 0 2px 2px; }
-.direction-screen h3 { margin-bottom: 9px; font-size: 18px; text-align: center; }
-.direction-screen > small { margin-top: auto; color: #718e90; font-size: 7px; text-align: center; }
-.analysis-list { display: grid; gap: 5px; }
-.analysis-list span { padding: 7px 9px; border-radius: 8px; color: #bfd0d0; background: rgba(245, 248, 245, 0.05); font-size: 8px; }
-.analysis-list span:last-child { color: var(--mint); }
-.sent-visual { display: flex; align-items: center; justify-content: center; gap: 13px; margin: 30px 0 28px; }
-.sent-visual > span { display: grid; place-items: center; width: 52px; height: 52px; border: 1px solid rgba(43, 224, 173, 0.3); border-radius: 50%; background: rgba(43, 224, 173, 0.08); font-size: 10px; font-weight: 800; }
-.sent-visual > i { position: relative; width: 70px; height: 1px; background: rgba(43, 224, 173, 0.3); }
-.sent-visual > i b { position: absolute; top: -4px; left: 0; width: 8px; height: 8px; border-radius: 50%; background: var(--mint); animation: phone-send 1.8s ease-in-out infinite; animation-play-state: paused; }
-.scene-patient.is-active .phone-screen.is-active .scan-beam,
-.scene-patient.is-active .phone-screen.is-active .sent-visual > i b { animation-play-state: running; }
-@keyframes phone-send { to { transform: translateX(62px); } }
-.connected-screen h3 { margin-bottom: 9px; text-align: center; }
-.screen-copy { color: #8eaaab; font-size: 9px; line-height: 1.5; text-align: center; }
+.capture-guide { display: flex; align-items: center; gap: 9px; margin-top: 10px; padding: 10px; border: 1px solid rgba(43, 224, 173, 0.17); border-radius: 10px; background: rgba(43, 224, 173, 0.06); }
+.capture-guide i { flex: 0 0 auto; width: 7px; height: 7px; border-radius: 50%; background: var(--mint); box-shadow: 0 0 0 5px rgba(43, 224, 173, 0.08); }
+.capture-guide p { display: grid; gap: 2px; margin: 0; color: #78999a; font-size: 7px; line-height: 1.35; }
+.capture-guide strong { color: #d7e4e2; font-size: 8px; }
+
+.screening-result-screen { padding: 13px 8px 8px; }
+.screening-result-screen .screen-step { margin-bottom: 9px !important; }
+.screening-verdict { display: flex; align-items: center; gap: 10px; padding: 10px 11px; border: 1px solid rgba(239, 68, 68, 0.32); border-radius: 12px; background: linear-gradient(135deg, rgba(239, 68, 68, 0.16), rgba(239, 68, 68, 0.04)); }
+.screening-verdict > span { display: grid; width: 30px; height: 30px; flex: 0 0 auto; place-items: center; border-radius: 50%; color: #fff; background: #ef4444; font-size: 14px; font-weight: 900; }
+.screening-verdict > div { display: grid; gap: 2px; }
+.screening-verdict small { color: #fca5a5; font: 700 5px/1 "Geist Mono", monospace; letter-spacing: 0.1em; }
+.screening-verdict strong { color: #fca5a5; font-size: 16px; letter-spacing: -0.03em; }
+.signal-scores { display: grid; gap: 8px; margin-top: 10px; }
+.signal-score > p { display: flex; justify-content: space-between; margin: 0 0 4px; color: #bed0d0; font-size: 7px; }
+.signal-score > p strong { color: var(--porcelain); font: 700 8px/1 "Geist Mono", monospace; }
+.signal-score > i { display: block; height: 7px; overflow: hidden; border-radius: 99px; background: rgba(245, 248, 245, 0.08); }
+.signal-score > i b { display: block; height: 100%; border-radius: inherit; }
+.infectious-score > i b { width: 81%; background: linear-gradient(90deg, #b91c1c, #ef4444); box-shadow: 0 0 12px rgba(239, 68, 68, 0.35); }
+.noninfectious-score > i b { width: 23%; background: linear-gradient(90deg, #d97706, #fbbf24); box-shadow: 0 0 12px rgba(251, 191, 36, 0.28); }
+.possible-matches { margin-top: 11px; padding: 9px 10px; border: 1px solid rgba(245, 248, 245, 0.1); border-radius: 11px; background: rgba(245, 248, 245, 0.04); }
+.possible-matches > p { display: flex; align-items: center; justify-content: space-between; margin: 0 0 5px; color: #91a9aa; font: 700 5px/1 "Geist Mono", monospace; letter-spacing: 0.08em; }
+.possible-matches > p small { color: #6f8d8e; font-size: 5px; letter-spacing: 0; text-transform: none; }
+.possible-matches ol { display: grid; gap: 2px; margin: 0; padding: 0; list-style: none; }
+.possible-matches li { position: relative; display: grid; grid-template-columns: 18px 1fr auto; gap: 6px; align-items: center; min-height: 29px; padding: 5px 0 7px; border-top: 1px solid rgba(245, 248, 245, 0.06); }
+.possible-matches li > span { color: #6f898b; font: 700 5px/1 "Geist Mono", monospace; }
+.possible-matches li > strong { font-size: 7px; }
+.possible-matches li > b { color: #a9bfc0; font: 700 6px/1 "Geist Mono", monospace; }
+.possible-matches li > i { position: absolute; right: 0; bottom: 3px; left: 24px; height: 2px; border-radius: 99px; background: linear-gradient(90deg, #ef4444 0 var(--match), rgba(245, 248, 245, 0.07) var(--match)); }
+.screening-result-screen > small { margin-top: auto; color: #718e90; font-size: 6px; text-align: center; }
+
+.clinician-list-screen { padding: 13px 8px 8px; }
+.clinician-list-screen .screen-step { margin-bottom: 9px !important; }
+.clinician-list-screen h3 { margin-bottom: 4px; font-size: 17px; }
+.clinician-list-copy { margin: 0 0 8px; color: #8da8a9; font-size: 7px; line-height: 1.4; }
+.teleconsult-list { display: grid; gap: 6px; }
+.teleconsult-list article { display: grid; grid-template-columns: 31px minmax(0, 1fr) auto; gap: 7px; align-items: center; padding: 8px; border: 1px solid rgba(245, 248, 245, 0.1); border-radius: 10px; background: rgba(245, 248, 245, 0.045); }
+.teleconsult-avatar { display: grid; width: 31px; height: 31px; place-items: center; border-radius: 50%; color: #06171c; background: linear-gradient(135deg, #58b9ff, #28e6a4); font-size: 7px; font-weight: 850; }
+.teleconsult-avatar.alt { background: linear-gradient(135deg, #8175ff, #58b9ff); }
+.teleconsult-avatar.soft { background: linear-gradient(135deg, #ff7467, #fbbf24); }
+.teleconsult-list article > div { min-width: 0; display: grid; gap: 1px; }
+.teleconsult-list article > div strong { overflow: hidden; font-size: 7px; text-overflow: ellipsis; white-space: nowrap; }
+.teleconsult-list article > div small { color: #8ca4a6; font-size: 5.5px; }
+.teleconsult-list article > div em { color: #68888a; font-size: 5px; font-style: normal; }
+.teleconsult-list article > b { max-width: 52px; padding: 4px 5px; border-radius: 99px; color: #8ff0cf; background: rgba(43, 224, 173, 0.1); font-size: 5px; font-weight: 750; line-height: 1.15; text-align: center; }
+.clinician-list-screen > button { min-height: 38px; }
 .phone-home-indicator { position: absolute; bottom: 8px; left: 50%; z-index: 20; width: 90px; height: 3px; border-radius: 99px; background: rgba(245, 248, 245, 0.45); transform: translateX(-50%); }
 
 .phone-controls {
