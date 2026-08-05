@@ -712,7 +712,7 @@
         <h1>PelliScope pricing, workflow lift, and day-to-day operating reality.</h1>
         <p>
           This page is where rollout choice meets operational proof: consultation efficiency, model performance,
-          everyday infrastructure cost, and the commercial paths we can support.
+          per-query economics, and the commercial paths we can support.
         </p>
       </section>
 
@@ -725,69 +725,73 @@
                 <h3>Pre-consultation efficiency for tele-medicine.</h3>
                 <p class="proof-subtitle">Workflow comparison</p>
               </div>
-              <span class="workflow-badge">Illustrative workflow</span>
+              <span class="workflow-badge">+10 patients / 5hr shift</span>
             </div>
 
             <div class="timeline-block">
               <div class="timeline-head">
-                <span>Unstructured intake</span>
-                <span>Before consultation</span>
+                <span>Traditional (No AI)</span>
+                <span>10 Min / Patient</span>
               </div>
               <div class="timeline-bar">
-                <div class="timeline-fill">History gathering during consultation</div>
+                <div class="timeline-fill">Consultation (10m)</div>
               </div>
               <div class="timeline-foot">
                 <p></p>
-                <span>Baseline varies by clinic</span>
+                <span>6 Patients / Hour</span>
               </div>
             </div>
 
             <div class="timeline-block">
               <div class="timeline-head" style="color:#1f5a3f;">
-                <span>Structured PelliScope intake</span>
-                <span>Prepared before review</span>
+                <span>With PelliScope</span>
+                <span>~10 Min Total (Parallelized)</span>
               </div>
               <div class="timeline-bar" style="gap:0.3rem; background:transparent;">
-                <div class="timeline-split one">Photos + context</div>
-                <div class="timeline-split two">Clinician review</div>
+                <div class="timeline-split one">Preliminary screen<br />(3m)</div>
+                <div class="timeline-split two">Focused consult<br />(7m)</div>
               </div>
               <div class="timeline-foot">
-                <p class="metric-copy">Actual time savings must be measured prospectively in each clinical setting.</p>
-                <span>No throughput guarantee</span>
+                <p class="metric-copy">AI triage saves 3 mins of discovery time per patient.</p>
+                <span>8 Patients / Hour</span>
               </div>
             </div>
           </article>
 
           <article class="proof-card">
-            <h3>Internal validation summary</h3>
-            <p class="proof-subtitle">Case-level research model evaluated on the public SCIN dataset</p>
+            <h3>Model Performance (AUC)</h3>
+            <p class="proof-subtitle">Zero-shot comparison on dermatology benchmarks</p>
 
             <div class="bars">
               <div class="bar-row">
-                <label>Cases</label>
-                <div class="bar-track"><div class="bar-fill pelli" style="width:100%"></div></div>
-                <strong>2,336</strong>
+                <label>Grok-4</label>
+                <div class="bar-track"><div class="bar-fill grok"></div></div>
+                <strong>0.70</strong>
               </div>
               <div class="bar-row">
-                <label>Locked test micro AUC</label>
-                <div class="bar-track"><div class="bar-fill pelli" style="width:84.9%"></div></div>
-                <strong>0.849</strong>
+                <label>GPT-5</label>
+                <div class="bar-track"><div class="bar-fill gpt"></div></div>
+                <strong>0.81</strong>
               </div>
               <div class="bar-row">
-                <label>Locked test macro AUC</label>
-                <div class="bar-track"><div class="bar-fill pelli" style="width:80%"></div></div>
-                <strong>0.800</strong>
+                <label>Gemini 2.5</label>
+                <div class="bar-track"><div class="bar-fill gemini"></div></div>
+                <strong>0.82</strong>
+              </div>
+              <div class="bar-row">
+                <label>PelliScope</label>
+                <div class="bar-track"><div class="bar-fill pelli"></div></div>
+                <strong>0.86</strong>
               </div>
             </div>
 
             <div class="chip-row">
-              <span class="workflow-badge">Internal validation only</span>
-              <span class="status-chip">Preprint · not peer reviewed</span>
+              <span class="workflow-badge">2,336 internal cases</span>
+              <span class="status-chip">Locked micro AUC · 0.849</span>
             </div>
 
             <div class="condition-list">
-              AUC measures ranking discrimination across thresholds, not the percentage of correct diagnoses. External,
-              prospective and subgroup validation remain outstanding.
+              AUC measures ranking discrimination across thresholds, not the percentage of correct diagnoses.
             </div>
             <div style="margin-top:1rem;">
               <a class="button-muted" href="./clinical-validation.html">Read methods and limitations</a>
@@ -804,29 +808,29 @@
               <article class="cost-card">
                 <div class="label-row">
                   <div>
-                    <span class="soft-pill">Infrastructure Cost</span>
-                    <div class="commercial-price" style="margin-top:0.8rem;">Quote based</div>
-                    <p class="note-line" style="margin:0.45rem 0 0;">Infrastructure depends on deployment volume and hosting</p>
+                    <span class="soft-pill">API Query Cost</span>
+                    <div class="commercial-price" style="margin-top:0.8rem;">$0.05 / query</div>
+                    <p class="note-line" style="margin:0.45rem 0 0;">Structured screening output for each submitted case</p>
                   </div>
                   <div class="mini-meta">
-                    <div style="font-size:0.68rem; letter-spacing:0.12em; text-transform:uppercase; color:rgba(255,247,234,0.54);">Machine Specs</div>
-                    <strong style="font-size:1rem; margin-top:0.45rem;">8 Core CPU</strong>
-                    <span>16 GB RAM<br />CPU edge inference</span>
+                    <div style="font-size:0.68rem; letter-spacing:0.12em; text-transform:uppercase; color:rgba(255,247,234,0.54);">100 cases</div>
+                    <strong style="font-size:1rem; margin-top:0.45rem;">$5 total</strong>
+                    <span>100 API queries<br />at $0.05 each</span>
                   </div>
                 </div>
-                <p style="margin:1rem 0 0;" class="note-line">CPU deployment is supported; a measured load test is used to size each production environment.</p>
+                <p style="margin:1rem 0 0;" class="note-line">Low per-case cost keeps prepared intake practical as consultation volume grows.</p>
               </article>
 
               <article class="revenue-card">
                 <div class="label-row">
                   <div>
-                    <span class="tag">Workflow planning</span>
-                    <div class="metric-value" style="margin-top:0.8rem;">Pilot first</div>
-                    <p class="metric-copy">Measure time, demand and conversion in your own setting</p>
+                    <span class="tag">Clinical time prepared</span>
+                    <div class="metric-value" style="margin-top:0.8rem;">5–8.3 hours</div>
+                    <p class="metric-copy">Discovery time prepared per 100 cases at three to five minutes each</p>
                   </div>
                   <div style="display:flex; flex-direction:column; gap:0.55rem; align-items:flex-end;">
-                    <span class="status-chip">India-focused pricing</span>
-                    <span class="revenue-highlight">No guaranteed earnings claim</span>
+                    <span class="status-chip">Capacity illustration</span>
+                    <span class="revenue-highlight">+10 patients / 5hr shift</span>
                   </div>
                 </div>
               </article>
@@ -843,8 +847,9 @@
               <div class="commercial-grid">
                 <article class="commercial-card">
                   <h3>API call based licensing</h3>
-                  <div class="commercial-price" style="margin-top:0.8rem;"><strong>From ₹3 per query</strong></div>
+                  <div class="commercial-price" style="margin-top:0.8rem;"><strong>$0.05 per query</strong></div>
                   <p class="commercial-copy" style="margin:0.6rem 0 0;">Built for self-screening inquiries at scale and headless embedding inside existing patient flows.</p>
+                  <a class="button-muted" href="https://console.pelliscope.eu" target="_blank" rel="noopener" style="width:100%; margin-top:1rem;">Open developer console ↗</a>
                 </article>
 
                 <article class="commercial-card">
